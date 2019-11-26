@@ -10,10 +10,78 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_024734) do
+ActiveRecord::Schema.define(version: 2019_11_26_032219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "learning_opportunities", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "price"
+    t.string "type"
+    t.string "location"
+    t.text "description"
+    t.string "rl"
+    t.string "twitter_hashtag"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "learning_opportunities_skills", id: false, force: :cascade do |t|
+    t.bigint "learning_opportunity_id", null: false
+    t.bigint "skill_id", null: false
+  end
+
+  create_table "professions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "professions_skill_groups", id: false, force: :cascade do |t|
+    t.bigint "profession_id", null: false
+    t.bigint "skill_group_id", null: false
+  end
+
+  create_table "skill_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skill_groups_skills", id: false, force: :cascade do |t|
+    t.bigint "skill_id", null: false
+    t.bigint "skill_group_id", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_bookmarks", force: :cascade do |t|
+    t.bigint "learning_opportunity_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["learning_opportunity_id"], name: "index_user_bookmarks_on_learning_opportunity_id"
+    t.index ["user_id"], name: "index_user_bookmarks_on_user_id"
+  end
+
+  create_table "user_ratings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "learning_opportunity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "good"
+    t.index ["learning_opportunity_id"], name: "index_user_ratings_on_learning_opportunity_id"
+    t.index ["user_id"], name: "index_user_ratings_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +91,16 @@ ActiveRecord::Schema.define(version: 2019_11_26_024734) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profession_id"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["profession_id"], name: "index_users_on_profession_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_bookmarks", "learning_opportunities"
+  add_foreign_key "user_bookmarks", "users"
+  add_foreign_key "user_ratings", "learning_opportunities"
+  add_foreign_key "user_ratings", "users"
+  add_foreign_key "users", "professions"
 end

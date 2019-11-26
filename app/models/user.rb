@@ -10,6 +10,8 @@ class User < ApplicationRecord
   # Model Associations
   belongs_to :profession
   has_many :skill_groups, through: :profession
+  has_many :user_ratings
+  has_many :user_bookmarks
 end
 
 #   create_table "users", force: :cascade do |t|

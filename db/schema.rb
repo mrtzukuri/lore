@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_11_27_031843) do
+=======
+ActiveRecord::Schema.define(version: 2019_11_27_031723) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "time_commitment"
   end
 
   create_table "learning_opportunities_skills", id: false, force: :cascade do |t|
@@ -62,6 +67,8 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "skill_group_id"
+    t.index ["skill_group_id"], name: "index_skills_on_skill_group_id"
   end
 
   create_table "user_bookmarks", force: :cascade do |t|
@@ -93,11 +100,13 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.datetime "updated_at", null: false
     t.bigint "profession_id"
     t.string "city"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profession_id"], name: "index_users_on_profession_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "skills", "skill_groups"
   add_foreign_key "user_bookmarks", "learning_opportunities"
   add_foreign_key "user_bookmarks", "users"
   add_foreign_key "user_ratings", "learning_opportunities"

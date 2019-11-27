@@ -20,4 +20,5 @@ class CourseraJob < ApplicationJob
         )
     end
   end
+
 end

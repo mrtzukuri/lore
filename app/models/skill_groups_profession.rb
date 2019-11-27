@@ -1,0 +1,2 @@
+class SkillGroupsProfession < ApplicationRecord
+end

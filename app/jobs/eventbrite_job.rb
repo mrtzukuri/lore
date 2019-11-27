@@ -14,7 +14,7 @@ class EventbriteJob < ApplicationJob
     # 2. Use OAuth token to query Eventbrite search
     request_url = EVENTBRITE_SEARCH_URL + "?q=#{query}" + "&token=#{token}"
     response = HTTParty.get(request_url, format: :json)
-    binding.pry
+
     response["events"].each do |event|
       LearningOpportunity.create(
         name: event["name"]["text"],
@@ -22,7 +22,8 @@ class EventbriteJob < ApplicationJob
         end_date: event["end"]["local"],
         location: "Melbourne, Australia",
         description: event["description"]["text"],
-        url: event["url"]
+        url: event["url"],
+        course_type: event["online_event"].to_s
         )
     end
   end

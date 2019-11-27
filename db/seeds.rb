@@ -66,14 +66,14 @@ puts "Seeding Finished."
 puts "Activity seeds"
 
 LearningOpportunity.create!({name: "JS Workshops",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Where we meet to hack together on JavaScript. We intend to run workshop/hacking sessions to learn upcoming ES6/7 features, and how to put new ideas into practice.",
   url: "https://www.meetup.com/MelbourneJS/"
 })
 
 LearningOpportunity.create!({name: "Melbourne CSS",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Melbourne's CSS and front-end discussion group. Do you know your floats, flexbox, and grid or want to learn more? Join now!
 Get in touch if you'd like to present your work, sponsor or if you'd just like to say 'Hi'.",
@@ -82,7 +82,7 @@ Get in touch if you'd like to present your work, sponsor or if you'd just like t
 
 LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
 
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Agile Coaching Circles is intended to provide support for the role of the Agile Coach and the competencies (i.e. facilitation, mentoring, teaching, and coaching) to become effective in that role through a community of practicing coaches.
 Let's get together to share our successes and challenges with each other in order to support newer coaches and Scrum Masters, enhance our coaching skills and deepen our craft.",
@@ -90,7 +90,7 @@ Let's get together to share our successes and challenges with each other in orde
 })
 
 LearningOpportunity.create!({name: "SCRUM Practice, Melbourne",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This meetup is for those interested in practicing specifically SCRUM - most common Agile methodology practiced in IT industry.
 At our SCRUM Workshops we help participants gain and share knowledge through practical experience. Each of our session is a quick overview (not more than 10 min) followed by a role play where we assign roles and play as SCRUM team as if we are delivering a project. At breaks and in the very end we discuss what SCRUM Master did right, wrong and what was the overall outcome of the session.
@@ -101,21 +101,21 @@ More info in our Facebook group: https://www.facebook.com/groups/112573588751316
 })
 
 LearningOpportunity.create!({name: "Melbourne APIs Meetup",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
   url: "https://www.meetup.com/Melbourne-APIs-Meetup/"
 })
 
 LearningOpportunity.create!({name: "Everything API Melbourne",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
   url: "https://www.meetup.com/Everything-API-Melbourne/"
 })
 
 LearningOpportunity.create!({name: "City Centre Toastmasters.",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "What makes City Centre Toastmasters Club unique? We help young professionals, including people from an English as a Second Language background, develop their professional and conversational English-speaking skills.
 Located in the heart of the city, after the work day has ended, City Centre Toastmasters attracts young professionals who want to advance their careers through developing their public speaking and leadership skills.
@@ -128,7 +128,7 @@ FREE for guests to attend. All are welcome.",
 })
 
 LearningOpportunity.create!({name: "Speaking, Presenting & Leadership",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "We help people improve their speaking, presenting and leadership skills in a safe and friendly environment. You won't walk into a room of expert speakers, but rather just average people looking to improve their speaking and socialise. We are a diverse group with varied skills and background.
 What makes our club unique?
@@ -143,7 +143,7 @@ Feel free to drop by to our meetings as a guest!",
 })
 
 LearningOpportunity.create!({name: "Melbourne Communication Skills Development",
-  type: "meet up",
+  course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Whether we like it or not we are dependent on others to achieve
 what we want.

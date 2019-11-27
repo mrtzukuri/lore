@@ -53,11 +53,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_031723) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skill_groups_skills", id: false, force: :cascade do |t|
-    t.bigint "skill_id", null: false
-    t.bigint "skill_group_id", null: false
-  end
-
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "level"

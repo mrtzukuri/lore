@@ -1,16 +1,10 @@
-require "json"
-require "rest-client"
 
-puts 'Creating learning opportunities from eventbrite...'
-response = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
-eventbrite_learning_opportunities = JSON.parse(response)
 
-restaurants_attributes = []
+events = EventbriteSDK::Event.retrieve
+binding.pry
+puts "hello"
 
-eventbrite_learning_opportunities["drinks"].each do |element|
-  LearningOpportunity.create!(
-    name: element["strIngredient1"]
-    )
-end
+# After Skills seeded
+# For each skill in the database
+# Perform 1 CourseraJob.perform_now(skill.name, 0, 5)
 
-puts 'Finished!'

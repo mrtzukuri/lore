@@ -1,0 +1,21 @@
+class EventbriteJob < ApplicationJob
+  queue_as :default
+
+  EVENTBRITE_OAUTH_URL = "https://www.eventbriteapi.com/v3/users/me/?token=#{ENV['EventbriteSDK.token']}"
+  EVENTBRITE_SEARCH_URL = "https://www.eventbriteapi.com/v3/events/search/"
+
+  def perform(query)
+
+    # 1. Retrieve an OAuth token from Eventbrite API
+    response = HTTParty.get(EVENTBRITE_OAUTH_URL, format: :json)
+    token = response.headers["x-rate-limit"].split(' ').first
+    token.slice!(0, 6)
+
+    # 2. Use OAuth token to query Eventbrite search
+    request_url = EVENTBRITE_SEARCH_URL + "?q=#{query}" + "&token=#{token}"
+    response = HTTParty.get(request_url, format: :json)
+
+    binding.pry
+
+  end
+end

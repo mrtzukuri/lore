@@ -3,7 +3,7 @@ class LearningOpportunity < ApplicationRecord
 
   # Validations
   validates :name, presence: true, uniqueness: true
-  validates :start_date, :end_date, :price, :type, :location, :description, :url, presence: true
+  validates :course_type, :location, :description, :url, presence: true
 end
 
   # create_table "learning_opportunities", force: :cascade do |t|

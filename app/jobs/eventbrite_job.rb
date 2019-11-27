@@ -15,7 +15,17 @@ class EventbriteJob < ApplicationJob
     request_url = EVENTBRITE_SEARCH_URL + "?q=#{query}" + "&token=#{token}"
     response = HTTParty.get(request_url, format: :json)
 
-    binding.pry
-
+    response["events"].each do |event|
+      LearningOpportunity.create(
+        name: event["name"]["text"],
+        start_date: event["start"]["local"],
+        end_date: event["end"]["local"],
+        location: "Melbourne, Australia",
+        description: event["description"]["text"],
+        url: event["url"],
+        course_type: event["online_event"].to_s
+        )
+    end
   end
 end
+

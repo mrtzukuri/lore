@@ -1,5 +1,5 @@
 class AddSkillGroupToSkills < ActiveRecord::Migration[5.2]
   def change
-    add_reference :skills, :skill_group, foreign_key: true
+    add_column :skills, :skill_group, :string
   end
 end

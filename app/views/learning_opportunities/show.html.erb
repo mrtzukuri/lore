@@ -1,0 +1,14 @@
+<div class="container">
+  <h1><%= @learningopportunity.name %></h1>
+  <p><%= @learningopportunity.description %></p>
+  <ul>
+    <li> price: <%= @learningopportunity.price %></li>
+    <li> location: <%= @learningopportunity.location %></li>
+    <li> type: <%= @learningopportunity.course_type %></li>
+    <li> start date: <%= @learningopportunity.start_date %></li>
+    <li> end date: <%= @learningopportunity.end_date %></li>
+  </ul>
+
+  <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
+
+</div>

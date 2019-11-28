@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>INDEX - Learning Opportunities</h1>
+  <ul>
+    <% @learningopportunities.each do |learning_opportunity| %>
+      <li><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></li>
+    <% end %>
+  </ul>
+</div>
+

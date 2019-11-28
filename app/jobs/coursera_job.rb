@@ -5,8 +5,8 @@ class CourseraJob < ApplicationJob
   COURSERA_INCLUDES = '&includes=v2Details,name'
   COURSERA_FIELDS = '&fields=description,name'
 
-  def perform(query, start, limit)
-    request_url = COURSERA_BASE_API_URL + "?start=#{start}" + "&limit=#{limit}" + COURSERA_INCLUDES + COURSERA_FIELDS + "&q=search&query=#{query}"
+  def perform(skill, start, limit)
+    request_url = COURSERA_BASE_API_URL + "?start=#{start}" + "&limit=#{limit}" + COURSERA_INCLUDES + COURSERA_FIELDS + "&q=search&query=#{skill.name}"
     response = HTTParty.get(request_url, format: :plain)
     courses = JSON.parse response, symbolize_names: true
 
@@ -16,9 +16,9 @@ class CourseraJob < ApplicationJob
           name: course[:name],
           course_type: "online",
           url: "https://www.coursera.org/learn/#{course[:slug]}",
-          description: course[:description]
+          description: course[:description],
+          skills: [skill]
         )
     end
   end
-
 end

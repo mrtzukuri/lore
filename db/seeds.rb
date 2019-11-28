@@ -1,88 +1,95 @@
 Profession.destroy_all
-SkillGroup.destroy_all
 Skill.destroy_all
+LearningOpportunity.destroy_all
 
 puts "Creating user seeds."
-
-user = User.create!(email: 'user@user.com', password: '123456', name: Faker::FunnyName.name, city: "sydney")
+proff = Profession.new(name: "Front-End Developer")
+user = User.create!(email: 'user@user.com', password: '123456', profession: proff, name: Faker::FunnyName.name, city: "sydney")
 
 
 puts "Seeding Finished."
 puts "Creating professions seeds."
 
-professions = Profession.create!([{ name: "Junior Front-End Developer" },
-                   { name: "Mid-Level Front-End Developer" },
-                   { name: "Senior Front-End Developer" },
-                   { name: "Junior UX/UI Designer" },
-                   { name: "Mid-Level UX/UI Designer" },
-                   { name: "Senior UX/UI Designer" },
-                   { name: "Junior Product Manager" },
-                   { name: "Mid-Level Product Manager" },
-                   { name: "Senior Product Manager" },
-                   { name: "Junior Back-End Developer" },
-                   { name: "Mid-Level Back-End Developer" },
-                   { name: "Senior Back-End Developer" }])
 
-puts "Seeding Finished."
-puts "Creating skill_groups seeds."
+professions = Profession.create!([{ name: "Front-End Developer" },
+                   { name: "UX/UI Designer" },
+                   { name: "Product Manager" },
+                   { name: "Back-End Developer" }
+                 ])
 
-skill_groups = SkillGroup.create!([{ name: "Technology"},
-                   { name: "Methodology" },
-                   { name: "General" },
-                   { name: "Behaviour" }])
 
-SkillGroup.all.each do |skill_group|
-  Profession.where("name = 'Junior Front-End Developer'").first.skill_groups << skill_group
-end
 
 professions.first.save!
 puts "Seeding Finished."
 
 puts "Creating skills seeds."
 #Technology
-Skill.create!([{name: "HTML", skill_group: skill_groups.first},
-             {name: "CSS / SCSS", skill_group: skill_groups.first},
-             {name: "Javascript / JQuery", skill_group: skill_groups.first},
-             {name: "Documentation", skill_group: skill_groups.first},
-             {name: "API", skill_group: skill_groups.first},
-             {name: "Command Line Interface Tools", skill_group: skill_groups.first},
-             {name: "Git / BitBucket", skill_group: skill_groups.first},
-             {name: "Implement Styles from Design Systems", skill_group: skill_groups.first},
+Skill.create!([{name: "HTML", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "CSS / SCSS", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Javascript / JQuery", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Documentation", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "API", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Command Line Interface Tools", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Git / BitBucket", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Implement Styles from Design Systems", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Abobe Creative Suite", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Bootstrap", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Responsive Design", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Cross Platform Design", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Basic UX/UI Principles", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Clean DRY Code", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "A/B Testing and Analytics", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Webpack", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Front-End Architecture", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Product Roadmap Planning", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Functional Requirements and Documentation", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Develop Design Systems", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Platform and SLA Maintenance", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
             ])
 
 #Methodology
-Skill.create!([{name: "Scrum", skill_group: skill_groups[1]},
-               {name: "Agile", skill_group: skill_groups[1]},
+Skill.create!([{name: "Scrum", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Agile", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Object Oriented Principles", level: "Mid-Level" , skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Test Driven Development", level: "Senior" , skill_group: "Methodology", profession: [Profession.first]}
               ])
 
 #General
-Skill.create!([{name: "Verbal Communication", skill_group: skill_groups[2]},
-             {name: "Written Communication", skill_group: skill_groups[2]},
-             {name: "Desktop Research", skill_group: skill_groups[2]},
+Skill.create!([{name: "Verbal Communication", level: "Junior", profession: [Profession.first]},
+             {name: "Written Communication", level: "Junior", profession: [Profession.first]},
+             {name: "Desktop Research", level: "Junior", profession: [Profession.first]},
+             {name: "Problem Solving", level: "Junior", profession: [Profession.first]},
+             {name: "Keeping Up To Date with, and Driving Best Practice", level: "Mid-Level" , profession: [Profession.first]},
+             {name: "Mentoring", level: "Senior" , profession: [Profession.first]},
+             {name: "Build Overall Team Capability", level: "Senior" , profession: [Profession.first]},
             ])
 
 #Behaviour
-Skill.create!([{name: "Mental Agility", skill_group: skill_groups[3]},
-             {name: "Work in a Team", skill_group: skill_groups[3]},
-             {name: "Attention to Detail", skill_group: skill_groups[3]},
-             {name: "Collaboration", skill_group: skill_groups[3]},
-             {name: "Stakeholder Engagement", skill_group: skill_groups[3]},
-             {name: "Problem Solving", skill_group: skill_groups[3]},
+Skill.create!([{name: "Mental Agility", level: "Junior", profession: [Profession.first]},
+             {name: "Work in a Team", level: "Junior", profession: [Profession.first]},
+             {name: "Attention to Detail", level: "Junior", profession: [Profession.first]},
+             {name: "Collaboration", level: "Junior", profession: [Profession.first]},
+             {name: "Stakeholder Engagement", level: "Mid-level", profession: [Profession.first]},
+             {name: "Take Initiative", level: "Junior", profession: [Profession.first]},
             ])
 
+puts "Seeding Finished."
 #iterate through list of skills and pass as a query to jobs
 #coursera
-puts "Seeding Finished."
+
 
 puts "Creating coursera learning Opportunities seeds."
 
+# iterate through list of skills and pass as a query to jobs
+# coursera
 skills = Skill.all
 skills.each do |skill|
-  CourseraJob.perform_now(skill.name, 0, 10)
+  CourseraJob.perform_now(skill, 0, 10)
 end
 #eventbrite => make sure to allow 10 minutes before seeding next skill
 #to avoid reseeding entire file you can run the below line in your rails c and change the argument
 # puts "Creating eventbrite learning Opportunities seeds."
+
 # EventbriteJob.perform_now('html')
 
 puts "Seeding Finished."
@@ -93,7 +100,8 @@ LearningOpportunity.create!({name: "JS Workshops",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Where we meet to hack together on JavaScript. We intend to run workshop/hacking sessions to learn upcoming ES6/7 features, and how to put new ideas into practice.",
-  url: "https://www.meetup.com/MelbourneJS/"
+  url: "https://www.meetup.com/MelbourneJS/",
+  skills: [Skill.find_by("name = 'Javascript / JQuery'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne CSS",
@@ -101,7 +109,8 @@ LearningOpportunity.create!({name: "Melbourne CSS",
   location: "Melbourne, Australia",
   description: "Melbourne's CSS and front-end discussion group. Do you know your floats, flexbox, and grid or want to learn more? Join now!
 Get in touch if you'd like to present your work, sponsor or if you'd just like to say 'Hi'.",
-  url: "https://www.meetup.com/Melbourne-CSS/"
+  url: "https://www.meetup.com/Melbourne-CSS/",
+  skills: [Skill.find_by("name = 'CSS / SCSS'")]
 })
 
 LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
@@ -110,7 +119,8 @@ LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
   location: "Melbourne, Australia",
   description: "Agile Coaching Circles is intended to provide support for the role of the Agile Coach and the competencies (i.e. facilitation, mentoring, teaching, and coaching) to become effective in that role through a community of practicing coaches.
 Let's get together to share our successes and challenges with each other in order to support newer coaches and Scrum Masters, enhance our coaching skills and deepen our craft.",
-  url: "https://www.meetup.com/AgileCoach/"
+  url: "https://www.meetup.com/AgileCoach/",
+  skills: [Skill.find_by("name = 'Agile'")]
 })
 
 LearningOpportunity.create!({name: "SCRUM Practice, Melbourne",
@@ -121,21 +131,24 @@ At our SCRUM Workshops we help participants gain and share knowledge through pra
 Workshops are free and open to all levels - no previous experience required. What's needed is true interest in Agile and desire to learn.
 People with some knowledge of SCRUM, practicing Product Owners, BAs/PMs moving onto Agile space will also find it valuable as they will get to share their knowledge and help beginners.
 More info in our Facebook group: https://www.facebook.com/groups/1125735887513166/?hc_ref=SEARCH",
-  url: "https://www.meetup.com/SCRUMWORKS/"
+  url: "https://www.meetup.com/SCRUMWORKS/",
+  skills: [Skill.find_by("name = 'Scrum'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne APIs Meetup",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
-  url: "https://www.meetup.com/Melbourne-APIs-Meetup/"
+  url: "https://www.meetup.com/Melbourne-APIs-Meetup/",
+  skills: [Skill.find_by("name = 'API'")]
 })
 
 LearningOpportunity.create!({name: "Everything API Melbourne",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
-  url: "https://www.meetup.com/Everything-API-Melbourne/"
+  url: "https://www.meetup.com/Everything-API-Melbourne/",
+  skills: [Skill.find_by("name = 'API'")]
 })
 
 LearningOpportunity.create!({name: "City Centre Toastmasters.",
@@ -148,7 +161,8 @@ When and Where do we meet?
 When: We meet the 2nd and 4th Mondays of each month, 6:15pm for 6:30pm - 8:00pm.
 Where: Melbourne Multicultural Hub (https://maps.google.com/maps?f=q&hl=en&q=506+Elizabeth+Street%2C+Melbourne%2C+au) 506 Elizabeth Street, Melbourne.
 FREE for guests to attend. All are welcome.",
-  url: "https://www.meetup.com/City-Centre-Toastmasters-Meetup/"
+  url: "https://www.meetup.com/City-Centre-Toastmasters-Meetup/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 LearningOpportunity.create!({name: "Speaking, Presenting & Leadership",
@@ -163,7 +177,8 @@ With our friendly tips you will be amazed how quickly your leading & speaking im
 When and where?
 We meet every Tuesday from 6.15 to 8.15pm at Lvl1, Multicultural Hub (Purple Room)
 Feel free to drop by to our meetings as a guest!",
-  url: "https://www.meetup.com/Speaking-Presenting-Leadership/"
+  url: "https://www.meetup.com/Speaking-Presenting-Leadership/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne Communication Skills Development",
@@ -183,7 +198,8 @@ This is the group for you.
 If you want a more productive and enjoyable life.
 If you have ever wondered why all the excellent communication tips
 you've tried don't seem to work for you.",
-  url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/"
+  url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 puts "Seeding Finished."

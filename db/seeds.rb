@@ -3,59 +3,78 @@ Skill.destroy_all
 
 puts "Creating seeds."
 
-professions = Profession.create!([{ name: "Front-End Developer", level: "Junior" },
-                   { name: "UX/UI Designer", level: "Junior" },
-                   { name: "Product Manager", level: "Junior" },
-                   { name: "Back-End Developer", level: "Junior" }
+professions = Profession.create!([{ name: "Front-End Developer" },
+                   { name: "UX/UI Designer" },
+                   { name: "Product Manager" },
+                   { name: "Back-End Developer" }
                  ])
 
 
 professions.first.save!
 
 #Technology
-Skill.create!([{name: "HTML", level: "Junior"},
-             {name: "CSS / SCSS", level: "Junior"},
-             {name: "Javascript / JQuery", level: "Junior"},
-             {name: "Documentation", level: "Junior"},
-             {name: "API", level: "Junior"},
-             {name: "Command Line Interface Tools", level: "Junior"},
-             {name: "Git / BitBucket", level: "Junior"},
-             {name: "Implement Styles from Design Systems", level: "Junior"},
+Skill.create!([{name: "HTML", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "CSS / SCSS", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Javascript / JQuery", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Documentation", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "API", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Command Line Interface Tools", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Git / BitBucket", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Implement Styles from Design Systems", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
+               {name: "Abobe Creative Suite", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Bootstrap", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Responsive Design", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Cross Platform Design", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Basic UX/UI Principles", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Clean DRY Code", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "A/B Testing and Analytics", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Webpack", level: "Mid-Level" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Front-End Architecture", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Product Roadmap Planning", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Functional Requirements and Documentation", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Develop Design Systems", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
+               {name: "Platform and SLA Maintenance", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
             ])
 
 #Methodology
-Skill.create!([{name: "Scrum", level: "Junior"},
-               {name: "Agile", level: "Junior"},
+Skill.create!([{name: "Scrum", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Agile", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Object Oriented Principles", level: "Mid-Level" , skill_group: "Methodology", profession: [Profession.first]},
+               {name: "Test Driven Development", level: "Senior" , skill_group: "Methodology", profession: [Profession.first]}
               ])
 
 #General
-Skill.create!([{name: "Verbal Communication", level: "Junior"},
-             {name: "Written Communication", level: "Junior"},
-             {name: "Desktop Research", level: "Junior"},
+Skill.create!([{name: "Verbal Communication", level: "Junior", profession: [Profession.first]},
+             {name: "Written Communication", level: "Junior", profession: [Profession.first]},
+             {name: "Desktop Research", level: "Junior", profession: [Profession.first]},
+             {name: "Problem Solving", level: "Junior", profession: [Profession.first]},
+             {name: "Keeping Up To Date with, and Driving Best Practice", level: "Mid-Level" , profession: [Profession.first]},
+             {name: "Mentoring", level: "Senior" , profession: [Profession.first]},
+             {name: "Build Overall Team Capability", level: "Senior" , profession: [Profession.first]},
             ])
 
 #Behaviour
-Skill.create!([{name: "Mental Agility", level: "Junior"},
-             {name: "Work in a Team", level: "Junior"},
-             {name: "Attention to Detail", level: "Junior"},
-             {name: "Collaboration", level: "Junior"},
-             {name: "Stakeholder Engagement", level: "Junior"},
-             {name: "Problem Solving", level: "Junior"},
+Skill.create!([{name: "Mental Agility", level: "Junior", profession: [Profession.first]},
+             {name: "Work in a Team", level: "Junior", profession: [Profession.first]},
+             {name: "Attention to Detail", level: "Junior", profession: [Profession.first]},
+             {name: "Collaboration", level: "Junior", profession: [Profession.first]},
+             {name: "Stakeholder Engagement", level: "Mid-level", profession: [Profession.first]},
+             {name: "Take Initiative", level: "Junior", profession: [Profession.first]},
             ])
 
-#iterate through list of skills and pass as a query to jobs
-#coursera
-# skills = Skill.all
-# skills.each do |skill|
-#   CourseraJob.perform_now(skill.name, 0, 10)
-# # end
-# #eventbrite => make sure to allow 10 minutes before seeding next skill
-# #to avoid reseeding entire file you can run the below line in your rails c and change the argument
-# EventbriteJob.perform_now('html')
+iterate through list of skills and pass as a query to jobs
+coursera
+skills = Skill.all
+skills.each do |skill|
+  CourseraJob.perform_now(skill.name, 0, 10)
+# end
+#eventbrite => make sure to allow 10 minutes before seeding next skill
+#to avoid reseeding entire file you can run the below line in your rails c and change the argument
+EventbriteJob.perform_now('html')
 
-# puts "Seeding Finished."
+puts "Seeding Finished."
 
-# puts "Activity seeds"
+puts "Activity seeds"
 
 LearningOpportunity.create!({name: "JS Workshops",
   course_type: "meet up",

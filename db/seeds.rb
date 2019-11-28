@@ -77,7 +77,6 @@ puts "Seeding Finished."
 #iterate through list of skills and pass as a query to jobs
 #coursera
 
-
 puts "Creating coursera learning Opportunities seeds."
 
 # iterate through list of skills and pass as a query to jobs

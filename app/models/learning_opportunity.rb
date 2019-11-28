@@ -4,6 +4,7 @@ class LearningOpportunity < ApplicationRecord
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :course_type, :description, :url, presence: true
+  mount_uploader :event_picture, EventPictureUploader
 end
 
   # create_table "learning_opportunities", force: :cascade do |t|

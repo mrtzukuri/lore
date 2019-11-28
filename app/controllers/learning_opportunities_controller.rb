@@ -8,6 +8,12 @@ class LearningOpportunitiesController < ApplicationController
   end
 
   def show
+    @LearningOpportunity = LearningOpportunity.geocoded
+
+    @markers = {
+      lat: @learningopportunity.latitude,
+      lng: @learningopportunity.longitude
+    }
   end
 
   def new

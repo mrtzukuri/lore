@@ -5,6 +5,7 @@ gem 'eventbrite_sdk'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'geocoder'
 gem 'pry'
 gem 'bootsnap', require: false
 gem 'devise'

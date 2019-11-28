@@ -1,0 +1,19 @@
+<%=  simple_form_for (learning_opportunity) do |f| %>
+  <%=  f.input :name %>
+  <%=  f.input :price %>
+  <%=  f.input :description %>
+  <div class="d-flex">
+    <%=  f.input :start_date, wrapper_html: {class: "margin-r"}%>
+    <%=  f.input :end_date, wrapper_html: {class: "margin-l"}%>
+  </div>
+  <%=  f.input :location %>
+  <%=  f.input :course_type, collection: ["Automotive",
+    "Bicycle",
+    "Household",
+    "Miscellaneous"] %>
+    <%=  f.input :url %>
+    <%=  f.input :time_commitment %>
+    <%=  f.input :twitter_hashtag %>
+
+    <%= f.submit "Add" %>
+<% end %>

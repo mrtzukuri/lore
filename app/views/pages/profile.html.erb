@@ -1,3 +1,45 @@
 <p>Here is my profile</p>
 
-@user
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#profile-info">Profile Info</a></li>
+  <li><a data-toggle="tab" href="#personal-timeline">Personal Timeline</a></li>
+  <li><a data-toggle="tab" href="#shortlist">Shortlist</a></li>
+  <li><a data-toggle="tab" href="#host">Host</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="profile-info" class="tab-pane fade in active">
+    <h3>Personal Info</h3>
+    <p>Name</p>
+    <h2><%= @user.name %></h2>
+
+    <p>City</p>
+    <h2><%= @user.city  %></h2>
+
+    <p>Email</p>
+    <h2><%= @user.email %></h2>
+
+    <p>Career</p>
+    <h2><%= @user.profession.profession_id %></h2>
+
+    <p>Password</p>
+    <h2> <%= @user.encrypted_password  %></h2>
+  </div>
+  <div id="personal-timeline" class="tab-pane fade">
+    <h3>Personal Timeline</h3>
+    <p>Some content</p>
+  </div>
+  <div id="shortlist" class="tab-pane fade">
+    <h3>Shortlist</h3>
+    <p>Some of your saved Learing Opportunities</p>
+  </div>
+   <div id="host" class="tab-pane fade">
+    <h3>Host</h3>
+    <p>Some of your own uploaded Learing Opportunities</p>
+    <p>button to add learning op</p>
+  </div>
+</div>
+
+
+

@@ -2,7 +2,14 @@ Profession.destroy_all
 Skill.destroy_all
 LearningOpportunity.destroy_all
 
-puts "Creating seeds."
+puts "Creating user seeds."
+proff = Profession.new(name: "Front-End Developer")
+user = User.create!(email: 'user@user.com', password: '123456', profession: proff, name: Faker::FunnyName.name, city: "sydney")
+
+
+puts "Seeding Finished."
+puts "Creating professions seeds."
+
 
 professions = Profession.create!([{ name: "Front-End Developer" },
                    { name: "UX/UI Designer" },
@@ -11,8 +18,11 @@ professions = Profession.create!([{ name: "Front-End Developer" },
                  ])
 
 
-professions.first.save!
 
+professions.first.save!
+puts "Seeding Finished."
+
+puts "Creating skills seeds."
 #Technology
 Skill.create!([{name: "HTML", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
                {name: "CSS / SCSS", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
@@ -63,6 +73,13 @@ Skill.create!([{name: "Mental Agility", level: "Junior", profession: [Profession
              {name: "Take Initiative", level: "Junior", profession: [Profession.first]},
             ])
 
+puts "Seeding Finished."
+#iterate through list of skills and pass as a query to jobs
+#coursera
+
+
+puts "Creating coursera learning Opportunities seeds."
+
 # iterate through list of skills and pass as a query to jobs
 # coursera
 skills = Skill.all
@@ -71,11 +88,13 @@ skills.each do |skill|
 end
 #eventbrite => make sure to allow 10 minutes before seeding next skill
 #to avoid reseeding entire file you can run the below line in your rails c and change the argument
+# puts "Creating eventbrite learning Opportunities seeds."
+
 # EventbriteJob.perform_now('html')
 
 puts "Seeding Finished."
 
-puts "Activity seeds"
+puts "Creating meetup learning Opportunities seeds."
 
 LearningOpportunity.create!({name: "JS Workshops",
   course_type: "meet up",
@@ -182,6 +201,8 @@ you've tried don't seem to work for you.",
   url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/",
   skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
+
+puts "Seeding Finished."
 
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_031843) do
+ActiveRecord::Schema.define(version: 2019_11_28_030232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,22 +40,14 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "level"
+    t.bigint "skills_id"
+    t.index ["skills_id"], name: "index_professions_on_skills_id"
   end
 
-  create_table "professions_skill_groups", id: false, force: :cascade do |t|
-    t.bigint "profession_id", null: false
-    t.bigint "skill_group_id", null: false
-  end
-
-  create_table "skill_groups", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "skill_groups_skills", id: false, force: :cascade do |t|
+  create_table "professions_skills", id: false, force: :cascade do |t|
     t.bigint "skill_id", null: false
-    t.bigint "skill_group_id", null: false
+    t.bigint "profession_id", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -63,8 +55,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "skill_group_id"
-    t.index ["skill_group_id"], name: "index_skills_on_skill_group_id"
   end
 
   create_table "user_bookmarks", force: :cascade do |t|
@@ -102,7 +92,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_031843) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "skills", "skill_groups"
+  add_foreign_key "professions", "skills", column: "skills_id"
   add_foreign_key "user_bookmarks", "learning_opportunities"
   add_foreign_key "user_bookmarks", "users"
   add_foreign_key "user_ratings", "learning_opportunities"

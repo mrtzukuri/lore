@@ -17,7 +17,7 @@ class LearningOpportunitiesController < ApplicationController
   def create
     @learningopportunity = LearningOpportunity.new(set_params)
     if @learningopportunity.save
-      redirect_to learningopportunity_path(@learningopportunity)
+      redirect_to learning_opportunity_path(@learningopportunity)
     else
       render :new
     end
@@ -42,7 +42,7 @@ class LearningOpportunitiesController < ApplicationController
   private
 
   def set_params
-    params.require(:learningopportunity).permit!
+    params.require(:learning_opportunity).permit!
   end
 
   def set_learningopportunity

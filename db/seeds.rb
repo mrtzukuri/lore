@@ -10,13 +10,11 @@ user = User.create!(email: 'user@user.com', password: '123456', profession: prof
 puts "Seeding Finished."
 puts "Creating professions seeds."
 
-
 professions = Profession.create!([{ name: "Front-End Developer" },
                    { name: "UX/UI Designer" },
                    { name: "Product Manager" },
                    { name: "Back-End Developer" }
                  ])
-
 
 
 professions.first.save!
@@ -85,13 +83,14 @@ skills = Skill.all
 skills.each do |skill|
   CourseraJob.perform_now(skill, 0, 10)
 end
+
+puts "Seeding Finished."
+
 #eventbrite => make sure to allow 10 minutes before seeding next skill
 #to avoid reseeding entire file you can run the below line in your rails c and change the argument
 # puts "Creating eventbrite learning Opportunities seeds."
-
 # EventbriteJob.perform_now('html')
-
-puts "Seeding Finished."
+# puts "Seeding Finished."
 
 puts "Creating meetup learning Opportunities seeds."
 

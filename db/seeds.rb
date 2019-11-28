@@ -51,7 +51,7 @@ Skill.create!([{name: "Mental Agility", level: "Junior"},
 # # end
 # #eventbrite => make sure to allow 10 minutes before seeding next skill
 # #to avoid reseeding entire file you can run the below line in your rails c and change the argument
-# EventbriteJob.perform_now('html')
+# EventbriteJob.perform_now('html+javascript+communication+API+git')
 
 # puts "Seeding Finished."
 

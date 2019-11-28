@@ -1,5 +1,6 @@
 Profession.destroy_all
 Skill.destroy_all
+LearningOpportunity.destroy_all
 
 puts "Creating seeds."
 
@@ -62,15 +63,15 @@ Skill.create!([{name: "Mental Agility", level: "Junior", profession: [Profession
              {name: "Take Initiative", level: "Junior", profession: [Profession.first]},
             ])
 
-iterate through list of skills and pass as a query to jobs
-coursera
+# iterate through list of skills and pass as a query to jobs
+# coursera
 skills = Skill.all
 skills.each do |skill|
-  CourseraJob.perform_now(skill.name, 0, 10)
-# end
+  CourseraJob.perform_now(skill, 0, 10)
+end
 #eventbrite => make sure to allow 10 minutes before seeding next skill
 #to avoid reseeding entire file you can run the below line in your rails c and change the argument
-EventbriteJob.perform_now('html')
+# EventbriteJob.perform_now('html')
 
 puts "Seeding Finished."
 
@@ -80,7 +81,8 @@ LearningOpportunity.create!({name: "JS Workshops",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "Where we meet to hack together on JavaScript. We intend to run workshop/hacking sessions to learn upcoming ES6/7 features, and how to put new ideas into practice.",
-  url: "https://www.meetup.com/MelbourneJS/"
+  url: "https://www.meetup.com/MelbourneJS/",
+  skills: [Skill.find_by("name = 'Javascript / JQuery'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne CSS",
@@ -88,7 +90,8 @@ LearningOpportunity.create!({name: "Melbourne CSS",
   location: "Melbourne, Australia",
   description: "Melbourne's CSS and front-end discussion group. Do you know your floats, flexbox, and grid or want to learn more? Join now!
 Get in touch if you'd like to present your work, sponsor or if you'd just like to say 'Hi'.",
-  url: "https://www.meetup.com/Melbourne-CSS/"
+  url: "https://www.meetup.com/Melbourne-CSS/",
+  skills: [Skill.find_by("name = 'CSS / SCSS'")]
 })
 
 LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
@@ -97,7 +100,8 @@ LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
   location: "Melbourne, Australia",
   description: "Agile Coaching Circles is intended to provide support for the role of the Agile Coach and the competencies (i.e. facilitation, mentoring, teaching, and coaching) to become effective in that role through a community of practicing coaches.
 Let's get together to share our successes and challenges with each other in order to support newer coaches and Scrum Masters, enhance our coaching skills and deepen our craft.",
-  url: "https://www.meetup.com/AgileCoach/"
+  url: "https://www.meetup.com/AgileCoach/",
+  skills: [Skill.find_by("name = 'Agile'")]
 })
 
 LearningOpportunity.create!({name: "SCRUM Practice, Melbourne",
@@ -108,21 +112,24 @@ At our SCRUM Workshops we help participants gain and share knowledge through pra
 Workshops are free and open to all levels - no previous experience required. What's needed is true interest in Agile and desire to learn.
 People with some knowledge of SCRUM, practicing Product Owners, BAs/PMs moving onto Agile space will also find it valuable as they will get to share their knowledge and help beginners.
 More info in our Facebook group: https://www.facebook.com/groups/1125735887513166/?hc_ref=SEARCH",
-  url: "https://www.meetup.com/SCRUMWORKS/"
+  url: "https://www.meetup.com/SCRUMWORKS/",
+  skills: [Skill.find_by("name = 'Scrum'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne APIs Meetup",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
-  url: "https://www.meetup.com/Melbourne-APIs-Meetup/"
+  url: "https://www.meetup.com/Melbourne-APIs-Meetup/",
+  skills: [Skill.find_by("name = 'API'")]
 })
 
 LearningOpportunity.create!({name: "Everything API Melbourne",
   course_type: "meet up",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
-  url: "https://www.meetup.com/Everything-API-Melbourne/"
+  url: "https://www.meetup.com/Everything-API-Melbourne/",
+  skills: [Skill.find_by("name = 'API'")]
 })
 
 LearningOpportunity.create!({name: "City Centre Toastmasters.",
@@ -135,7 +142,8 @@ When and Where do we meet?
 When: We meet the 2nd and 4th Mondays of each month, 6:15pm for 6:30pm - 8:00pm.
 Where: Melbourne Multicultural Hub (https://maps.google.com/maps?f=q&hl=en&q=506+Elizabeth+Street%2C+Melbourne%2C+au) 506 Elizabeth Street, Melbourne.
 FREE for guests to attend. All are welcome.",
-  url: "https://www.meetup.com/City-Centre-Toastmasters-Meetup/"
+  url: "https://www.meetup.com/City-Centre-Toastmasters-Meetup/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 LearningOpportunity.create!({name: "Speaking, Presenting & Leadership",
@@ -150,7 +158,8 @@ With our friendly tips you will be amazed how quickly your leading & speaking im
 When and where?
 We meet every Tuesday from 6.15 to 8.15pm at Lvl1, Multicultural Hub (Purple Room)
 Feel free to drop by to our meetings as a guest!",
-  url: "https://www.meetup.com/Speaking-Presenting-Leadership/"
+  url: "https://www.meetup.com/Speaking-Presenting-Leadership/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 LearningOpportunity.create!({name: "Melbourne Communication Skills Development",
@@ -170,7 +179,8 @@ This is the group for you.
 If you want a more productive and enjoyable life.
 If you have ever wondered why all the excellent communication tips
 you've tried don't seem to work for you.",
-  url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/"
+  url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/",
+  skills: [Skill.find_by("name = 'Verbal Communication'")]
 })
 
 

@@ -2,7 +2,13 @@ Profession.destroy_all
 SkillGroup.destroy_all
 Skill.destroy_all
 
-puts "Creating seeds."
+puts "Creating user seeds."
+
+user = User.create!(email: 'user@user.com', password: '123456', name: Faker::FunnyName.name, city: "sydney")
+
+
+puts "Seeding Finished."
+puts "Creating professions seeds."
 
 professions = Profession.create!([{ name: "Junior Front-End Developer" },
                    { name: "Mid-Level Front-End Developer" },
@@ -17,6 +23,9 @@ professions = Profession.create!([{ name: "Junior Front-End Developer" },
                    { name: "Mid-Level Back-End Developer" },
                    { name: "Senior Back-End Developer" }])
 
+puts "Seeding Finished."
+puts "Creating skill_groups seeds."
+
 skill_groups = SkillGroup.create!([{ name: "Technology"},
                    { name: "Methodology" },
                    { name: "General" },
@@ -27,7 +36,9 @@ SkillGroup.all.each do |skill_group|
 end
 
 professions.first.save!
+puts "Seeding Finished."
 
+puts "Creating skills seeds."
 #Technology
 Skill.create!([{name: "HTML", skill_group: skill_groups.first},
              {name: "CSS / SCSS", skill_group: skill_groups.first},
@@ -61,17 +72,22 @@ Skill.create!([{name: "Mental Agility", skill_group: skill_groups[3]},
 
 #iterate through list of skills and pass as a query to jobs
 #coursera
+puts "Seeding Finished."
+
+puts "Creating coursera learning Opportunities seeds."
+
 skills = Skill.all
 skills.each do |skill|
   CourseraJob.perform_now(skill.name, 0, 10)
 end
 #eventbrite => make sure to allow 10 minutes before seeding next skill
 #to avoid reseeding entire file you can run the below line in your rails c and change the argument
-EventbriteJob.perform_now('html')
+# puts "Creating eventbrite learning Opportunities seeds."
+# EventbriteJob.perform_now('html')
 
 puts "Seeding Finished."
 
-puts "Activity seeds"
+puts "Creating meetup learning Opportunities seeds."
 
 LearningOpportunity.create!({name: "JS Workshops",
   course_type: "meet up",
@@ -169,6 +185,8 @@ If you have ever wondered why all the excellent communication tips
 you've tried don't seem to work for you.",
   url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/"
 })
+
+puts "Seeding Finished."
 
 
 

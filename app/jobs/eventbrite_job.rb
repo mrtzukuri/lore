@@ -1,7 +1,7 @@
 class EventbriteJob < ApplicationJob
   queue_as :default
 
-  EVENTBRITE_OAUTH_URL = "https://www.eventbriteapi.com/v3/users/me/?token=#{ENV['EventbriteSDK.token']}"
+  EVENTBRITE_OAUTH_URL = "https://www.eventbriteapi.com/v3/users/me/?token=#{ENV['EVENTBRITE_TOKEN']}"
   EVENTBRITE_SEARCH_URL = "https://www.eventbriteapi.com/v3/events/search/"
 
   def perform(query)
@@ -23,9 +23,8 @@ class EventbriteJob < ApplicationJob
         location: "Melbourne, Australia",
         description: event["description"]["text"],
         url: event["url"],
-        course_type: event["online_event"].to_s
-        event_picture: event["logo"]["original"]["url"]
-        )
+        course_type: event["online_event"].to_s,
+        event_picture: event["logo"]["original"]["url"])
     end
   end
 end

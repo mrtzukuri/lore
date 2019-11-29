@@ -26,6 +26,7 @@ class LearningOpportunitiesController < ApplicationController
 
   def create
     @learningopportunity = LearningOpportunity.new(set_params)
+    @learningopportunity.user_id = current_user
     if @learningopportunity.save
       redirect_to learning_opportunity_path(@learningopportunity)
     else

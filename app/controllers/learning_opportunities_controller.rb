@@ -4,7 +4,11 @@ class LearningOpportunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @learningopportunities = LearningOpportunity.all
+    if params[:query].present?
+      @learningopportunities = LearningOpportunity.all.select { |lo| lo.skills[0].name == params[:query] }
+    else
+      @learningopportunities = LearningOpportunity.all
+    end
   end
 
   def show

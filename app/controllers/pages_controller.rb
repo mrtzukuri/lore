@@ -8,5 +8,4 @@ class PagesController < ApplicationController
   def frontend
     @frontend = Profession.find_by(name: "Front-End Developer")
   end
-
 end

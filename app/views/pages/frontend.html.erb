@@ -14,17 +14,17 @@
   <div>
     <table class="table">
       <tbody>
-        <% @frontend.skills.each do |skills| %>
-          <% case skills.skill_group %>
+        <% @frontend.skills.each do |skill| %>
+          <% case skill.skill_group %>
           <% when "Technology" then color = "blue" %>
           <% when "Methodology" then color = "red" %>
           <% when "General" then color = "green" %>
           <% when "Behaviour" then color = "yellow" %>
           <% end %>
-          <tr class="<%= skills.level %>" style="color: <%= color %>">
-            <td><%= skills.skill_group %></td>
-            <td><%= skills.name %> </td>
-          </tr>
+            <tr class="<%= skill.level %>" style="color: <%= color %>">
+              <td><%= skill.skill_group %></td>
+              <td><a href="/learning_opportunities?query=<%= skill.name %>"><%= skill.name %></a></td>
+            </tr>
         <% end %>
       </tbody>
     </table>

@@ -45,22 +45,22 @@ Skill.create!([{name: "Scrum", level: "Junior", skill_group: "Methodology", prof
               ])
 
 #General
-Skill.create!([{name: "Verbal Communication", level: "Junior", profession: [Profession.first]},
-             {name: "Written Communication", level: "Junior", profession: [Profession.first]},
-             {name: "Desktop Research", level: "Junior", profession: [Profession.first]},
-             {name: "Problem Solving", level: "Junior", profession: [Profession.first]},
-             {name: "Keeping Up To Date with, and Driving Best Practice", level: "Mid-Level" , profession: [Profession.first]},
-             {name: "Mentoring", level: "Senior" , profession: [Profession.first]},
-             {name: "Build Overall Team Capability", level: "Senior" , profession: [Profession.first]},
+Skill.create!([{name: "Verbal Communication", level: "Junior", skill_group: "General", profession: [Profession.first]},
+             {name: "Written Communication", level: "Junior", skill_group: "General", profession: [Profession.first]},
+             {name: "Desktop Research", level: "Junior", skill_group: "General", profession: [Profession.first]},
+             {name: "Problem Solving", level: "Junior", skill_group: "General", profession: [Profession.first]},
+             {name: "Keeping Up To Date with, and Driving Best Practice", level: "Mid-Level", skill_group: "General", profession: [Profession.first]},
+             {name: "Mentoring", level: "Senior", skill_group: "General", profession: [Profession.first]},
+             {name: "Build Overall Team Capability", level: "Senior", skill_group: "General", profession: [Profession.first]},
             ])
 
 #Behaviour
-Skill.create!([{name: "Mental Agility", level: "Junior", profession: [Profession.first]},
-             {name: "Work in a Team", level: "Junior", profession: [Profession.first]},
-             {name: "Attention to Detail", level: "Junior", profession: [Profession.first]},
-             {name: "Collaboration", level: "Junior", profession: [Profession.first]},
-             {name: "Stakeholder Engagement", level: "Mid-level", profession: [Profession.first]},
-             {name: "Take Initiative", level: "Junior", profession: [Profession.first]},
+Skill.create!([{name: "Mental Agility", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
+             {name: "Work in a Team", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
+             {name: "Attention to Detail", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
+             {name: "Collaboration", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
+             {name: "Stakeholder Engagement", level: "Mid-level", skill_group: "Behaviour", profession: [Profession.first]},
+             {name: "Take Initiative", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
             ])
 
 # iterate through list of skills and pass as a query to jobs

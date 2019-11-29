@@ -2,7 +2,7 @@
   <h1>Pages#home</h1>
   <p>Find me in app/views/pages/home.html.erb</p>
   <% @professions.each do |prof| %>
-    <h2><%= prof.name %></h2>
+    <h2><a href="/frontend"><%= prof.name %></a></h2>
   <% end %>
   <%= link_to 'learning_opportunities', learning_opportunities_path %>
 </div>

@@ -13,6 +13,9 @@
     <li> end date: <%= @learningopportunity.end_date %></li>
   </ul>
 
+  <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
+
+
 <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
 
   <% url = "#{@learningopportunity.url}/reviews" %>
@@ -26,40 +29,41 @@
 
     <!-- getting single review -->
   <% html_doc.search('.review-page-review').each do |element|  %>
+    <div class="review-card">
+      <% var = element.search('.SvgIcon_8wfvj4 title')%>
+      <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+      <div class="sub-heading">
+        <p><%= stars.count %> stars</p>
 
-    <% var = element.search('.SvgIcon_8wfvj4 title')%>
-    <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-    <p><%= stars.count %></p>
+        <% var = element.search('.reviewerName') %>
+        <% name = var.children.text  %>
+        <p><%= name %></p>
 
-    <% var = element.search('.reviewerName') %>
-    <% name = var.children.text  %>
-    <p><%= name %></p>
-
-    <% var = element.search('.dateOfReview')%>
-    <% date = var.children.text  %>
-    <p><%= date %></p>
-
-
-    <% descrip = "" %>
-    <% var = element.search('.rc-CML.font-lg.styled > div')%>
-    <% var.search('p').each do |p|  %>
-    <%  descrip += " #{p.text}" %>
-    <% end %>
-    <p><%= descrip %></p>
+        <% var = element.search('.dateOfReview')%>
+        <% date = var.children.text  %>
+        <p><%= date %></p>
+      </div>
+      <div class="desc">
+        <% descrip = "" %>
+        <% var = element.search('.rc-CML.font-lg.styled > div')%>
+        <% var.search('p').each do |p|  %>
+        <%  descrip += " #{p.text}" %>
+        <% end %>
+        <p><%= descrip %></p>
+      </div>
+    </div>
   <% end %>
 <% else %>
 <p>No Reviews atm</p>
 
 <% end %>
 
-  <div
+ <div
   id="map"
   style="width: 100%;
   height: 600px;"
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-
-  <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
+  ></div>
 
 </div>

@@ -1,3 +1,6 @@
+<% require 'open-uri' %>
+<% require 'nokogiri' %>
+
 <div class="container">
   <%= cl_image_tag @learningopportunity.event_picture %>
   <h1><%= @learningopportunity.name %></h1>
@@ -9,6 +12,45 @@
     <li> start date: <%= @learningopportunity.start_date %></li>
     <li> end date: <%= @learningopportunity.end_date %></li>
   </ul>
+
+<% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
+
+  <% url = "#{@learningopportunity.url}/reviews" %>
+  <% html_file = open(url).read %>
+  <% html_doc = Nokogiri::HTML(html_file) %>
+
+  <!-- getting average review -->
+  <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
+  <% average = ele.children.text  %>
+  <p>Rating: <% average %></p>
+
+    <!-- getting single review -->
+  <% html_doc.search('.review-page-review').each do |element|  %>
+
+    <% var = element.search('.SvgIcon_8wfvj4 title')%>
+    <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+    <p><%= stars.count %></p>
+
+    <% var = element.search('.reviewerName') %>
+    <% name = var.children.text  %>
+    <p><%= name %></p>
+
+    <% var = element.search('.dateOfReview')%>
+    <% date = var.children.text  %>
+    <p><%= date %></p>
+
+
+    <% descrip = "" %>
+    <% var = element.search('.rc-CML.font-lg.styled > div')%>
+    <% var.search('p').each do |p|  %>
+    <%  descrip += " #{p.text}" %>
+    <% end %>
+    <p><%= descrip %></p>
+  <% end %>
+<% else %>
+<p>No Reviews atm</p>
+
+<% end %>
 
   <div
   id="map"

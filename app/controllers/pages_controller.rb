@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :frontend, :backend, :productmanager]
 
   def home
+    @professions = Profession.all
   end
 
   def frontend

@@ -1,2 +1,49 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#profile-info">Profile Info</a></li>
+  <li><a data-toggle="tab" href="#personal-timeline">Personal Timeline</a></li>
+  <li><a data-toggle="tab" href="#shortlist">Shortlist</a></li>
+  <li><a data-toggle="tab" href="#host">Host</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="profile-info" class="tab-pane fade in active">
+    <h3>Personal Info</h3>
+    <%= link_to(edit_user_registration_path) do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <hr>
+    <p>Name</p>
+    <h2><%= @user.name %></h2>
+
+    <p>City</p>
+    <h2><%= @user.city  %></h2>
+
+    <p>Email</p>
+    <h2><%= @user.email %></h2>
+
+    <p>Career</p>
+
+
+    <p>Password</p>
+    <h2> <%= @user.encrypted_password  %></h2>
+  </div>
+  <div id="personal-timeline" class="tab-pane fade">
+    <h3>Personal Timeline</h3>
+    <hr>
+    <p>Some content</p>
+  </div>
+  <div id="shortlist" class="tab-pane fade">
+    <h3>Shortlist</h3>
+     <hr>
+    <p>Some of your saved Learing Opportunities</p>
+  </div>
+   <div id="host" class="tab-pane fade">
+    <h3>Host</h3>
+    <hr>
+    <p>Some of your own uploaded Learing Opportunities</p>
+    <p><%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %> to add learning op</p>
+  </div>
+</div>

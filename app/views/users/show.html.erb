@@ -36,9 +36,16 @@
     <p>Some content</p>
   </div>
   <div id="shortlist" class="tab-pane fade">
-    <h3>Shortlist</h3>
+    <h3>Your saved Learning Opportunities</h3>
      <hr>
-    <p>Some of your saved Learing Opportunities</p>
+     <ul>
+      <% @bookmarks.each do |bookmark| %>
+        <li>
+          <%= link_to bookmark.learning_opportunity.name, learning_opportunity_path(bookmark.learning_opportunity) %>
+          <%= link_to '<i class="fa fa-star"></i>'.html_safe, user_bookmark_path(bookmark), method: "delete" %>
+        </li>
+      <% end %>
+     </ul>
   </div>
    <div id="host" class="tab-pane fade">
     <h3>Host</h3>

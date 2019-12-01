@@ -48,6 +48,7 @@
         <h3>Results</h3>
         <ul style="list-style: none; padding: 0px;">
           <% @learningopportunities.each do |learning_opportunity| %>
+              <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
             <div class="learning-opp-list-item">
               <div class="left-bar">
                 <div class="text-and-image">
@@ -64,7 +65,8 @@
               </div>
               <div class="right-bar">
                 <div class="bookmark-icon">
-                  <i class="far fa-bookmark"></i>
+                  <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, user_bookmarks_path(@bookmark, user_id: current_user.id, learning_opportunity_id: learning_opportunity.id), method: "post" unless (current_user.nil? || @bookmark) %>
+                  <%= link_to '<i class="fa fa-bookmark"></i>'.html_safe, user_bookmark_path(@bookmark), method: "delete" if @bookmark %>
                 </div>
                 <div class="details">
                   <hr>

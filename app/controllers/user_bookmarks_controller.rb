@@ -4,7 +4,7 @@ class UserBookmarksController < ApplicationController
   end
 
   def create
-    @user_bookmark = UserBookmark.create(set_params)
+    @user_bookmark = UserBookmark.create(user_id: params[:user_id].to_i, learning_opportunity_id: params[:learning_opportunity_id].to_i)
     redirect_back(fallback_location: root_path)
   end
 
@@ -15,8 +15,4 @@ class UserBookmarksController < ApplicationController
   end
 
   private
-
-  def set_params
-    params.require(:user_bookmark).permit!
-  end
 end

@@ -35,28 +35,47 @@
       </div>
     </div>
   </div>
-  <div id="filter-results-and-sort">
+  <div class="filter-results-and-sort">
     <h1><%= params[:query] %> Learning Opportunities</h1>
     <hr>
     <div>
-      <div id="sort" class="justify-content-end">
+      <div class="sort" class="justify-content-end">
         <a href="#" id="sort-by-price">Sort by price</a> |
         <a href="#" id="sort-by-duration">Sort by duration</a>
       </div>
       <br>
-      <div id="results">
+      <div class="results">
         <h3>Results</h3>
-        <ul>
+        <ul style="list-style: none; padding: 0px;">
           <% @learningopportunities.each do |learning_opportunity| %>
-            <li>
               <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
-              <%= link_to '<i class="fa fa-bookmark grey"></i>'.html_safe, user_bookmarks_path(@bookmark, user_id: current_user.id, learning_opportunity_id: learning_opportunity.id), method: "post" unless (current_user.nil? || @bookmark) %>
-              <% if @bookmark %>
-                <%= link_to '<i class="fa fa-bookmark"></i>'.html_safe, user_bookmark_path(@bookmark), method: "delete" %>
-              <% end %>
-              <%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %>
-            </li>
-          <% end %>
+            <div class="learning-opp-list-item">
+              <div class="left-bar">
+                <div class="text-and-image">
+                  <img class="learning-opp-image" src="https://source.unsplash.com/1600x900/?<%= learning_opportunity.name %>">
+                  <div class="main-text">
+                    <li>
+                      <h4><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></h4>
+                      <p> <%= learning_opportunity.description %> </p>
+                    </li>
+                  </div>
+                </div>
+                <div class="grey-bar">
+                </div>
+              </div>
+              <div class="right-bar">
+                <div class="bookmark-icon">
+                  <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, user_bookmarks_path(@bookmark, user_id: current_user.id, learning_opportunity_id: learning_opportunity.id), method: "post" unless (current_user.nil? || @bookmark) %>
+                  <%= link_to '<i class="fa fa-bookmark"></i>'.html_safe, user_bookmark_path(@bookmark), method: "delete" if @bookmark %>
+                </div>
+                <div class="details">
+                  <hr>
+                  <p>Details <br> From <%= learning_opportunity.start_date %> <br>
+                  <i class="fas fa-angle-double-down"></i> </p>
+                </div>
+              </div>
+            </div>
+            <% end %>
         </ul>
       </div>
     </div>

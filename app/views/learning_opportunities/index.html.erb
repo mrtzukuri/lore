@@ -35,20 +35,44 @@
       </div>
     </div>
   </div>
-  <div id="filter-results-and-sort">
+  <div class="filter-results-and-sort">
     <h1><%= params[:query] %> Learning Opportunities</h1>
     <hr>
     <div>
-      <div id="sort" class="justify-content-end">
+      <div class="sort" class="justify-content-end">
         <a href="#" id="sort-by-price">Sort by price</a> |
         <a href="#" id="sort-by-duration">Sort by duration</a>
       </div>
       <br>
-      <div id="results">
+      <div class="results">
         <h3>Results</h3>
-        <ul>
+        <ul style="list-style: none; padding: 0px;">
           <% @learningopportunities.each do |learning_opportunity| %>
-            <li><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></li>
+            <div class="learning-opp-list-item">
+              <div class="left-bar">
+                <div class="text-and-image">
+                  <img class="learning-opp-image" src="https://source.unsplash.com/1600x900/?<%= learning_opportunity.name %>">
+                  <div class="main-text">
+                    <li>
+                      <h4><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></h4>
+                      <p> <%= learning_opportunity.description %> </p>
+                    </li>
+                  </div>
+                </div>
+                <div class="grey-bar">
+                </div>
+              </div>
+              <div class="right-bar">
+                <div class="bookmark-icon">
+                  <i class="far fa-bookmark"></i>
+                </div>
+                <div class="details">
+                  <hr>
+                  <p>Details <br> From <%= learning_opportunity.start_date %> <br>
+                  <i class="fas fa-angle-double-down"></i> </p>
+                </div>
+              </div>
+            </div>
           <% end %>
         </ul>
       </div>

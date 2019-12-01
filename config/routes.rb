@@ -9,6 +9,5 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show'
 
   resources :learning_opportunities
-
-
+  resources :user_bookmarks, only: [:new, :create, :destroy]
 end

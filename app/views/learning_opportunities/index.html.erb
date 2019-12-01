@@ -48,7 +48,14 @@
         <h3>Results</h3>
         <ul>
           <% @learningopportunities.each do |learning_opportunity| %>
-            <li><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></li>
+            <li>
+              <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
+              <%= render 'bookmark_form', lo: learning_opportunity unless (current_user.nil? || @bookmark)  %>
+              <% if @bookmark %>
+                <%= link_to '<i class="fa fa-star"></i>'.html_safe, user_bookmark_path(@bookmark), method: "delete" %>
+              <% end %>
+              <%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %>
+            </li>
           <% end %>
         </ul>
       </div>

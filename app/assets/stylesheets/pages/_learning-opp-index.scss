@@ -6,3 +6,15 @@
 .text-inputs {
   border-radius: 4px;
 }
+
+.grey {
+  color: grey;
+  &:hover {
+    color: yellow;
+  }
+}
+
+.yellow {
+  color: yellow;
+}
+

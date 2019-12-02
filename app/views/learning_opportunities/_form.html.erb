@@ -1,19 +1,20 @@
-<%=  simple_form_for (learning_opportunity) do |f| %>
-  <%=  f.input :name %>
-  <%=  f.input :price %>
-  <%=  f.input :description %>
+<%= simple_form_for (learning_opportunity) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
   <div class="d-flex">
-    <%=  f.input :start_date, wrapper_html: {class: "margin-r"}%>
-    <%=  f.input :end_date, wrapper_html: {class: "margin-l"}%>
+    <%= f.input :start_date, wrapper_html: {class: "margin-r"}%>
+    <%= f.input :end_date, wrapper_html: {class: "margin-l"}%>
   </div>
-  <%=  f.input :location %>
-  <%=  f.input :course_type, collection: ["Online",
+  <%= f.input :location %>
+  <%= f.input :course_type, collection: ["Online",
     "Conference",
     "Meetup",
     "Class"] %>
-    <%=  f.input :url %>
-    <%=  f.input :time_commitment %>
-    <%=  f.input :twitter_hashtag %>
+    <%= f.input :url %>
+    <%= f.input :skill_ids, collection: Skill.all, input_html: { multiple: true } %>
+    <%= f.input :time_commitment %>
+    <%= f.input :twitter_hashtag %>
     <%= f.input :event_picture %>
     <%= f.input :event_picture_cache, as: :hidden %>
 

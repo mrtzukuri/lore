@@ -19,7 +19,8 @@ class LearningOpportunitiesController < ApplicationController
 
     @markers = {
       lat: @learningopportunity.latitude,
-      lng: @learningopportunity.longitude
+      lng: @learningopportunity.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { learningopportunity: @learningopportunity })
     }
   end
 
@@ -29,6 +30,7 @@ class LearningOpportunitiesController < ApplicationController
 
   def create
     @learningopportunity = LearningOpportunity.new(set_params)
+    @learningopportunity.user_id = current_user.id
     if @learningopportunity.save
       redirect_to learning_opportunity_path(@learningopportunity)
     else

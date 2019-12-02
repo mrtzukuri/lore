@@ -2,16 +2,22 @@
 <% require 'nokogiri' %>
 
 <div class="container">
-  <%= cl_image_tag @learningopportunity.event_picture %>
-  <h1><%= @learningopportunity.name %></h1>
-  <p><%= @learningopportunity.description %></p>
-  <ul>
-    <li> price: <%= @learningopportunity.price %></li>
-    <li> location: <%= @learningopportunity.location %></li>
-    <li> type: <%= @learningopportunity.course_type %></li>
-    <li> start date: <%= @learningopportunity.start_date %></li>
-    <li> end date: <%= @learningopportunity.end_date %></li>
-  </ul>
+<h1><%= @learningopportunity.name %></h1>
+  <div class="learning-opp-card">
+    <div class="learning-opp-detailed-desc"
+      <%= cl_image_tag @learningopportunity.event_picture %>
+      <p><%= @learningopportunity.description %></p>
+    </div>
+    <div class="summary-details">
+      <ul>
+        <li> price: <%= @learningopportunity.price %></li>
+        <li> location: <%= @learningopportunity.location %></li>
+        <li> type: <%= @learningopportunity.course_type %></li>
+        <li> start date: <%= @learningopportunity.start_date %></li>
+        <li> end date: <%= @learningopportunity.end_date %></li>
+      </ul>
+    </div>
+  </div>
 
   <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
 
@@ -25,15 +31,15 @@
   <!-- getting average review -->
   <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
   <% average = ele.children.text  %>
-  <p>Rating: <% average %></p>
+  <h2>Reviews <% average %></h2>
 
     <!-- getting single review -->
   <% html_doc.search('.review-page-review').each do |element|  %>
     <div class="review-card">
       <% var = element.search('.SvgIcon_8wfvj4 title')%>
       <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-      <div class="sub-heading">
-        <p><%= stars.count %> stars</p>
+      <div class="summary-info">
+        <p><%= stars.count %> <i class="fas fa-star"></i></p>
 
         <% var = element.search('.reviewerName') %>
         <% name = var.children.text  %>
@@ -43,7 +49,7 @@
         <% date = var.children.text  %>
         <p><%= date %></p>
       </div>
-      <div class="desc">
+      <div class="review-text">
         <% descrip = "" %>
         <% var = element.search('.rc-CML.font-lg.styled > div')%>
         <% var.search('p').each do |p|  %>
@@ -58,6 +64,7 @@
 
 <% end %>
 
+<% unless @learningopportunity.course_type == "online" %>
  <div
   id="map"
   style="width: 100%;
@@ -65,5 +72,6 @@
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   ></div>
+<% end %>
 
 </div>

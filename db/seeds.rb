@@ -7,9 +7,6 @@ Skill.destroy_all
 LearningOpportunity.destroy_all
 
 puts "Creating user seeds."
-proff = Profession.new(name: "Front-End Developer")
-user = User.create!(email: 'user@user.com', password: '123456', profession: proff, name: Faker::FunnyName.name, city: "sydney")
-
 
 puts "Seeding Finished."
 puts "Creating professions seeds."
@@ -20,6 +17,7 @@ professions = Profession.create!([{ name: "Front-End Developer" },
                    { name: "Back-End Developer" }
                  ])
 
+user = User.create!(email: 'user@user.com', password: '123456', profession: Profession.first, name: Faker::FunnyName.name, city: "sydney")
 
 professions.first.save!
 puts "Seeding Finished."

@@ -16,10 +16,10 @@
       <tbody>
         <% @frontend.skills.each do |skill| %>
           <% case skill.skill_group %>
-          <% when "Technology" then color = "blue" %>
-          <% when "Methodology" then color = "red" %>
-          <% when "General" then color = "green" %>
-          <% when "Behaviour" then color = "yellow" %>
+          <% when "Technology" then color = "#2c9688" %>
+          <% when "Methodology" then color = "#3f51b5" %>
+          <% when "General" then color = "#cc1b57" %>
+          <% when "Behaviour" then color = "#f7a02e" %>
           <% end %>
             <tr class="<%= skill.level %>" style="color: <%= color %>">
               <td><%= skill.skill_group %></td>

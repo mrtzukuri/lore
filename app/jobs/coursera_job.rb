@@ -18,7 +18,8 @@ class CourseraJob < ApplicationJob
           url: "https://www.coursera.org/learn/#{course[:slug]}",
           description: course[:description],
           skills: [skill],
-          price: rand(0..100)
+          price: rand(0..100),
+          event_picture: "https://s3.amazonaws.com/coursera/media/Partner_Logos.png"
         )
     end
   end

@@ -1,0 +1,7 @@
+function refreshBookmark(innerHTML) {
+  const bookmarkButtonEl = document.getElementById('<%= @user_bookmark.learning_opportunity_id %>');
+  bookmarkButtonEl.outerHTML = innerHTML;
+}
+
+refreshBookmark('<%= j render "bookmark_icon", bookmark: @bookmark, learning_opportunity_id: @user_bookmark.learning_opportunity_id %>');
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_032259) do
+ActiveRecord::Schema.define(version: 2019_12_02_052334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_032259) do
     t.string "name"
     t.date "start_date"
     t.date "end_date"
-    t.integer "price"
+    t.integer "price", default: 0
     t.string "course_type"
     t.string "location"
     t.text "description"

@@ -1,0 +1,7 @@
+function refreshCards(innerHTML) {
+  const cardsList = document.querySelector('.card-container');
+  const form = document.getElementById("filter-form");
+  cardsList.innerHTML = innerHTML;
+}
+
+refreshCards('<%= j render "cards_list", learningopportunities: @learningopportunities %>')

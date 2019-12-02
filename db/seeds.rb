@@ -274,7 +274,6 @@ puts "Creating meetup learning Opportunities seeds."
     opp.save
   end
 
-
 puts "Seeding Finished."
 
 

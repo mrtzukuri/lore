@@ -4,13 +4,17 @@ class LearningOpportunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
+    wl = WhatLanguage.new
     if params[:query].present?
-      wl = WhatLanguage.new
-      @learningopportunities = LearningOpportunity.all.select { |lo| lo.skills[0].name == params[:query] }
-      @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.description) == :arabic || wl.language(lo.description) == :portuguese }
+      @learningopportunities = LearningOpportunity.joins(:skills).where('skills.name = (?)', params[:query])
     else
       @learningopportunities = LearningOpportunity.all
-      @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.description) == :arabic || wl.language(lo.description) == :portuguese  }
+    end
+    @learningopportunities = filter(@learningopportunities)
+    @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.name) == :arabic || wl.language(lo.name) == :portuguese }
+    respond_to do |format|
+      format.html { learning_opportunities_path }
+      format.js
     end
   end
 
@@ -56,6 +60,18 @@ class LearningOpportunitiesController < ApplicationController
 
   private
 
+  def filter(lo_collection)
+    lo_collection = lo_collection.where("price <= (?)", params["max-price"]) if params_exists?(params["max-price"])
+    lo_collection = lo_collection.near(params["location"], 50) if params_exists?(params["location"])
+    lo_collection = lo_collection.where("start_date >= (?) AND end_date <= (?)", Date.parse(params["start-date"]), Date.parse(params["end-date"])) if params_exists?(params["start-date"]) && params_exists?(params["end-date"])
+    lo_collection = lo_collection.where("course_type IN (?)", params["type"]) if !params['type'].nil?
+    lo_collection
+  end
+
+  def params_exists?(parameter)
+    parameter != "" && !parameter.nil?
+  end
+
   def set_params
     params.require(:learning_opportunity).permit!
   end
@@ -63,5 +79,4 @@ class LearningOpportunitiesController < ApplicationController
   def set_learningopportunity
     @learningopportunity = LearningOpportunity.find(params[:id])
   end
-
 end

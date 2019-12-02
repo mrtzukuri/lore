@@ -39,8 +39,11 @@
       <% var = element.search('.SvgIcon_8wfvj4 title')%>
       <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
       <div class="summary-info">
-        <p><%= stars.count %> <i class="fas fa-star"></i></p>
-
+        <div class="d-flex">
+          <% stars.count.times do %>
+            <p><i class="fas fa-star"></i></p>
+          <% end %>
+        </div>
         <% var = element.search('.reviewerName') %>
         <% name = var.children.text  %>
         <p><%= name %></p>

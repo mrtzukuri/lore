@@ -4,15 +4,19 @@ class UserBookmarksController < ApplicationController
   end
 
   def create
-    @user_bookmark = UserBookmark.create(user_id: params[:user_id].to_i, learning_opportunity_id: params[:learning_opportunity_id].to_i)
-    redirect_back(fallback_location: root_path)
+    @user_bookmark = UserBookmark.create!(user_id: params[:user_id].to_i, learning_opportunity_id: params[:learning_opportunity_id].to_i)
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   def destroy
     @user_bookmark = UserBookmark.find(params[:id])
     @user_bookmark.destroy
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
-
-  private
 end

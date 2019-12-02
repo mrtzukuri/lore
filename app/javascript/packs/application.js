@@ -8,4 +8,3 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 toggleLevelSkills();
 initMapbox();
 initAutocomplete();
-

@@ -3,7 +3,6 @@
 
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#profile-info">Profile Info</a></li>
-  <li><a data-toggle="tab" href="#personal-timeline">Personal Timeline</a></li>
   <li><a data-toggle="tab" href="#shortlist">Shortlist</a></li>
   <li><a data-toggle="tab" href="#host">Host</a></li>
 </ul>
@@ -30,23 +29,21 @@
     <p>Password</p>
     <h2> <%= @user.encrypted_password  %></h2>
   </div>
-  <div id="personal-timeline" class="tab-pane fade">
-    <h3>Personal Timeline</h3>
-    <hr>
-    <p>Some content</p>
-  </div>
+
+
+
   <div id="shortlist" class="tab-pane fade">
     <h3>Your saved Learning Opportunities</h3>
      <hr>
-     <ul>
-      <% @bookmarks.each do |bookmark| %>
-        <li>
-          <%= link_to bookmark.learning_opportunity.name, learning_opportunity_path(bookmark.learning_opportunity) %>
-          <%= link_to '<i class="fa fa-star"></i>'.html_safe, user_bookmark_path(bookmark), method: "delete" %>
-        </li>
-      <% end %>
-     </ul>
+      <div class="card-container">
+        <% @learningopportunities = [] %>
+        <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
+        <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
+      </div>
+
   </div>
+
+
    <div id="host" class="tab-pane fade">
     <h3>Host</h3>
     <hr>

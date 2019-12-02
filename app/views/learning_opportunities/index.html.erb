@@ -47,12 +47,12 @@
     </div>
     <div>
       <div class="sort" class="justify-content-end">
-        <a href="#" id="sort-by-price">Sort by price</a> |
+        <a href="#" id="sort-by-price">Sort by price</a>
         <a href="#" id="sort-by-duration">Sort by duration</a>
       </div>
       <br>
       <div class="card-container">
-        <%= render 'cards_list', learningopportunities: @learningopportunities %>
+        <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
       </div>
     </div>
   </div>

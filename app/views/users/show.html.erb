@@ -50,9 +50,9 @@
    <div id="host" class="tab-pane fade">
     <h3>Host</h3>
     <hr>
-    <p>Some of your own uploaded Learing Opportunities hello</p>
+    <p>Some of your own uploaded Learing Opportunities</p>
     <% current_user.learning_opportunities.each do |event| %>
-      <%= event.name %> <%= link_to "edit", edit_learning_opportunity_path(event) %>
+      <%= event.name %> <%= link_to "edit", edit_learning_opportunity_path(event) %> <%= link_to "destroy", learning_opportunity_path(event), method: "delete" %>
     <% end %>
     <p><%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %> to add learning op</p>
   </div>

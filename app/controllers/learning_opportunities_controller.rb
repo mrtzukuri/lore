@@ -4,13 +4,14 @@ class LearningOpportunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
+    wl = WhatLanguage.new
     if params[:query].present?
       @learningopportunities = LearningOpportunity.joins(:skills).where('skills.name = (?)', params[:query])
-      @learningopportunities = filter(@learningopportunities)
     else
       @learningopportunities = LearningOpportunity.all
-      @learningopportunities = filter(@learningopportunities)
     end
+    @learningopportunities = filter(@learningopportunities)
+    @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.name) == :arabic || wl.language(lo.name) == :portuguese }
     respond_to do |format|
       format.html { learning_opportunities_path }
       format.js
@@ -22,7 +23,8 @@ class LearningOpportunitiesController < ApplicationController
 
     @markers = {
       lat: @learningopportunity.latitude,
-      lng: @learningopportunity.longitude
+      lng: @learningopportunity.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { learningopportunity: @learningopportunity })
     }
   end
 
@@ -32,7 +34,7 @@ class LearningOpportunitiesController < ApplicationController
 
   def create
     @learningopportunity = LearningOpportunity.new(set_params)
-    @learningopportunity.user_id = current_user
+    @learningopportunity.user_id = current_user.id
     if @learningopportunity.save
       redirect_to learning_opportunity_path(@learningopportunity)
     else

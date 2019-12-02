@@ -1,3 +1,4 @@
+
 <div class="d-flex">
   <div class="side-bar-filters">
     <div id="filters" class="d-flex justify-content-between">
@@ -40,8 +41,10 @@
     </div>
   </div>
   <div class="filter-results-and-sort">
-    <h1><%= params[:query] %> Learning Opportunities</h1>
-    <hr>
+    <div class="header">
+      <h1><%= params[:query] %> Learning Opportunities</h1>
+      <hr>
+    </div>
     <div>
       <div class="sort" class="justify-content-end">
         <a href="#" id="sort-by-price">Sort by price</a> |

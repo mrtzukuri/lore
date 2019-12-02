@@ -10,8 +10,8 @@
               <input type="hidden" name="query" value="<%= params[:query] %>">
             <% end %>
             <h5>Max Price</h5>
-              <p id="price">100</p>
-              <input type="range" name="max-price" min="0" max="200" value="100" class="slider" id="priceRange">
+              <p id="price">250</p>
+              <input type="range" name="max-price" min="0" max="250" value="250" class="slider" id="priceRange">
           </div>
           <br>
           <div label="date-filter">
@@ -35,6 +35,8 @@
               <input type="checkbox" id="online" name="type[]" value="online">
               <label for="online">Online Course</label>
           </div>
+          <input type="radio" name="sort" id="asc" value="asc" style="display: none">
+          <input type="radio" name="sort" id="desc" value="desc" style="display: none">
           <input class="filter-submit js-filter-submit" type="submit" style="display: none">
         </form>
       </div>
@@ -47,8 +49,7 @@
     </div>
     <div>
       <div class="sort" class="justify-content-end">
-        <a href="#" id="sort-by-price">Sort by price</a>
-        <a href="#" id="sort-by-duration">Sort by duration</a>
+        <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>
       </div>
       <br>
       <div class="card-container">

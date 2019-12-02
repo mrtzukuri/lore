@@ -65,6 +65,7 @@ class LearningOpportunitiesController < ApplicationController
     lo_collection = lo_collection.near(params["location"], 50) if params_exists?(params["location"])
     lo_collection = lo_collection.where("start_date >= (?) AND end_date <= (?)", Date.parse(params["start-date"]), Date.parse(params["end-date"])) if params_exists?(params["start-date"]) && params_exists?(params["end-date"])
     lo_collection = lo_collection.where("course_type IN (?)", params["type"]) if !params['type'].nil?
+    params['sort'] == 'asc' ? lo_collection.order!(:price) : lo_collection.order!('price DESC') unless params['sort'].nil?
     lo_collection
   end
 

@@ -19,7 +19,7 @@
       </li>
       <li class="nav-item">
         <% if current_user.photo.url %>
-        <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar", class: "nav-link" %>
+        <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar" %>
         <% else %>
         <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar-768x768.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>

@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: $cream;
+  background: $charcoal;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -21,4 +21,17 @@
 
 .review-card {
   margin-bottom: 5%;
+}
+
+.nav-item {
+  padding: 0px 16px 0px 16px;
+}
+
+.nav-link {
+  color: #c1c1c1;
+
+}
+
+.nav-link:hover {
+  color: $cream;
 }

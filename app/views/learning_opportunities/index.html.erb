@@ -2,36 +2,40 @@
   <div class="side-bar-filters">
     <div id="filters" class="d-flex justify-content-between">
       <div id="filters">
-        <h3>Filters</h3>
-        <div label="price-filter">
-          <h5>Price</h5>
-            <label for="min-price">Enter min price: </label>
-            <input type="text" class="text-inputs" name="min-price" id="min-price">
-            <label for="max-price">Enter max price: </label>
-            <input type="text" class="text-inputs" name="max-price" id="max-price">
-        </div>
-        <br>
-        <div label="date-filter">
-          <h5>Date</h5>
-            <label for="start-date">Enter start date: </label>
-            <input type="text" class="text-inputs" name="start-date" id="start-date">
-            <label for="end-date">Enter end date: </label>
-            <input type="text" class="text-inputs" name="end-date" id="end-date">
-        </div>
-        <br>
-        <div label="location-filter">
-          <h5>Location</h5>
-            <label for="location">Enter location: </label>
-            <input type="text" class="text-inputs" name="location" id="location">
-        </div>
-        <br>
-        <div label="type-filter">
-          <h5>Type</h5>
-            <input type="checkbox" id="Meet-up" name="Meet-up">
-            <label for="Meet-up">Meetup</label>
-            <input type="checkbox" id="course" name="course">
-            <label for="course">Course</label>
-        </div>
+        <form id="filter-form" action="/learning_opportunities" data-remote="true">
+          <h3>Filters</h3>
+          <div label="price-filter">
+            <% if params[:query] %>
+              <input type="hidden" name="query" value="<%= params[:query] %>">
+            <% end %>
+            <h5>Max Price</h5>
+              <p id="price">100</p>
+              <input type="range" name="max-price" min="0" max="200" value="100" class="slider" id="priceRange">
+          </div>
+          <br>
+          <div label="date-filter">
+            <h5>Date</h5>
+              <label for="start-date">Enter start date: </label>
+              <input type="text" class="text-inputs" name="start-date" id="start-date">
+              <label for="end-date">Enter end date: </label>
+              <input type="text" class="text-inputs" name="end-date" id="end-date">
+          </div>
+          <br>
+          <div label="location-filter">
+            <h5>Location</h5>
+              <label for="location">Enter location: </label>
+              <input type="text" class="text-inputs" name="location" id="location">
+          </div>
+          <br>
+          <div label="type-filter">
+            <h5>Type</h5>
+              <input type="checkbox" id="meetup" name="type[]" value="meetup">
+              <label for="meetup">Meetup</label>
+              <input type="checkbox" id="online" name="type[]" value="online">
+              <label for="online">Online Course</label>
+          </div>
+          <input class="filter-submit js-filter-submit" type="submit" style="display: none">
+        </form>
       </div>
     </div>
   </div>
@@ -44,39 +48,8 @@
         <a href="#" id="sort-by-duration">Sort by duration</a>
       </div>
       <br>
-      <div class="results">
-        <h3>Results</h3>
-        <ul style="list-style: none; padding: 0px;">
-          <% @learningopportunities.each do |learning_opportunity| %>
-              <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
-            <div class="learning-opp-list-item">
-              <div class="left-bar">
-                <div class="text-and-image">
-                  <img class="learning-opp-image" src="https://source.unsplash.com/1600x900/?<%= learning_opportunity.name %>">
-                  <div class="main-text">
-                    <li>
-                      <h4><%= link_to learning_opportunity.name, learning_opportunity_path(learning_opportunity) %></h4>
-                      <p> <%= learning_opportunity.description %> </p>
-                    </li>
-                  </div>
-                </div>
-                <div class="grey-bar">
-                </div>
-              </div>
-              <div class="right-bar">
-                <div class="bookmark-icon">
-                  <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, user_bookmarks_path(@bookmark, user_id: current_user.id, learning_opportunity_id: learning_opportunity.id), method: "post" unless (current_user.nil? || @bookmark) %>
-                  <%= link_to '<i class="fa fa-bookmark"></i>'.html_safe, user_bookmark_path(@bookmark), method: "delete" if @bookmark %>
-                </div>
-                <div class="details">
-                  <hr>
-                  <p>Details <br> From <%= learning_opportunity.start_date %> <br>
-                  <i class="fas fa-angle-double-down"></i> </p>
-                </div>
-              </div>
-            </div>
-            <% end %>
-        </ul>
+      <div class="card-container">
+        <%= render 'cards_list', learningopportunities: @learningopportunities %>
       </div>
     </div>
   </div>

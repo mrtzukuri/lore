@@ -17,7 +17,8 @@ class CourseraJob < ApplicationJob
           course_type: "online",
           url: "https://www.coursera.org/learn/#{course[:slug]}",
           description: course[:description],
-          skills: [skill]
+          skills: [skill],
+          price: rand(0..100)
         )
     end
   end

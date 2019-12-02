@@ -93,34 +93,37 @@ puts "Seeding Finished."
 puts "Creating meetup learning Opportunities seeds."
 
 LearningOpportunity.create!({name: "JS Workshops",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "Where we meet to hack together on JavaScript. We intend to run workshop/hacking sessions to learn upcoming ES6/7 features, and how to put new ideas into practice.",
   url: "https://www.meetup.com/MelbourneJS/",
-  skills: [Skill.find_by("name = 'Javascript / JQuery'")]
+  skills: [Skill.find_by("name = 'Javascript / JQuery'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Melbourne CSS",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "Melbourne's CSS and front-end discussion group. Do you know your floats, flexbox, and grid or want to learn more? Join now!
 Get in touch if you'd like to present your work, sponsor or if you'd just like to say 'Hi'.",
   url: "https://www.meetup.com/Melbourne-CSS/",
-  skills: [Skill.find_by("name = 'CSS / SCSS'")]
+  skills: [Skill.find_by("name = 'CSS / SCSS'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Agile Coaching Circles Melbourne",
 
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "Agile Coaching Circles is intended to provide support for the role of the Agile Coach and the competencies (i.e. facilitation, mentoring, teaching, and coaching) to become effective in that role through a community of practicing coaches.
 Let's get together to share our successes and challenges with each other in order to support newer coaches and Scrum Masters, enhance our coaching skills and deepen our craft.",
   url: "https://www.meetup.com/AgileCoach/",
-  skills: [Skill.find_by("name = 'Agile'")]
+  skills: [Skill.find_by("name = 'Agile'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "SCRUM Practice, Melbourne",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "This meetup is for those interested in practicing specifically SCRUM - most common Agile methodology practiced in IT industry.
 At our SCRUM Workshops we help participants gain and share knowledge through practical experience. Each of our session is a quick overview (not more than 10 min) followed by a role play where we assign roles and play as SCRUM team as if we are delivering a project. At breaks and in the very end we discuss what SCRUM Master did right, wrong and what was the overall outcome of the session.
@@ -128,27 +131,30 @@ Workshops are free and open to all levels - no previous experience required. Wha
 People with some knowledge of SCRUM, practicing Product Owners, BAs/PMs moving onto Agile space will also find it valuable as they will get to share their knowledge and help beginners.
 More info in our Facebook group: https://www.facebook.com/groups/1125735887513166/?hc_ref=SEARCH",
   url: "https://www.meetup.com/SCRUMWORKS/",
-  skills: [Skill.find_by("name = 'Scrum'")]
+  skills: [Skill.find_by("name = 'Scrum'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Melbourne APIs Meetup",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
   url: "https://www.meetup.com/Melbourne-APIs-Meetup/",
-  skills: [Skill.find_by("name = 'API'")]
+  skills: [Skill.find_by("name = 'API'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Everything API Melbourne",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "This is a meetup about APIs. Including API design, API management, API concepts and everything else API related.",
   url: "https://www.meetup.com/Everything-API-Melbourne/",
-  skills: [Skill.find_by("name = 'API'")]
+  skills: [Skill.find_by("name = 'API'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "City Centre Toastmasters.",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "What makes City Centre Toastmasters Club unique? We help young professionals, including people from an English as a Second Language background, develop their professional and conversational English-speaking skills.
 Located in the heart of the city, after the work day has ended, City Centre Toastmasters attracts young professionals who want to advance their careers through developing their public speaking and leadership skills.
@@ -158,11 +164,12 @@ When: We meet the 2nd and 4th Mondays of each month, 6:15pm for 6:30pm - 8:00pm.
 Where: Melbourne Multicultural Hub (https://maps.google.com/maps?f=q&hl=en&q=506+Elizabeth+Street%2C+Melbourne%2C+au) 506 Elizabeth Street, Melbourne.
 FREE for guests to attend. All are welcome.",
   url: "https://www.meetup.com/City-Centre-Toastmasters-Meetup/",
-  skills: [Skill.find_by("name = 'Verbal Communication'")]
+  skills: [Skill.find_by("name = 'Verbal Communication'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Speaking, Presenting & Leadership",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "We help people improve their speaking, presenting and leadership skills in a safe and friendly environment. You won't walk into a room of expert speakers, but rather just average people looking to improve their speaking and socialise. We are a diverse group with varied skills and background.
 What makes our club unique?
@@ -174,11 +181,12 @@ When and where?
 We meet every Tuesday from 6.15 to 8.15pm at Lvl1, Multicultural Hub (Purple Room)
 Feel free to drop by to our meetings as a guest!",
   url: "https://www.meetup.com/Speaking-Presenting-Leadership/",
-  skills: [Skill.find_by("name = 'Verbal Communication'")]
+  skills: [Skill.find_by("name = 'Verbal Communication'")],
+  price: rand(0..15)
 })
 
 LearningOpportunity.create!({name: "Melbourne Communication Skills Development",
-  course_type: "meet up",
+  course_type: "meetup",
   location: "Melbourne, Australia",
   description: "Whether we like it or not we are dependent on others to achieve
 what we want.
@@ -195,7 +203,8 @@ If you want a more productive and enjoyable life.
 If you have ever wondered why all the excellent communication tips
 you've tried don't seem to work for you.",
   url: "https://www.meetup.com/Melbourne-Communication-Skills-Development/",
-  skills: [Skill.find_by("name = 'Verbal Communication'")]
+  skills: [Skill.find_by("name = 'Verbal Communication'")],
+  price: rand(0..15)
 })
 
 puts "Seeding Finished."

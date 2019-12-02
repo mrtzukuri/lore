@@ -16,7 +16,8 @@ class LearningOpportunitiesController < ApplicationController
 
     @markers = {
       lat: @learningopportunity.latitude,
-      lng: @learningopportunity.longitude
+      lng: @learningopportunity.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { learningopportunity: @learningopportunity })
     }
   end
 

@@ -17,8 +17,7 @@ class LearningOpportunitiesController < ApplicationController
     @markers = {
       lat: @learningopportunity.latitude,
       lng: @learningopportunity.longitude,
-      infoWindow: render_to_string(partial: "info_window", locals: { learningopportunity: @learningopportunity }),
-      image_url: helpers.asset_url('logo.png')
+      infoWindow: render_to_string(partial: "info_window", locals: { learningopportunity: @learningopportunity })
     }
   end
 

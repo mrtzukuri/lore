@@ -25,8 +25,7 @@ class EventbriteJob < ApplicationJob
         url: event["url"],
         course_type: event["online_event"].to_s,
         event_picture: event["logo"]["original"]["url"],
-        price: rand(0..30),
-        event_picture: event["logo"]["original"]["url"]
+        price: rand(0..30)
       )
     end
   end

@@ -11,7 +11,11 @@
                     <li>
                       <h4><%= link_to learning_opportunity.name.truncate(70), learning_opportunity_path(learning_opportunity) %></h4>
                       <p> <%= learning_opportunity.description.truncate(100) %> </p>
-                      <p>$<%= learning_opportunity.price %></p>
+                      <% if learning_opportunity.price == 0 %>
+                        <p>Free</p>
+                      <% else %>
+                        <p>$<%= learning_opportunity.price %></p>
+                      <% end %>
                     </li>
                   </div>
                 </div>

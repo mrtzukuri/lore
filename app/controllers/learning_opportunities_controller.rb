@@ -5,9 +5,12 @@ class LearningOpportunitiesController < ApplicationController
 
   def index
     if params[:query].present?
+      wl = WhatLanguage.new
       @learningopportunities = LearningOpportunity.all.select { |lo| lo.skills[0].name == params[:query] }
+      @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.name) == :arabic || wl.language(lo.name) == :portuguese }
     else
       @learningopportunities = LearningOpportunity.all
+      @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.name) == :arabic || wl.language(lo.name) == :portuguese  }
     end
   end
 

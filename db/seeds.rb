@@ -73,7 +73,7 @@ Skill.create!([{name: "Mental Agility", level: "Junior", skill_group: "Behaviour
              {name: "Take Initiative", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
             ])
 
-puts "Seeding Finished."
+puts "Seeding skills Finished."
 
 puts "Creating coursera learning Opportunities seeds."
 

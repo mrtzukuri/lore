@@ -23,7 +23,7 @@ professions.first.save!
 puts "Seeding Finished."
 
 puts "Creating skills seeds."
-#Technology
+# #Technology
 Skill.create!([{name: "HTML", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
                {name: "CSS / SCSS", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
                {name: "Javascript / JQuery", level: "Junior", skill_group: "Technology", profession: [Profession.first]},
@@ -47,14 +47,14 @@ Skill.create!([{name: "HTML", level: "Junior", skill_group: "Technology", profes
                {name: "Platform and SLA Maintenance", level: "Senior" , skill_group: "Technology", profession: [Profession.first]},
             ])
 
-# #Methodology
+# # #Methodology
 Skill.create!([{name: "Scrum", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
                {name: "Agile", level: "Junior", skill_group: "Methodology", profession: [Profession.first]},
                {name: "Object Oriented Principles", level: "Mid-Level" , skill_group: "Methodology", profession: [Profession.first]},
                {name: "Test Driven Development", level: "Senior" , skill_group: "Methodology", profession: [Profession.first]}
               ])
 
-# #General
+# # #General
 Skill.create!([{name: "Verbal Communication", level: "Junior", skill_group: "General", profession: [Profession.first]},
              {name: "Written Communication", level: "Junior", skill_group: "General", profession: [Profession.first]},
              {name: "Desktop Research", level: "Junior", skill_group: "General", profession: [Profession.first]},
@@ -64,7 +64,7 @@ Skill.create!([{name: "Verbal Communication", level: "Junior", skill_group: "Gen
              {name: "Build Overall Team Capability", level: "Senior", skill_group: "General", profession: [Profession.first]},
             ])
 
-# #Behaviour
+# # #Behaviour
 Skill.create!([{name: "Mental Agility", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
              {name: "Work in a Team", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
              {name: "Attention to Detail", level: "Junior", skill_group: "Behaviour", profession: [Profession.first]},
@@ -100,12 +100,12 @@ puts "Creating meetup learning Opportunities seeds."
 
   html_doc.search('.groupCard').each do |card|
     sub_url = card.search('a').first.values.first
-    # image = card.search('a').first.values.first
     file = open(sub_url).read
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     doc = Nokogiri::HTML(file)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'HTML'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'HTML'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -117,9 +117,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'CSS / SCSS'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'CSS / SCSS'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -131,9 +132,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Javascript / JQuery'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Javascript / JQuery'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -145,9 +147,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Adobe Creative Suite'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Adobe Creative Suite'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -159,9 +162,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'API'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'API'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -173,9 +177,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Basic UX/UI Principles'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Basic UX/UI Principles'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -187,9 +192,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Webpack'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Webpack'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -201,9 +207,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Front-End Architecture'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Front-End Architecture'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -215,9 +222,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Scrum'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Scrum'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -229,9 +237,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Agile'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Agile'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -243,9 +252,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Verbal Communication'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Verbal Communication'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 
@@ -257,9 +267,10 @@ puts "Creating meetup learning Opportunities seeds."
     sub_url = card.search('a').first.values.first
     file = open(sub_url).read
     doc = Nokogiri::HTML(file)
+    image = card.search('a')[1].attributes["style"].value.match(/(?<=\().+?(?=\))/)
     name = doc.search('.groupHomeHeader-groupNameLink').text
     desc = doc.search('.group-description').text
-    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Collaboration'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia")
+    opp = LearningOpportunity.new(url: sub_url, skills: [Skill.find_by("name = 'Collaboration'")], name: name, description: desc, course_type: "Meet Up", location: "Melbourne, Australia", event_picture: image)
     opp.save
   end
 

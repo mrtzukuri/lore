@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div class="right-bar">
-                <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
+                <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
                 <div class="details">
                   <hr>
                   <p>Details <br> From <%= learning_opportunity.start_date %> <br>

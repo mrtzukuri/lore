@@ -1,4 +1,21 @@
-<div class="container d-flex">
+<div class="container">
+
+  <a id="junior" href="#"><h3>Junior</h3></a>
+  <a id="mid" href="#"><h3>Mid-level</h3></a>
+  <a id="senior" href="#"><h3>Senior</h3></a>
+
+  <div class="grid">
+    <% @frontend.skills.each do |skill| %>
+    <div
+      class="grid-item"
+      data-skill-level="<%= skill.level %>"
+      data-skill-group="<%= skill.skill_group %>"
+    >
+      <%= skill.name %>
+    </div>
+    <% end %>
+  </div>
+<!--
   <div style="width: 50%">
     <p>Here is the frontent page</p>
     <% color = "" %>
@@ -6,27 +23,6 @@
     </p>
     <hr>
     <br>
-    <a id="junior" href="#"><h3>Junior</h3></a>
-    <a id="mid" href="#"><h3>Mid-level</h3></a>
-    <a id="senior" href="#"><h3>Senior</h3></a>
     <br>
-  </div>
-  <div>
-    <table class="table">
-      <tbody>
-        <% @frontend.skills.each do |skill| %>
-          <% case skill.skill_group %>
-          <% when "Technology" then color = "#2c9688" %>
-          <% when "Methodology" then color = "#3f51b5" %>
-          <% when "General" then color = "#cc1b57" %>
-          <% when "Behaviour" then color = "#f7a02e" %>
-          <% end %>
-            <tr class="<%= skill.level %>" style="color: <%= color %>">
-              <td><%= skill.skill_group %></td>
-              <td><a href="/learning_opportunities?query=<%= skill.name %>"><%= skill.name %></a></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  </div> -->
 </div>

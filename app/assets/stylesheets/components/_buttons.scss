@@ -1,15 +1,35 @@
-.charcoal-btn {
-  color: #c1c1c1;
-  background-color: $charcoal;
-  border-radius: 4px;
-}
-
-.charcoal-btn:hover {
-  color: $cream;
-  background-color: $charcoal;
-  border-radius: 4px;
-}
-
 .btn {
-  border: 1px solid black;
+  opacity: 0.8;
+  padding: 8px 24px;
+  box-shadow: 0px 5px 8px $charcoal;
+}
+
+.btn-1 {
+  border-radius: 30px;
+  background-color: $white;
+  border: 1px solid $charcoal;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.btn-2 {
+  border-radius: 12px;
+  color: $white;
+  background-color: $primary;
+  &:hover {
+    color: $white;
+    opacity: 1;
+  }
+}
+
+.btn-3 {
+  border-radius: 12px;
+  color: $charcoal;
+  background-color: $white;
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    opacity: 0.8;
+  }
 }

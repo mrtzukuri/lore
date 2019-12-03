@@ -32,7 +32,7 @@
       <!-- getting average review -->
       <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
       <% average = ele.children.text  %>
-        <h2>Reviews <% average %></h2>
+        <h2>Average review <%= average %>/5</h2>
         <!-- getting single review -->
         <% html_doc.search('.review-page-review').each do |element|  %>
         <div class="review-card">

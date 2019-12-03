@@ -5,6 +5,10 @@ const filterRefresh = function() {
   const locationEl = document.getElementById('location');
   const meetupEL = document.getElementById('meetup');
   const onlineEL = document.getElementById('online');
+  const sortAscEL = document.getElementById('asc');
+  const sortDescEL = document.getElementById('desc');
+  const sortLinkEl = document.getElementById('sort-by-price');
+
 
   if(form){
     priceSlider.addEventListener('change', (event) => {
@@ -19,6 +23,14 @@ const filterRefresh = function() {
     meetupEL.addEventListener('change', (event) => {
       buttonEl.click();
     })
+    sortLinkEl.addEventListener('click', (event) => {
+      if(sortAscEL.checked == true){
+        sortDescEL.checked = true;
+      } else {
+        sortAscEL.checked = true;
+      }
+      buttonEl.click();
+    });
   }
 }
 

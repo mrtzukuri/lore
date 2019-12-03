@@ -12,9 +12,12 @@
           <%= link_to "Profile", profile_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to profile_path, class: "nav-link" do%>
-            <i class="fas fa-bookmark"></i>
-          <% end %>
+          <div class="bookmark">
+            <%= link_to profile_path, class: "nav-link" do%>
+              <i class="fas fa-bookmark"></i>
+            <% end %>
+            <div class="badge" id="badge"><%= UserBookmark.where(user: current_user).count %></div>
+          </div>
         </li>
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>

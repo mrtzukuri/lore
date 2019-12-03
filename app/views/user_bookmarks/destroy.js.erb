@@ -1,6 +1,8 @@
 function refreshBookmark(innerHTML) {
+  const count = document.querySelector('#badge');
   const bookmarkButtonEl = document.getElementById('<%= @user_bookmark.learning_opportunity_id %>');
   bookmarkButtonEl.outerHTML = innerHTML;
+  count.innerHTML = "<%= UserBookmark.where(user: current_user).count %>";
 }
 
 refreshBookmark('<%= j render "bookmark_icon", bookmark: @bookmark, learning_opportunity_id: @user_bookmark.learning_opportunity_id %>');

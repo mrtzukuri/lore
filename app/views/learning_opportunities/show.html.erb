@@ -38,7 +38,6 @@
       <% url = "#{@learningopportunity.url}/reviews" %>
       <% html_file = open(url).read %>
       <% html_doc = Nokogiri::HTML(html_file) %>
-
       <div class="col-12">
       <!-- getting average review -->
       <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>

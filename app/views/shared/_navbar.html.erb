@@ -5,29 +5,37 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "Profile", profile_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Add Learning Opportunity", new_learning_opportunity_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
+        <li class="nav-item">
+          <%= link_to "Profile", profile_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <div class="bookmark">
+            <%= link_to profile_path, class: "nav-link" do%>
+              <i class="fas fa-bookmark"></i>
+            <% end %>
+            <div class="badge" id="badge"><%= UserBookmark.where(user: current_user).count %></div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Add Learning Opportunity", new_learning_opportunity_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
         <% if current_user.photo.url %>
-        <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar" %>
+          <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar" %>
         <% else %>
-        <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar-768x768.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar-768x768.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
-      </li>
+        </li>
       <% else %>
-      <li class="nav-item">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item sign-up-btn">
-        <%= link_to "Sign-up", new_user_registration_path, class: "nav-link" %>
-      </li>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item sign-up-btn">
+          <%= link_to "Sign-up", new_user_registration_path, class: "nav-link" %>
+        </li>
       <% end %>
     </ul>
   </div>

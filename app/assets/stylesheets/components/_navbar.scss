@@ -11,6 +11,21 @@
   width: 40px;
 }
 
+.badge {
+  color: white;
+  position: absolute;
+  right: -0;
+  top: 0;
+  background-color: red;
+  border-radius: 100%;
+  font-size: x-small;
+}
+
+.bookmark {
+  display: flex;
+  position: relative;
+}
+
 .sub-heading {
   display: flex;
 }

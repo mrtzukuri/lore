@@ -36,8 +36,6 @@
     <h2> <%= @user.encrypted_password  %></h2>
   </div>
 
-
-
   <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="shortlist-tab">
     <h3>Your saved Learning Opportunities</h3>
      <hr>
@@ -49,7 +47,6 @@
       </div>
   </div>
 
-
    <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="host-tab">
     <h3>Host</h3>
     <hr>
@@ -60,3 +57,4 @@
     <p><%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %> to add learning op</p>
   </div>
 </div>
+

@@ -2,7 +2,7 @@
         <h3>Results</h3>
         <ul style="list-style: none; padding: 0px;">
           <% learningopportunities.each do |learning_opportunity| %>
-              <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
+           <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
             <div class="learning-opp-list-item">
               <div class="left-bar">
                 <div class="text-and-image">
@@ -33,3 +33,15 @@
             <% end %>
         </ul>
       </div>
+      <div class="right-bar">
+        <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
+        <div class="details">
+          <hr>
+          <p>Details <br> From <%= learning_opportunity.start_date %> <br>
+          <i class="fas fa-angle-double-down"></i> </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </ul>
+</div>

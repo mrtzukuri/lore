@@ -1,36 +1,37 @@
 <div class="results">
-        <h3>Results</h3>
-        <ul style="list-style: none; padding: 0px;">
-          <% learningopportunities.each do |learning_opportunity| %>
-              <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
-            <div class="learning-opp-list-item">
-              <div class="left-bar">
-                <div class="text-and-image">
-                  <img class="learning-opp-image" src="<%= learning_opportunity.event_picture %>">
-                  <div class="main-text">
-                    <li>
-                      <h4><%= link_to learning_opportunity.name.truncate(70), learning_opportunity_path(learning_opportunity) %></h4>
-                      <p> <%= learning_opportunity.description.truncate(100) %> </p>
-                      <% if learning_opportunity.price == 0 %>
-                        <p>Free</p>
-                      <% else %>
-                        <p>$<%= learning_opportunity.price %></p>
-                      <% end %>
-                    </li>
-                  </div>
-                </div>
-                <div class="grey-bar">
-                </div>
-              </div>
-              <div class="right-bar">
-                <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
-                <div class="details">
-                  <hr>
-                  <p>Details <br> From <%= learning_opportunity.start_date %> <br>
-                  <i class="fas fa-angle-double-down"></i> </p>
-                </div>
-              </div>
-            </div>
-            <% end %>
-        </ul>
+    <h3>Results</h3>
+    <ul style="list-style: none; padding: 0px;">
+    <% learningopportunities.each do |learning_opportunity| %>
+    <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
+    <div class="learning-opp-list-item">
+      <div class="left-bar">
+        <div class="text-and-image">
+          <img class="learning-opp-image" src="<%= learning_opportunity.event_picture %>">
+          <div class="main-text">
+            <li>
+              <h4><%= link_to learning_opportunity.name.truncate(70),
+                learning_opportunity_path(learning_opportunity, :query => params[:query])%></h4>
+              <p> <%= learning_opportunity.description.truncate(100) %> </p>
+              <% if learning_opportunity.price == 0 %>
+                <p>Free</p>
+              <% else %>
+                <p>$<%= learning_opportunity.price %></p>
+              <% end %>
+            </li>
+          </div>
+        </div>
+        <div class="grey-bar">
+        </div>
       </div>
+      <div class="right-bar">
+        <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
+        <div class="details">
+          <hr>
+          <p>Details <br> From <%= learning_opportunity.start_date %> <br>
+          <i class="fas fa-angle-double-down"></i> </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </ul>
+</div>

@@ -1,71 +1,80 @@
-
-<div class="d-flex">
-  <div class="side-bar-filters">
-    <div id="filters" class="d-flex justify-content-between">
-      <div id="filters">
-        <form id="filter-form" action="/learning_opportunities" data-remote="true">
-          <h6>FILTERS</h6>
-          <div label="price-filter">
-            <% if params[:query] %>
-              <input type="hidden" name="query" value="<%= params[:query] %>">
-            <% end %>
-            <h4>Max Price</h4>
-              <div class="range-slider">
-                <span id="rs-bullet" class="rs-label">250</span>
-                <input id="rs-range-line" name="max-price" class="rs-range" type="range" value="250" min="0" max="250">
-              </div>
-          </div>
-          <br>
-          <div label="date-filter">
-            <h4>Date</h4>
-              <label for="start-date">Start</label>
-              <input type="text" class="text-inputs" name="start-date" id="start-date">
-              <label for="end-date">End</label>
-              <input type="text" class="text-inputs" name="end-date" id="end-date">
-          </div>
-          <br>
-          <div label="location-filter">
-            <h4>Location</h4>
-              <label for="location">Location</label>
-              <input type="text" class="text-inputs form-control" name="location" id="location">
-          </div>
-          <br>
-          <div label="type-filter">
-            <h4>Type</h4>
-              <ul class="checkbox-list">
-                <li>
-                  <input type="checkbox" id="meetup" name="type[]" value="Meet Up">
-                  <label class="checkbox-label" for="meetup">Meetup</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="online" name="type[]" value="online">
-                  <label class="checkbox-label" for="online">Online Course</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="event" name="type[]" value="event">
-                  <label class="checkbox-label" for="online">Event</label>
-                </li>
-              </ul>
-          </div>
-          <input type="radio" name="sort" id="asc" value="asc" style="display: none">
-          <input type="radio" name="sort" id="desc" value="desc" style="display: none">
-          <input class="filter-submit js-filter-submit" type="submit" style="display: none">
-        </form>
+<div class="row">
+  <div class="col-9 col-md-2">
+    <div class="side-bar-filters">
+      <div id="filters" class="d-flex justify-content-between">
+        <div id="filters">
+          <form id="filter-form" action="/learning_opportunities" data-remote="true">
+            <h6>FILTERS</h6>
+            <div label="price-filter">
+              <% if params[:query] %>
+                <input type="hidden" name="query" value="<%= params[:query] %>">
+              <% end %>
+              <h4>Max Price</h4>
+                <div class="range-slider">
+                  <span id="rs-bullet" class="rs-label">250</span>
+                  <input id="rs-range-line" name="max-price" class="rs-range" type="range" value="250" min="0" max="250">
+                </div>
+            </div>
+            <br>
+            <div label="date-filter">
+              <h4>Date</h4>
+                <label for="start-date">Start</label>
+                <input type="text" class="text-inputs" name="start-date" id="start-date">
+                <label for="end-date">End</label>
+                <input type="text" class="text-inputs" name="end-date" id="end-date">
+            </div>
+            <br>
+            <div label="location-filter">
+              <h4>Location</h4>
+                <label for="location">Location</label>
+                <input type="text" class="text-inputs form-control" name="location" id="location">
+            </div>
+            <br>
+            <div label="type-filter">
+              <h4>Type</h4>
+                <ul class="checkbox-list">
+                  <li>
+                    <input type="checkbox" id="meetup" name="type[]" value="Meet Up">
+                    <label class="checkbox-label" for="meetup">Meetup</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" id="online" name="type[]" value="online">
+                    <label class="checkbox-label" for="online">Online Course</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" id="event" name="type[]" value="event">
+                    <label class="checkbox-label" for="online">Event</label>
+                  </li>
+                </ul>
+            </div>
+            <input type="radio" name="sort" id="asc" value="asc" style="display: none">
+            <input type="radio" name="sort" id="desc" value="desc" style="display: none">
+            <input class="filter-submit js-filter-submit" type="submit" style="display: none">
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  <div class="filter-results-and-sort">
-    <div class="header">
-      <h1><%= params[:query] %> Learning Opportunities</h1>
-      <hr>
-    </div>
-    <div>
-      <div class="sort" class="justify-content-end">
-        <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>
+  <div class="col-12 col-md-10">
+    <div class="filter-results-and-sort">
+      <div class="header">
+        <h1><%= params[:query] %> Learning Opportunities</h1>
+        <hr>
       </div>
-      <br>
-      <div class="card-container">
-        <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
+      <div>
+        <div aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> <%= params[:query] %> Learning Opportunities </li>
+          </ol>
+        </div>
+        <div class="sort" class="justify-content-end">
+          <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>
+        </div>
+        <br>
+        <div class="card-container">
+          <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
+        </div>
       </div>
     </div>
   </div>

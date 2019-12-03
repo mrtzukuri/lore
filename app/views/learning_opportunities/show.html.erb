@@ -1,80 +1,84 @@
-<% require 'open-uri' %>
-<% require 'nokogiri' %>
-
 <div class="container">
-<h1><%= @learningopportunity.name %></h1>
-  <div class="learning-opp-card">
-    <div class="learning-opp-detailed-desc"
-      <%= cl_image_tag @learningopportunity.event_picture %>
-      <p><%= @learningopportunity.description %></p>
-    </div>
-    <div class="summary-details">
-      <ul>
-        <li> price: <%= @learningopportunity.price %></li>
-        <li> location: <%= @learningopportunity.location %></li>
-        <li> type: <%= @learningopportunity.course_type %></li>
-        <li> start date: <%= @learningopportunity.start_date %></li>
-        <li> end date: <%= @learningopportunity.end_date %></li>
-      </ul>
+  <div class="row">
+    <div class="col-12">
+      <% require 'open-uri' %>
+      <% require 'nokogiri' %>
+      <div class="container">
+        <h1><%= @learningopportunity.name %></h1>
+        <div class="learning-opp-card">
+          <div class="row">
+            <div class="col-12 col-md-8 learning-opp-detailed-desc"
+              <%= cl_image_tag @learningopportunity.event_picture %>
+              <p><%= @learningopportunity.description %></p>
+            </div>
+            <div class="summary-details col-12 col-md-4">
+              <ul>
+                <li> price: <%= @learningopportunity.price %></li>
+                <li> location: <%= @learningopportunity.location %></li>
+                <li> type: <%= @learningopportunity.course_type %></li>
+                <li> start date: <%= @learningopportunity.start_date %></li>
+                <li> end date: <%= @learningopportunity.end_date %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
+      <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
+      <% url = "#{@learningopportunity.url}/reviews" %>
+      <% html_file = open(url).read %>
+      <% html_doc = Nokogiri::HTML(html_file) %>
+
+      <div class="col-12">
+      <!-- getting average review -->
+      <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
+      <% average = ele.children.text  %>
+        <h2>Reviews <% average %></h2>
+        <!-- getting single review -->
+        <% html_doc.search('.review-page-review').each do |element|  %>
+        <div class="review-card">
+          <% var = element.search('.SvgIcon_8wfvj4 title')%>
+          <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+          <div class="summary-info">
+            <div class="d-flex">
+              <% stars.count.times do %>
+              <p><i class="fas fa-star"></i></p>
+              <% end %>
+            </div>
+            <% var = element.search('.reviewerName') %>
+            <% name = var.children.text  %>
+            <p><%= name %></p>
+
+            <% var = element.search('.dateOfReview')%>
+            <% date = var.children.text  %>
+            <p><%= date %></p>
+          </div>
+          <div class="review-text">
+            <% descrip = "" %>
+            <% var = element.search('.rc-CML.font-lg.styled > div')%>
+            <% var.search('p').each do |p|  %>
+            <%  descrip += " #{p.text}" %>
+            <% end %>
+            <p><%= descrip %></p>
+          </div>
+        </div>
+        <% end %>
+        <% else %>
+        <p>No Reviews atm</p>
+
+        <% end %>
+
+        <% unless @learningopportunity.course_type == "online" %>
+        <div
+          id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        >
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
-
-  <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
-
-
-<% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
-
-  <% url = "#{@learningopportunity.url}/reviews" %>
-  <% html_file = open(url).read %>
-  <% html_doc = Nokogiri::HTML(html_file) %>
-
-  <!-- getting average review -->
-  <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
-  <% average = ele.children.text  %>
-  <h2>Reviews <% average %></h2>
-
-    <!-- getting single review -->
-  <% html_doc.search('.review-page-review').each do |element|  %>
-    <div class="review-card">
-      <% var = element.search('.SvgIcon_8wfvj4 title')%>
-      <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-      <div class="summary-info">
-        <div class="d-flex">
-          <% stars.count.times do %>
-            <p><i class="fas fa-star"></i></p>
-          <% end %>
-        </div>
-        <% var = element.search('.reviewerName') %>
-        <% name = var.children.text  %>
-        <p><%= name %></p>
-
-        <% var = element.search('.dateOfReview')%>
-        <% date = var.children.text  %>
-        <p><%= date %></p>
-      </div>
-      <div class="review-text">
-        <% descrip = "" %>
-        <% var = element.search('.rc-CML.font-lg.styled > div')%>
-        <% var.search('p').each do |p|  %>
-        <%  descrip += " #{p.text}" %>
-        <% end %>
-        <p><%= descrip %></p>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-<p>No Reviews atm</p>
-
-<% end %>
-
-<% unless @learningopportunity.course_type == "online" %>
- <div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
-<% end %>
-
+  </div>
 </div>

@@ -12,7 +12,11 @@ class CourseraJob < ApplicationJob
 
     courses[:elements].each do |course|
       # Create your learning opportunities here
+      start_date = DateTime.now + (rand * 90);
+      end_date = start_date + (rand * 15);
       LearningOpportunity.create(
+          start_date: start_date,
+          end_date: end_date,
           name: course[:name],
           course_type: "online",
           url: "https://www.coursera.org/learn/#{course[:slug]}",

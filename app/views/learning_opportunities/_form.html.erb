@@ -12,8 +12,8 @@
     "Meetup",
     "Class"] %>
     <%= f.input :url %>
-    <%= f.input :skill_ids, collection: Skill.all, input_html: { multiple: true } %>
-    <%= f.input :time_commitment %>
+    <%= f.input :skill_ids, collection: Skill.all, input_html: { multiple: true }, :label => "Related skills" %>
+    <%= f.input :time_commitment, :label => "Time commitment in hours" %>
     <%= f.input :twitter_hashtag %>
 
 

@@ -2,9 +2,15 @@ require 'open-uri'
 require 'nokogiri'
 require'pry'
 
-Profession.destroy_all
+
 Skill.destroy_all
+# UserBookmark.destroy_all
+UserRating.destroy_all
 LearningOpportunity.destroy_all
+User.destroy_all
+Profession.destroy_all
+
+
 
 puts "Creating user seeds."
 
@@ -17,9 +23,9 @@ professions = Profession.create!([{ name: "Front-End Developer" },
                    { name: "Back-End Developer" }
                  ])
 
-user = User.create!(email: 'user@user.com', password: '123456', profession: Profession.first, name: Faker::FunnyName.name, city: "sydney")
+User.create!(email: 'user@user.com', password: '123456', profession: Profession.first, name: Faker::FunnyName.name, city: "sydney")
 
-professions.first.save!
+# professions.first.save!
 puts "Seeding Finished."
 
 puts "Creating skills seeds."

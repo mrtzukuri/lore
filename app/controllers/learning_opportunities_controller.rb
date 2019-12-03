@@ -11,7 +11,7 @@ class LearningOpportunitiesController < ApplicationController
       @learningopportunities = LearningOpportunity.all
     end
     @learningopportunities = filter(@learningopportunities)
-    @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.name) == :arabic || wl.language(lo.name) == :portuguese }
+    @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.description) != :english }
     respond_to do |format|
       format.html { learning_opportunities_path }
       format.js

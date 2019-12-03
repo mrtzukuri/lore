@@ -9,7 +9,8 @@
           <img class="learning-opp-image" src="<%= learning_opportunity.event_picture %>">
           <div class="main-text">
             <li>
-              <h4><%= link_to learning_opportunity.name.truncate(70), learning_opportunity_path(learning_opportunity) %></h4>
+              <h4><%= link_to learning_opportunity.name.truncate(70),
+                learning_opportunity_path(learning_opportunity, :query => params[:query])%></h4>
               <p> <%= learning_opportunity.description.truncate(100) %> </p>
               <% if learning_opportunity.price == 0 %>
                 <p>Free</p>

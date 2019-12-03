@@ -1,55 +1,62 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Users#show</h1>
+      <p>Find me in app/views/users/show.html.erb</p>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#profile-info">Profile Info</a></li>
-  <li><a data-toggle="tab" href="#shortlist">Shortlist</a></li>
-  <li><a data-toggle="tab" href="#host">Host</a></li>
-</ul>
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#profile-info">Profile Info</a></li>
+        <li><a data-toggle="tab" href="#shortlist">Shortlist</a></li>
+        <li><a data-toggle="tab" href="#host">Host</a></li>
+      </ul>
 
-<div class="tab-content">
-  <div id="profile-info" class="tab-pane fade in active">
-    <h3>Personal Info</h3>
-    <%= link_to(edit_user_registration_path) do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <hr>
-    <p>Name</p>
-    <h2><%= @user.name %></h2>
+      <div class="tab-content">
+        <div id="profile-info" class="tab-pane fade in active">
+          <h3>Personal Info</h3>
+          <%= link_to(edit_user_registration_path) do %>
+            <i class="fas fa-pencil-alt"></i>
+          <% end %>
+          <hr>
+          <p>Name</p>
+          <h2><%= @user.name %></h2>
 
-    <p>City</p>
-    <h2><%= @user.city  %></h2>
+          <p>City</p>
+          <h2><%= @user.city  %></h2>
 
-    <p>Email</p>
-    <h2><%= @user.email %></h2>
+          <p>Email</p>
+          <h2><%= @user.email %></h2>
 
-    <p>Career</p>
-
-
-    <p>Password</p>
-    <h2> <%= @user.encrypted_password  %></h2>
-  </div>
+          <p>Career</p>
 
 
+          <p>Password</p>
+          <h2> <%= @user.encrypted_password  %></h2>
+        </div>
 
-  <div id="shortlist" class="tab-pane fade">
-    <h3>Your saved Learning Opportunities</h3>
-     <hr>
-      <div class="card-container">
-        <% @learningopportunities = [] %>
-        <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
-        <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
+
+
+        <div id="shortlist" class="tab-pane fade">
+          <h3>Your saved Learning Opportunities</h3>
+           <hr>
+            <div class="card-container">
+              <% @learningopportunities = [] %>
+              <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
+              <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
+            </div>
+        </div>
+
+
+         <div id="host" class="tab-pane fade">
+          <h3>Host</h3>
+          <hr>
+          <p>Some of your own uploaded Learing Opportunities</p>
+          <% current_user.learning_opportunities.each do |event| %>
+            <%= event.name %> <%= link_to "edit", edit_learning_opportunity_path(event) %> <%= link_to "destroy", learning_opportunity_path(event), method: "delete" %>
+          <% end %>
+          <p><%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %> to add learning op</p>
+        </div>
       </div>
-  </div>
-
-
-   <div id="host" class="tab-pane fade">
-    <h3>Host</h3>
-    <hr>
-    <p>Some of your own uploaded Learing Opportunities</p>
-    <% current_user.learning_opportunities.each do |event| %>
-      <%= event.name %> <%= link_to "edit", edit_learning_opportunity_path(event) %> <%= link_to "destroy", learning_opportunity_path(event), method: "delete" %>
-    <% end %>
-    <p><%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %> to add learning op</p>
+    </div>
   </div>
 </div>
+

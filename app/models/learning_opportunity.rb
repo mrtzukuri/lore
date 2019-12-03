@@ -5,7 +5,6 @@ class LearningOpportunity < ApplicationRecord
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :course_type, :description, :url, presence: true
-  mount_uploader :event_picture, EventPictureUploader
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 end

@@ -1,11 +1,12 @@
 const priceSlider = function() {
-  const price = document.getElementById('price');
-  const priceSlider = document.getElementById('priceRange');
+  var rangeSlider = document.getElementById("rs-range-line");
+  var rangeBullet = document.getElementById("rs-bullet");
 
-  if(price){
-    priceSlider.addEventListener('change', (event) => {
-      price.innerHTML = priceSlider.value
-    })
+  rangeSlider.addEventListener("input", showSliderValue, false);
+  function showSliderValue() {
+    rangeBullet.innerHTML = rangeSlider.value;
+    var bulletPosition = (rangeSlider.value / rangeSlider.max);
+    rangeBullet.style.left = (bulletPosition * 200) + "px";
   }
 }
 

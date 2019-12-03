@@ -1,10 +1,11 @@
 const filterRefresh = function() {
   const form = document.getElementById("filter-form");
   const buttonEl = document.querySelector(".js-filter-submit")
-  const priceSlider = document.getElementById('priceRange');
+  const priceSlider = document.getElementById('rs-range-line');
   const locationEl = document.getElementById('location');
   const meetupEL = document.getElementById('meetup');
   const onlineEL = document.getElementById('online');
+  const eventEL = document.getElementById('event');
   const sortAscEL = document.getElementById('asc');
   const sortDescEL = document.getElementById('desc');
   const sortLinkEl = document.getElementById('sort-by-price');
@@ -21,6 +22,9 @@ const filterRefresh = function() {
       buttonEl.click();
     })
     meetupEL.addEventListener('change', (event) => {
+      buttonEl.click();
+    })
+    eventEL.addEventListener('change', (event) => {
       buttonEl.click();
     })
     sortLinkEl.addEventListener('click', (event) => {

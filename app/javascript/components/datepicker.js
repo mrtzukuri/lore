@@ -8,6 +8,8 @@ const addDatePicker = function() {
   if(form){
     flatpickr(startDateInput, {
       minDate: 'today',
+      altInput: true,
+      altFormat: "F j, Y",
       onChange: function(selectedDates, selectedDate) {
         if (selectedDate === '') {
           endDateInput.disabled = true;
@@ -19,6 +21,8 @@ const addDatePicker = function() {
       }
     });
     const endDateCalendar = flatpickr(endDateInput, {
+      altInput: true,
+      altFormat: "F j, Y",
       onChange: function() {
         submitButton.click();
       }

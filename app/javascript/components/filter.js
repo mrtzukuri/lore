@@ -1,7 +1,7 @@
 const filterRefresh = function() {
   const form = document.getElementById("filter-form");
   const buttonEl = document.querySelector(".js-filter-submit")
-  const priceSlider = document.getElementById('priceRange');
+  const priceSlider = document.getElementById('rs-range-line');
   const locationEl = document.getElementById('location');
   const meetupEL = document.getElementById('meetup');
   const onlineEL = document.getElementById('online');

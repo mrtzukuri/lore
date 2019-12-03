@@ -19,7 +19,7 @@
               <label for="start-date">Enter start date: </label>
               <input type="text" class="text-inputs" name="start-date" id="start-date">
               <label for="end-date">Enter end date: </label>
-              <input type="text" class="text-inputs" name="end-date" id="end-date">
+              <input type="text" class="text-inputs" name="end-date" id="end-date" disabled>
           </div>
           <br>
           <div label="location-filter">
@@ -30,10 +30,12 @@
           <br>
           <div label="type-filter">
             <h5>Type</h5>
-              <input type="checkbox" id="meetup" name="type[]" value="meetup">
+              <input type="checkbox" id="meetup" name="type[]" value="Meet Up">
               <label for="meetup">Meetup</label>
               <input type="checkbox" id="online" name="type[]" value="online">
               <label for="online">Online Course</label>
+              <input type="checkbox" id="event" name="type[]" value="event">
+              <label for="online">Event</label>
           </div>
           <input type="radio" name="sort" id="asc" value="asc" style="display: none">
           <input type="radio" name="sort" id="desc" value="desc" style="display: none">

@@ -23,7 +23,7 @@ class EventbriteJob < ApplicationJob
         location: "Melbourne, Australia",
         description: event["description"]["text"],
         url: event["url"],
-        course_type: event["online_event"].to_s,
+        course_type: "event",
         event_picture: event["logo"]["original"]["url"],
         price: rand(0..30)
       )

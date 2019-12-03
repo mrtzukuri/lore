@@ -5,6 +5,9 @@
       <% require 'nokogiri' %>
       <div class="container">
         <h1><%= @learningopportunity.name %></h1>
+          <% @learningopportunity.skills.each do |skill| %>
+          <h4>Skill: <%= skill.name %> </h4>
+          <% end %>
         <div class="learning-opp-card">
           <div class="row">
             <div class="col-12 col-md-8 learning-opp-detailed-desc"

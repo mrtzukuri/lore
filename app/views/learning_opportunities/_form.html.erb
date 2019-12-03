@@ -15,8 +15,7 @@
     <%= f.input :skill_ids, collection: Skill.all, input_html: { multiple: true } %>
     <%= f.input :time_commitment %>
     <%= f.input :twitter_hashtag %>
-    <%= f.input :event_picture %>
-    <%= f.input :event_picture_cache, as: :hidden %>
+
 
     <%= f.submit "Add" %>
 <% end %>

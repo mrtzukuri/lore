@@ -3,12 +3,22 @@
   background: transparent;
 }
 
+hr {
+  margin: 0;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.dropdown {
+  height: 40px;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 100px;
+  width: 40px;
 }
 
 .badge {
@@ -51,6 +61,7 @@
 
 .nav-link {
   color: $charcoal;
+  height: 0px;
 }
 
 .nav-link:hover {

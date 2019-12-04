@@ -10,11 +10,8 @@
 .home-flip {
   color: $charcoal;
   font-size: 75px;
-  font-family: $body-font;
+  font-family: $headers-font;
   text-decoration: none !important;
-  &:hover {
-    transform: scaleX(-1);
-  }
 }
 
 .home-container {

@@ -9,7 +9,7 @@ const priceSlider = function() {
   function showSliderValue() {
     rangeBullet.innerHTML = rangeSlider.value;
     var bulletPosition = (rangeSlider.value / rangeSlider.max);
-    rangeBullet.style.left = (bulletPosition * 200) + "px";
+    rangeBullet.style.left = (bulletPosition * 215) + "px";
   }
 }
 

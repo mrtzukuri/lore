@@ -12,14 +12,13 @@
           <div aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query] %>"><%= params[:query] %> Learning Opportunities</a></li>
+              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
               <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
             </ol>
           </div>
         <div class="learning-opp-card">
           <div class="row">
-            <div class="col-12 col-md-8 learning-opp-detailed-desc"
-              <%= cl_image_tag @learningopportunity.event_picture %>
+            <div class="col-12 col-md-8 learning-opp-detailed-desc">
               <p><%= @learningopportunity.description %></p>
             </div>
             <div class="summary-details col-12 col-md-4">
@@ -77,7 +76,7 @@
 
         <% end %>
 
-        <% unless @learningopportunity.course_type == "online" %>
+        <% unless @learningopportunity.location == "" %>
         <div
           id="map"
           style="width: 100%;

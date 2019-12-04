@@ -3,12 +3,10 @@
     <div class="col-12">
       <% require 'open-uri' %>
       <% require 'nokogiri' %>
-      <div class="container">
         <h1><%= @learningopportunity.name %></h1>
           <% @learningopportunity.skills.each do |skill| %>
-          <h4>Skill: <%= skill.name %> </h4>
+          <h5>Skill: <%= skill.name %> </h5>
           <% end %>
-          <hr>
           <div aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
@@ -18,76 +16,87 @@
           </div>
         <div class="learning-opp-card">
           <div class="row">
-            <div class="col-12 col-md-8 learning-opp-detailed-desc">
-              <p><%= @learningopportunity.description %></p>
-            </div>
-            <div class="summary-details col-12 col-md-4">
-              <ul>
-                <li> price: <%= @learningopportunity.price %></li>
-                <li> location: <%= @learningopportunity.location %></li>
-                <li> type: <%= @learningopportunity.course_type %></li>
-                <li> start date: <%= @learningopportunity.start_date %></li>
-                <li> end date: <%= @learningopportunity.end_date %></li>
-              </ul>
+            <div class="col-12 col-md-8">
+              <div class="learning-opp-detailed-desc"></div>
+                <p><%= @learningopportunity.description.truncate(1000) %></p>
+                <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="summary-details">
+                  <% unless @learningopportunity.location == "" %>
+                  <div id="map"
+                    style="width: 100%;
+                    height: 250px;"
+                    data-markers="<%= @markers.to_json %>"
+                    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+                  >
+                  </div>
+                  <ul style="list-style: none; padding: 0px">
+                    <li><strong>Location:</strong> <%= @learningopportunity.location %></li>
+                    <li><strong>Price:</strong> $<%= @learningopportunity.price %></li>
+                    <li><strong>Type:</strong> <%= @learningopportunity.course_type.capitalize %></li>
+                    <li><strong>Start date:</strong> <%= @learningopportunity.start_date %></li>
+                    <li><strong>End date:</strong> <%= @learningopportunity.end_date %></li>
+                  </ul>
+              </div>
             </div>
           </div>
         </div>
-      <%= link_to "visit site", @learningopportunity.url, target: "_blank" %>
+        <br>
       <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
       <% url = "#{@learningopportunity.url}/reviews" %>
       <% html_file = open(url).read %>
       <% html_doc = Nokogiri::HTML(html_file) %>
-      <div class="col-12">
-      <!-- getting average review -->
-      <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
-      <% average = ele.children.text  %>
-        <h2>Average review <%= average %>/5</h2>
-        <!-- getting single review -->
-        <% html_doc.search('.review-page-review').each do |element|  %>
-        <div class="review-card">
-          <% var = element.search('.SvgIcon_8wfvj4 title')%>
-          <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-          <div class="summary-info">
-            <div class="d-flex">
-              <% stars.count.times do %>
-              <p><i class="fas fa-star"></i></p>
-              <% end %>
+      <div class="row">
+        <div class="col-12">
+        <!-- getting average review -->
+        <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
+        <% average = ele.children.text  %>
+        <h4>Average review <%= average %>/5</h4>
+                  <hr>
+          <!-- getting single review -->
+          <% html_doc.search('.review-page-review').each do |element|  %>
+          <div class="review-card">
+            <% var = element.search('.SvgIcon_8wfvj4 title')%>
+            <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+              <div class="summary-info d-flex justify-content-between">
+                <div id="name">
+                  <% var = element.search('.reviewerName') %>
+                  <% name = var.children.text  %>
+                  <p><%= name %></p>
+                </div>
+                <div id="stars">
+                  <div class="d-flex">
+                    <% stars.count.times do %>
+                    <p><i class="fas fa-star"></i></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="review-text">
+                <% descrip = "" %>
+                <% var = element.search('.rc-CML.font-lg.styled > div')%>
+                <% var.search('p').each do |p|  %>
+                <%  descrip += " #{p.text}" %>
+                <% end %>
+                <p><%= descrip %></p>
+              </div>
+              <div align="right">
+                <% var = element.search('.dateOfReview')%>
+                <% date = var.children.text  %>
+                <p><%= date %></p>
+              </div>
             </div>
-            <% var = element.search('.reviewerName') %>
-            <% name = var.children.text  %>
-            <p><%= name %></p>
-
-            <% var = element.search('.dateOfReview')%>
-            <% date = var.children.text  %>
-            <p><%= date %></p>
+          <% end %>
+          <% else %>
+          <h4>No reviews available.</h4>
+          <hr>
+          <% end %>
           </div>
-          <div class="review-text">
-            <% descrip = "" %>
-            <% var = element.search('.rc-CML.font-lg.styled > div')%>
-            <% var.search('p').each do |p|  %>
-            <%  descrip += " #{p.text}" %>
-            <% end %>
-            <p><%= descrip %></p>
-          </div>
+          <% end %>
         </div>
-        <% end %>
-        <% else %>
-        <p>No Reviews atm</p>
-
-        <% end %>
-
-        <% unless @learningopportunity.location == "" %>
-        <div
-          id="map"
-          style="width: 100%;
-          height: 600px;"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-        >
-        </div>
-        <% end %>
       </div>
     </div>
-  </div>
   </div>
 </div>

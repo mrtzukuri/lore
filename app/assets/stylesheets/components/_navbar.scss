@@ -3,13 +3,13 @@
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-hr {
+hr{
   margin: 0;
   margin-bottom: 20px;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -24,6 +24,13 @@ hr {
   background-color: red;
   border-radius: 100%;
   font-size: x-small;
+}
+
+.nav-link {
+  font-family: $headers-font;
+  text-transform: uppercase;
+  font-variant: unicase;
+  font-size: 20px;
 }
 
 .bookmark {

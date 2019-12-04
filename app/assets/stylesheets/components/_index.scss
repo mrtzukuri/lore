@@ -12,6 +12,12 @@
   font-size: 75px;
   font-family: $headers-font;
   text-decoration: none !important;
+  &:hover {
+    transform: scaleX(-1);
+    &::before {
+        content: "<";
+    }
+  }
 }
 
 .home-container {

@@ -1,10 +1,11 @@
-<div class="container">
+<div class="container home-container">
   <div class="row">
-    <div class="col-12 text-center">
-      <% @professions.each do |prof| %>
-        <h1><a href="/frontend"><%= prof.name %></a></h1>
+    <div class="offset-3 col-6 text-center">
+      <p style='font-family: "Roboto"'>SEE SKILLS BY ROLE</p>
+      <% @professions.sort_by { |profession| profession.name }.each do |prof| %>
+        <h1 class="home-flip"><a class="home-flip" href="/frontend"><%= prof.name.split().first.upcase %></a></h1>
       <% end %>
-      <%= link_to 'All Learning Opportunities', learning_opportunities_path %>
+      <%= link_to 'SEE ALL EVENTS', learning_opportunities_path %>
     </div>
   </div>
 </div>

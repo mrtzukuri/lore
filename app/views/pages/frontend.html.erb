@@ -24,26 +24,27 @@
       </div>
         <div class="isotope-container">
           <% @frontend.skills.each do |skill| %>
+          <%= link_to learning_opportunities_path(:query => skill.name) do%>
             <div
             class="grid-item"
             data-skill-level="<%= skill.level %>"
             data-skill-group="<%= skill.skill_group %>"
             >
 
-                <div class="isotope">
-                  <div>
-                   <% if skill.skill_group == 'Technology' %>
-                     <%= image_tag 'iso_technology.png' %>
-                    <% elsif skill.skill_group == 'Methodology' %>
-                      <%= image_tag 'iso_methodology.png' %>
-                    <% elsif skill.skill_group == 'Behaviour' %>
-                      <%= image_tag 'iso_behaviour.png' %>
-                    <% else %>
-                      <%= image_tag 'iso_general.png' %>
-                  <% end %>
-                </div>
+              <div class="isotope">
+                <div>
+                 <% if skill.skill_group == 'Technology' %>
+                   <%= image_tag 'iso_technology.png' %>
+                  <% elsif skill.skill_group == 'Methodology' %>
+                    <%= image_tag 'iso_methodology.png' %>
+                  <% elsif skill.skill_group == 'Behaviour' %>
+                    <%= image_tag 'iso_behaviour.png' %>
+                  <% else %>
+                    <%= image_tag 'iso_general.png' %>
+                <% end %>
+              </div>
 <!--                   <h3><%= skill.skill_group %></h3>
- -->                       <%= link_to learning_opportunities_path(:query => skill.name) do%><% end %><div><%= skill.name %></div>
+ -->                       <% end %><div><%= skill.name %></div>
                 </div>
             </div>
           <% end %>

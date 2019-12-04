@@ -1,52 +1,8 @@
-const toggleLevelSkills = function() {
-  const gridEl = document.querySelector('.isotope-container');
 
-  let skillLevel = 'Junior';
-
-  const grid = new Isotope(gridEl, {
-    // options...
-    itemSelector: '.grid-item',
-    masonry: {
-      columnWidth: 10
-    },
-    filter: function(itemElem) {
-      let isMatched = false;
-
-      const itemSkillLevel = itemElem.dataset.skillLevel;
-
-      switch (skillLevel) {
-        case 'Junior':
-          isMatched = itemSkillLevel === 'Junior';
-        break;
-        case 'Mid-Level':
-          isMatched = itemSkillLevel === 'Junior' || itemSkillLevel === 'Mid-Level';
-        break;
-        case 'Senior':
-          isMatched = itemSkillLevel === 'Junior' || itemSkillLevel === 'Mid-Level' || itemSkillLevel === 'Senior';
-        break;
-      }
-
-      return isMatched;
-    },
-  });
-
-  const junior = document.getElementById('junior');
-  const mid = document.getElementById('mid');
-  const senior = document.getElementById('senior');
-
-  const changeSkillLevel = (newSkillLevel) => {
-    skillLevel = newSkillLevel;
-    grid.arrange();
-  };
-
-  if(junior){
-    junior.addEventListener('click', (event) => {
-      changeSkillLevel('Junior');
-    })
 
 const toggleLevelSkills = function() {
-  if (document.querySelector('.grid')) {
-    const gridEl = document.querySelector('.grid');
+  if (document.querySelector('.isotope-container')) {
+    const gridEl = document.querySelector('.isotope-container');
 
     let skillLevel = 'Junior';
 
@@ -101,5 +57,6 @@ const toggleLevelSkills = function() {
     };
   };
 }
+
 export { toggleLevelSkills }
 

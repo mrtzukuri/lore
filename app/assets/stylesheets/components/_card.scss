@@ -6,9 +6,9 @@
 .card-lo {
   overflow: hidden;
   background: $white;
-  box-shadow: 0px 5px 8px $charcoal;
+  box-shadow: -4px 5px 20px 0px #cbcbcb;
   border-radius: 12px;
-  height: 200px;
+  height: 230px;
   width: 100%;
   position: relative;
   margin: 10px;
@@ -27,7 +27,7 @@
 }
 
 .card-lo h2 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
@@ -36,17 +36,20 @@
   font-size: 12px;
   opacity: .7;
   margin: 0;
+  margin-top: 5%;
 }
 
 .card-lo .card-lo-infos {
-  padding: 28px;
+  padding-top: 0px;
+  padding-left: 8%;
+  padding-right: 80px;
   position: absolute;
   top: 12%;
 }
 
 .bookmark-icon {
   font-size: 24px;
-  height: 24%;
+  height: 21%;
   width: 18%;
   padding: 2%;
   background-color: $white;
@@ -64,8 +67,21 @@
 .card-lo-pricing {
   position: absolute;
   right: 4%;
-  bottom: 4%;
+  bottom: 6%;
 }
+
+.card-lo-review {
+  position: absolute;
+  left: 8%;
+  bottom: 6%;
+}
+
+.card-location {
+  color: black;
+  font-family: "Roboto";
+  font-weight: bold;
+}
+
 
 
 

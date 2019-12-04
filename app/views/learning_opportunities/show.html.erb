@@ -18,7 +18,7 @@
           </div>
         <div class="learning-opp-card">
           <div class="row">
-            <div class="col-12 col-md-8 learning-opp-detailed-desc"
+            <div class="col-12 col-md-8 learning-opp-detailed-desc">
               <p><%= @learningopportunity.description %></p>
             </div>
             <div class="summary-details col-12 col-md-4">
@@ -76,7 +76,7 @@
 
         <% end %>
 
-        <% unless @learningopportunity.course_type == "online" %>
+        <% unless @learningopportunity.location == "" %>
         <div
           id="map"
           style="width: 100%;

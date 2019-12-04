@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h1>Lore</h1>
+    <div class="col-12 text-center">
       <% @professions.each do |prof| %>
-        <h2><a href="/frontend"><%= prof.name %></a></h2>
+        <h1><a href="/frontend"><%= prof.name %></a></h1>
       <% end %>
-      <%= link_to 'learning_opportunities', learning_opportunities_path %>
+      <%= link_to 'All Learning Opportunities', learning_opportunities_path %>
     </div>
   </div>
 </div>

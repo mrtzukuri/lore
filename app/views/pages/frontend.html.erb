@@ -7,18 +7,15 @@
     <div class="col-md-8">
 
       <div class="row">
-        <div class="experience-2" id="filters">
-          <a class="" id="junior" href="#">
-            <i class="fas fa-seedling"></i>
-            <h3>Junior</h3>
+        <div class="experience-1" id="filters">
+          <a class="junior" id="junior" href="#">
+            Junior
           </a>
-          <a class="" id="mid" href="#">
-            <i class="fas fa-user-astronaut"></i>
-            <h3>Mid-level</h3>
+          <a class="mid-level" id="mid" href="#">
+            Mid-level
           </a>
-          <a class="" id="senior" href="#">
-            <i class="fas fa-user-tie"></i>
-            <h3>Senior</h3>
+          <a class="senior" id="senior" href="#">
+            Senior
           </a>
         </div>
       </div>
@@ -30,23 +27,11 @@
             data-skill-level="<%= skill.level %>"
             data-skill-group="<%= skill.skill_group %>"
             >
-
               <div class="isotope">
-                <div>
-                 <% if skill.skill_group == 'Technology' %>
-                   <%= image_tag 'iso_technology.png' %>
-                  <% elsif skill.skill_group == 'Methodology' %>
-                    <%= image_tag 'iso_methodology.png' %>
-                  <% elsif skill.skill_group == 'Behaviour' %>
-                    <%= image_tag 'iso_behaviour.png' %>
-                  <% else %>
-                    <%= image_tag 'iso_general.png' %>
-                <% end %>
+          <div><%= skill.name %></div>
               </div>
-<!--                   <h3><%= skill.skill_group %></h3>
- -->                       <% end %><div><%= skill.name %></div>
-                </div>
             </div>
+          <% end %>
           <% end %>
         </div>
     </div>

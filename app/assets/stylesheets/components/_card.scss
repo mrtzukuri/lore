@@ -4,9 +4,7 @@
 
   /*@include elevation(5);*/
   /*box-shadow: -4px 5px 20px 0px #CBCBCB;*/
-  border-radius: 25px;
-  height: 200px;
-
+  height: 250px;
   width: 100%;
   position: relative;
   margin: 10px;
@@ -45,12 +43,11 @@
 
 .card-lo h2 {
   font-size: 18px;
-  font-weight: bold;
   margin: 0;
 }
 
 .card-lo p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
   margin-top: 5%;
@@ -58,36 +55,43 @@
 
 .card-lo .card-lo-infos {
   padding-top: 0px;
-  padding-left: 8%;
   padding-right: 80px;
   position: absolute;
   top: 12%;
 }
 
 .bookmark-icon {
-  font-size: 24px;
-  height: 21%;
-  width: 18%;
-  padding: 2%;
-  background-color: $white;
-  color: $charcoal;
-  opacity: 0.6;
-  text-align: center;
-  border-radius: 0px 0px 0px 12px;
+  z-index: 20;
+  font-size: 20px;
   position: absolute;
-  right: 0%;
-  .fa-bookmark {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-top: -12px;
-    margin-left: -9px;
-  }
-  &:hover {
-    color: $primary;
-    transform: scale(1.1);
-  }
+  right: 2%;
+  top: 8%;
 }
+
+// .bookmark-icon {
+//   font-size: 24px;
+//   height: 21%;
+//   width: 18%;
+//   padding: 2%;
+//   background-color: $white;
+//   color: $charcoal;
+//   opacity: 0.6;
+//   text-align: center;
+//   border-radius: 0px 0px 0px 12px;
+//   position: absolute;
+//   right: 0%;
+//   .fa-bookmark {
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // margin-top: -12px;
+    // margin-left: -9px;
+//   }
+//   &:hover {
+//     color: $primary;
+//     transform: scale(1.1);
+//   }
+// }
 
 .card-lo-pricing {
   position: absolute;
@@ -97,8 +101,7 @@
 
 .card-lo-review {
   position: absolute;
-  left: 8%;
-  bottom: 6%;
+  bottom: 2%;
 }
 
 .card-location {

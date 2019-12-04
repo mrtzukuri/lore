@@ -77,8 +77,10 @@
       </div>
       <br>
       <h3>Results</h3>
-      <div class="results-list">
-        <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
+      <div class="card-container">
+        <div class="results-list">
+          <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
+        </div>
       </div>
     </div>
   </div>

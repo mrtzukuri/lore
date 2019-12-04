@@ -2,8 +2,21 @@
 @import "alert";
 @import "avatar";
 @import "navbar";
-@import "learning-opp-list-item";
 @import "map";
 @import "card";
 @import "experience";
 @import "isotopes";
+
+.home-flip {
+  color: $charcoal;
+  font-size: 75px;
+  font-family: $body-font;
+  text-decoration: none !important;
+  &:hover {
+    transform: scaleX(-1);
+  }
+}
+
+.home-container {
+  margin-top: 8%;
+}

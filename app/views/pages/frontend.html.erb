@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h1>Front End Developer</h1>
-      <p>Software engineers design, develop, and test software and applications for computers. The main duties and responsibilities of software engineers include directing and participating in programming activities, monitoring, and evaluating system performance, and designing and implementing new programs and features. Add your major responsibilities of software developers to our full software engineer role description sample to design a job listing for your organization and start attracting top talent today."</p>
-    </div>
-    <div class="col-md-8">
-
       <div class="row">
         <div class="experience-1" id="filters">
-          <a class="junior" id="junior" href="#">
-            Junior
+          <a class="junior exp-btn is-checked" id="junior" href="#">
+            <h3>Junior</h3>
           </a>
-          <a class="mid-level" id="mid" href="#">
-            Mid-level
+          <a class="mid-level exp-btn" id="mid" href="#">
+            <h3>Mid-level</h3>
           </a>
-          <a class="senior" id="senior" href="#">
-            Senior
+          <a class="senior exp-btn" id="senior" href="#">
+            <h3>Senior</h3>
           </a>
         </div>
       </div>
+    </div>
+      <h1 style="padding: 17px 0px;">Front End Developer</h1>
+      <p>Software engineers design, develop, and test software and applications for computers. The main duties and responsibilities of software engineers include directing and participating in programming activities, monitoring, and evaluating system performance, and designing and implementing new programs and features. Add your major responsibilities of software developers to our full software engineer role description sample to design a job listing for your organization and start attracting top talent today."</p>
+    <div class="col-md-8">
+
         <div class="isotope-container">
           <% @frontend.skills.each do |skill| %>
           <%= link_to learning_opportunities_path(:query => skill.name) do%>

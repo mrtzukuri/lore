@@ -1,5 +1,3 @@
-
-
 const toggleLevelSkills = function() {
   if (document.querySelector('.isotope-container')) {
     const gridEl = document.querySelector('.isotope-container');
@@ -55,6 +53,15 @@ const toggleLevelSkills = function() {
         changeSkillLevel('Senior');
       })
     };
+
+    const exp_btn = document.querySelectorAll('.exp-btn');
+    exp_btn.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.currentTarget.classList.add("is-checked");
+
+      });
+    });
+
   };
 }
 

@@ -1,8 +1,3 @@
-.list-item {
-  width: 400px;
-}
-
-
 .card-lo {
   overflow: hidden;
   background: $white;
@@ -14,16 +9,20 @@
   margin: 10px;
 }
 
-.card-lo-1 {
+.card-lo-technology {
   background: $avo-green;
 }
 
-.card-lo-2 {
+.card-lo-general {
   background: $yellow;
 }
 
-.card-lo-3 {
+.card-lo-behaviour {
   background: $red;
+}
+
+.card-lo-methodology {
+  background: $blue;
 }
 
 .card-lo h2 {

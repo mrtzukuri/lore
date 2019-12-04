@@ -3,12 +3,15 @@ class LearningOpportunitiesController < ApplicationController
   before_action :set_learningopportunity, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!, only: %i[index show]
 
+
+# Category.includes(articles: [{ comments: :guest }, :tags]).find(1)
+
   def index
     wl = WhatLanguage.new
     if params[:query].present?
-      @learningopportunities = LearningOpportunity.joins(:skills).where('skills.name = (?)', params[:query])
+      @learningopportunities = LearningOpportunity.includes(:skills).joins(:skills).where('skills.name = (?)', params[:query])
     else
-      @learningopportunities = LearningOpportunity.all
+      @learningopportunities = LearningOpportunity.includes(:skills).all
     end
     @learningopportunities = filter(@learningopportunities)
     @learningopportunities = @learningopportunities.reject { |lo| wl.language(lo.description) != :english }

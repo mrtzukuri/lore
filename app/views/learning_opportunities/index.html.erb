@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-9 col-md-3">
+  <div class="col-12 col-md-3">
     <div class="side-bar-filters">
       <div id="filters" class="d-flex justify-content-between">
         <div id="filters">
@@ -66,20 +66,19 @@
         <h1><%= params[:query] %> Learning Opportunities</h1>
         <hr>
       </div>
-      <div>
-        <div aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-            <li class="breadcrumb-item active" aria-current="page"> <%= params[:query] %> Learning Opportunities </li>
-          </ol>
-        </div>
-        <div class="sort" class="justify-content-end">
-          <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>
-        </div>
-        <br>
-        <div class="card-container">
-          <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
-        </div>
+      <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> <%= params[:query] %> Learning Opportunities </li>
+        </ol>
+      </div>
+      <div class="sort" class="justify-content-end">
+        <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>
+      </div>
+      <br>
+      <h3>Results</h3>
+      <div class="results-list">
+        <%= render partial: 'cards_list', locals: { learningopportunities: @learningopportunities } %>
       </div>
     </div>
   </div>

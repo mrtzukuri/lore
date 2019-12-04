@@ -1,29 +1,47 @@
-.card-container {
-  display: flex;
-  justify-content: space-between;
+.list-item {
+  width: 400px;
 }
+
 
 .card-lo {
   overflow: hidden;
   background: $white;
-  box-shadow: -4px 5px 20px 0px #cbcbcb;
-  border-radius: 12px;
-  height: 230px;
+
+  /*@include elevation(5);*/
+  /*box-shadow: -4px 5px 20px 0px #CBCBCB;*/
+  border-radius: 25px;
+  height: 200px;
+
   width: 100%;
   position: relative;
   margin: 10px;
+
+  h2, p {
+    color: black;
+    opacity: 0.7;
+  }
+
+  .btn {
+    box-shadow: none;
+  }
 }
 
 .card-lo-1 {
-  background: $avo-green;
+  background: radial-gradient(circle, $avo-green 0%, darken($avo-green, 12%) 100%);
 }
 
 .card-lo-2 {
-  background: $yellow;
+  background: radial-gradient(circle, $yellow 0%, darken($yellow, 12%) 100%);
 }
 
 .card-lo-3 {
-  background: $red;
+  background: radial-gradient(circle, $peach 0%, darken($peach, 6%) 100%);
+  /*background: radial-gradient(circle, white 0%, darken(white, 6%) 100%);*/
+}
+
+.card-lo-4 {
+  background: radial-gradient(circle, $aqua 0%, darken($aqua, 12%) 100%);
+  /*background: radial-gradient(circle, white 0%, darken(white, 6%) 100%);*/
 }
 
 .card-lo h2 {
@@ -59,8 +77,16 @@
   border-radius: 0px 0px 0px 12px;
   position: absolute;
   right: 0%;
+  .fa-bookmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -12px;
+    margin-left: -9px;
+  }
   &:hover {
     color: $primary;
+    transform: scale(1.1);
   }
 }
 

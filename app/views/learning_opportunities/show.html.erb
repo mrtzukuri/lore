@@ -12,7 +12,7 @@
           <div aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query] %>"><%= params[:query] %> Learning Opportunities</a></li>
+              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
               <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
             </ol>
           </div>
@@ -76,7 +76,7 @@
 
         <% end %>
 
-        <% unless @learningopportunity.course_type == "online" %>
+        <% unless @learningopportunity.location == "" %>
         <div
           id="map"
           style="width: 100%;

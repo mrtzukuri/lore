@@ -59,6 +59,13 @@
   border-radius: 0px 0px 0px 12px;
   position: absolute;
   right: 0%;
+  .fa-bookmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -12px;
+    margin-left: -9px;
+  }
   &:hover {
     color: $primary;
     transform: scale(1.1);

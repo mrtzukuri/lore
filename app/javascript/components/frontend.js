@@ -55,10 +55,13 @@ const toggleLevelSkills = function() {
     };
 
     const exp_btn = document.querySelectorAll('.exp-btn');
+
     exp_btn.forEach((btn) => {
       btn.addEventListener("click", (event) => {
+        exp_btn.forEach((btn) => {
+          btn.classList.remove("is-checked");
+        });
         event.currentTarget.classList.add("is-checked");
-
       });
     });
 

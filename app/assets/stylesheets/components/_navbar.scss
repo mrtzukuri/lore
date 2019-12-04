@@ -1,6 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: $charcoal;
+  background: white;
+}
+
+hr{
+  margin: 0;
+  margin-bottom: 20px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -19,6 +24,13 @@
   background-color: red;
   border-radius: 100%;
   font-size: x-small;
+}
+
+.nav-link {
+  font-family: $headers-font;
+  text-transform: uppercase;
+  font-variant: unicase;
+  font-size: 20px;
 }
 
 .bookmark {
@@ -43,7 +55,7 @@
 }
 
 .nav-link {
-  color: #c1c1c1;
+  color: $charcoal;
 
 }
 

@@ -1,11 +1,11 @@
 .experience-1 {
-  width: 100%;
-
+  display: flex;
+  width: 70%;
   a {
-    width: 100%;
+    width: 70%;
     text-decoration: none;
     text-align: left;
-    padding: 2% 5%;
+    padding: 2% 3%;
     color: $charcoal;
     white-space: nowrap;
     &:hover {

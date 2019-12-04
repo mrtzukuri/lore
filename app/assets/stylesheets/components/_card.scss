@@ -1,8 +1,3 @@
-.list-item {
-  width: 400px;
-}
-
-
 .card-lo {
   overflow: hidden;
   background: $white;
@@ -26,22 +21,26 @@
   }
 }
 
-.card-lo-1 {
+.card-lo-technology {
   background: radial-gradient(circle, $avo-green 0%, darken($avo-green, 12%) 100%);
 }
 
-.card-lo-2 {
+.card-lo-general {
   background: radial-gradient(circle, $yellow 0%, darken($yellow, 12%) 100%);
 }
 
-.card-lo-3 {
+.card-lo-behaviour {
   background: radial-gradient(circle, $peach 0%, darken($peach, 6%) 100%);
   /*background: radial-gradient(circle, white 0%, darken(white, 6%) 100%);*/
 }
 
-.card-lo-4 {
+.card-lo-methodology {
   background: radial-gradient(circle, $aqua 0%, darken($aqua, 12%) 100%);
   /*background: radial-gradient(circle, white 0%, darken(white, 6%) 100%);*/
+}
+
+.card-lo-methodology {
+  background: $blue;
 }
 
 .card-lo h2 {

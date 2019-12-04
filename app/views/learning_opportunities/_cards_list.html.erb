@@ -1,35 +1,37 @@
 
 <ul style="list-style: none; padding: 0px;">
     <div class="row">
-  <% learningopportunities.each do |learning_opportunity| %>
-  <% @bookmark = UserBookmark.all.select { |bm| bm.user == current_user && bm.learning_opportunity == learning_opportunity }.first %>
-      <div class="col-md-6">
-        <div class="left-bar">
-          <div class="text-and-image">
-            <div class="main-text">
-              <li>
-                <h4><%= link_to learning_opportunity.name.truncate(70),
-                  learning_opportunity_path(learning_opportunity, :query => params[:query])%></h4>
-                <p> <%= learning_opportunity.description.truncate(100) %> </p>
-                <% if learning_opportunity.price == 0 %>
-                  <p>Free</p>
-                <% else %>
-                  <p>$<%= learning_opportunity.price %></http://localhost:3000/learning_opportunities/1?query=HTMLp>
-                <% end %>
-              </li>
+    <% learningopportunities.each do |learning_opportunity| %>
+      <div class="col-md-5 card-lo card-lo-<%= learning_opportunity.skills.first.skill_group.downcase %>">
+          <div class="left-bar">
+            <div class="text-and-image">
+              <div class="card-lo-infos">
+                <li>
+                  <h4><%= link_to learning_opportunity.name.truncate(70),
+                    learning_opportunity_path(learning_opportunity, :query => params[:query])%></h4>
+                  <p> <%= learning_opportunity.description.truncate(100) %> </p>
+                  <% if learning_opportunity.price == 0 %>
+                    <p>Free</p>
+                  <% else %>
+                    <p>$<%= learning_opportunity.price %></http://localhost:3000/learning_opportunities/1?query=HTMLp>
+                  <% end %>
+                </li>
+              </div>
+            </div>
+            <div class="grey-bar">
             </div>
           </div>
-          <div class="grey-bar">
+          <div class="right-bar">
+            <div class="details">
+              <div class="bookmark">
+                <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: learning_opportunity) %>
+                <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
+              </div>
+              <p>Details <br> From <%= learning_opportunity.start_date %> <br>
+              <i class="fas fa-angle-double-down"></i> </p>
+            </div>
           </div>
         </div>
-        <div class="right-bar">
-          <%= render './learning_opportunities/bookmark_icon', bookmark: @bookmark, learning_opportunity_id: learning_opportunity.id %>
-          <div class="details">
-            <p>Details <br> From <%= learning_opportunity.start_date %> <br>
-            <i class="fas fa-angle-double-down"></i> </p>
-          </div>
-        </div>
-      </div>
-  <% end %>
+    <% end %>
     </div>
 </ul>

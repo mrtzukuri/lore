@@ -7,8 +7,10 @@ class PagesController < ApplicationController
 
   def frontend
     @frontend = Profession.find_by(name: "Front-End Developer")
+
   end
 
   def style_sheet
   end
+
 end

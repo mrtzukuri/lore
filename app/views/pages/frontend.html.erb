@@ -1,28 +1,53 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h1>Front-end Developer</h1>
-      <p>Software engineers design, develop, and test software and applications for computers. The main duties and responsibilities of software engineers include directing and participating in programming activities, monitoring, and evaluating system performance, and designing and implementing new programs and features. Add your major responsibilities of software developers to our full software engineer role description sample to design a job listing for your organization and start attracting top talent today."
-      </p>
+    <div class="col-md-4">
+      <h1>Front End Developer</h1>
+      <p>Software engineers design, develop, and test software and applications for computers. The main duties and responsibilities of software engineers include directing and participating in programming activities, monitoring, and evaluating system performance, and designing and implementing new programs and features. Add your major responsibilities of software developers to our full software engineer role description sample to design a job listing for your organization and start attracting top talent today."</p>
+    </div>
+    <div class="col-md-8">
+
       <div class="row">
-        <div class="button-group filters-button-group" id="filters">
-          <a class="btn first" id="junior" href="#"><h3>Junior</h3></a>
-          <a class="btn first" id="mid" href="#"><h3>Mid-level</h3></a>
-          <a class="btn first" id="senior" href="#"><h3>Senior</h3></a>
+        <div class="experience-2" id="filters">
+          <a class="" id="junior" href="#">
+            <i class="fas fa-seedling"></i>
+            <h3>Junior</h3>
+          </a>
+          <a class="" id="mid" href="#">
+            <i class="fas fa-user-astronaut"></i>
+            <h3>Mid-level</h3>
+          </a>
+          <a class="" id="senior" href="#">
+            <i class="fas fa-user-tie"></i>
+            <h3>Senior</h3>
+          </a>
         </div>
       </div>
-      <div class="grid">
-        <% @frontend.skills.each do |skill| %>
-          <div
+        <div class="isotope-container">
+          <% @frontend.skills.each do |skill| %>
+            <div
             class="grid-item"
             data-skill-level="<%= skill.level %>"
             data-skill-group="<%= skill.skill_group %>"
             >
-            <%= link_to skill.name, learning_opportunities_path(:query => skill.name) %>
-          </div>
-        <% end %>
-      </div>
+
+                <div class="isotope">
+                  <div>
+                   <% if skill.skill_group == 'Technology' %>
+                     <%= image_tag 'iso_technology.png' %>
+                    <% elsif skill.skill_group == 'Methodology' %>
+                      <%= image_tag 'iso_methodology.png' %>
+                    <% elsif skill.skill_group == 'Behaviour' %>
+                      <%= image_tag 'iso_behaviour.png' %>
+                    <% else %>
+                      <%= image_tag 'iso_general.png' %>
+                  <% end %>
+                </div>
+<!--                   <h3><%= skill.skill_group %></h3>
+ -->                       <%= link_to learning_opportunities_path(:query => skill.name) do%><% end %><div><%= skill.name %></div>
+                </div>
+            </div>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>
-

@@ -14,12 +14,17 @@
   text-decoration: none !important;
   &:hover {
     transform: scaleX(-1);
+  }
+}
+
+.home-flip a {
+  &:hover {
     &::before {
-        content: "<";
+        content: "←";
     }
   }
 }
 
 .home-container {
-  margin-top: 8%;
+  margin-top: 6%;
 }

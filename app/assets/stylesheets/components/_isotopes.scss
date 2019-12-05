@@ -1,4 +1,5 @@
 .isotope-container {
+
   .grid-item {
     width: 16%;
     .isotope {
@@ -7,31 +8,31 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      // text-transform: uppercase;
-      // font-weight: bold;
+
+
       font-family: 'Roboto';
       font-size: 13px;
       text-decoration: none;
       text-align: center;
       color: $charcoal;
-      height: 85px;
+      height: 95px;
       border: 1px solid $charcoal;
       border-radius: 2px;
       background: $white;
-      padding: 10px;
-      margin: 0% 0% 3% 0%;
-      h3 {
-        font-size: 16px;
-      }
-      p {
-        font-size: 12px;
-      }
+      padding: 5%;
+      margin: 0% 0% 2% 0%;
+      line-height: 136%;
+      // transition: all .2s ease-in-out;
       &:hover {
         text-decoration: none;
         // background-color: $primary;
         border: 1px solid $primary;
         color: $primary;
+        // transform: scale(1.03);
         box-shadow: 0px 0 8px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        text-transform: uppercase;
+
       }
     }
   }

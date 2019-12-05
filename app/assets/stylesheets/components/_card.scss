@@ -2,7 +2,7 @@
   overflow: hidden;
   background: $white;
   border: 1px solid #eee;
-  padding: 20px;
+  padding-left: 7%;
 
   /*@include elevation(5);*/
   /*box-shadow: -4px 5px 20px 0px #CBCBCB;*/
@@ -106,12 +106,17 @@
 .card-lo-pricing {
   position: absolute;
   right: 6%;
-  bottom: 2%;
+  bottom: 5%;
 }
 
 .card-lo-review {
   position: absolute;
   bottom: 2%;
+  color: #F4B943;
+}
+
+.fa-star {
+  color: #F4B943;
 }
 
 .card-location {

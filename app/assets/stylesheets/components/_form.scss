@@ -12,7 +12,6 @@ input[type='text'], input[type='number'] {
   }
 }
 
-
 .icon-field {
   position: relative;
 
@@ -28,3 +27,32 @@ input[type='text'], input[type='number'] {
   }
 }
 
+.form-check {
+  .form-check-label.collection_radio_buttons {
+    font-size: 18px;
+    width: 150px;
+    text-align: center;
+    background-color: #e9ecef;
+    padding: 1% 3%;
+    color: #4b4b4b;
+
+  }
+}
+
+#learning_opportunity_url {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #ccc;
+  /* color: black; */
+  padding-left: 0;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #2c9688;
+  }
+}
+
+#learning_opportunity_skill_ids {
+  height: 200px;
+  display: flex;
+}

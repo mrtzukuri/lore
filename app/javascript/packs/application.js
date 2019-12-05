@@ -24,3 +24,35 @@ const grid = new Isotope(reviewsContainerEl, {
     columnWidth: 10
   },
 });
+
+
+
+const addDatePickerForm = function() {
+  const startDateInputForm = document.getElementById('learning_opportunity_start_date');
+  const endDateInputForm = document.getElementById('learning_opportunity_end_date');
+  const formAdd = document.getElementById("new_learning_opportunity");
+  if(form){
+    flatpickr(startDateInput, {
+      minDate: 'today',
+      altInput: true,
+      altFormat: "F j, Y",
+      onChange: function(selectedDates, selectedDate) {
+        if (selectedDate === '') {
+          endDateInput.disabled = true;
+        }
+        let minDate = selectedDates[0];
+        minDate.setDate(minDate.getDate() + 1);
+        endDateCalendar.set('minDate', minDate);
+        endDateInput.disabled = false;
+      }
+    });
+    const endDateCalendar = flatpickr(endDateInput, {
+      altInput: true,
+      altFormat: "F j, Y",
+      onChange: function() {
+        submitButton.click();
+      }
+    });
+  }
+}
+

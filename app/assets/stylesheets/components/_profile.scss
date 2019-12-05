@@ -11,6 +11,22 @@
   border-radius: 2px;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  border-bottom: solid 2px;
+  padding-bottom: 32px;
+  border-color: $green;
+  color: lightgray;
+  background-color: white;
+  border-radius: 0;
+}
+
+.pills-container {
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
 .avatar-l {
   width: 40%;
   align-self: self-end;
@@ -25,8 +41,12 @@
     margin-bottom: 0;
   }
   h2 {
-    margin-bottom: 6%;
+    margin-bottom: 4%;
   }
+}
+
+.no-event-box {
+  margin-top: 20vh;
 }
 
 .edit-btn {
@@ -39,5 +59,4 @@
 }
 
 .host {
-  margin-top: 20vh;
 }

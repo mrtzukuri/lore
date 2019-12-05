@@ -1,0 +1,51 @@
+
+<ul style="list-style: none; padding: 0px;">
+    <div class="row">
+    <% learningopportunities.each do |learning_opportunity| %>
+      <div class="col-md-6">
+        <div class="card-lo">
+          <div class="icons-box">
+            <%= link_to edit_learning_opportunity_path(learning_opportunity) do%>
+              <i class="fas fa-pencil-alt"></i>
+            <% end %>
+            <%=  link_to learning_opportunity_path(learning_opportunity), method: "delete" do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+          <div class="left-bar">
+            <div class="text-and-image">
+              <div class="card-lo-infos">
+                <div>
+                  <h2><%= link_to learning_opportunity.name.truncate(40),
+                    learning_opportunity_path(learning_opportunity, :query => params[:query])%></h2>
+                  <% if learning_opportunity.location %>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i> <%= learning_opportunity.location %></p>
+                  <% else %>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i> Online</p>
+                  <% end %>
+                  <p><%= learning_opportunity.description.truncate(140) %></p>
+                </div>
+                <br>
+                <br>
+                <p class="card-lo-review">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </p>
+              </div>
+              <h2 class="card-lo-pricing">
+                <% if learning_opportunity.price == 0 %>
+                  Free
+                <% else %>
+                  $<%= learning_opportunity.price %>.00
+                <% end %>
+              </h2>
+            </div>
+          </div>
+        </div>
+       </div>
+    <% end %>
+    </div>
+</ul>

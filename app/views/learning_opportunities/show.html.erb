@@ -58,67 +58,70 @@
             </div>
           </div>
         </div>
+
         <br>
       <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
-      <% url = "#{@learningopportunity.url}/reviews" %>
-      <% html_file = open(url).read %>
-      <% html_doc = Nokogiri::HTML(html_file) %>
-      <div>
-        <!-- getting average review -->
-        <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
-        <% average = ele.children.text  %>
-        <h4>Average review <%= average %>/5</h4>
-                  <hr>
-        <div class="row js-reviews-container">
+        <% url = "#{@learningopportunity.url}/reviews" %>
+        <% html_file = open(url).read %>
+        <% html_doc = Nokogiri::HTML(html_file) %>
+        <div>
+          <!-- getting average review -->
+          <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
+          <% average = ele.children.text  %>
+          <h4>Average review <%= average %>/5</h4>
+                    <hr>
+          <div class="row js-reviews-container">
 
-          <!-- getting single review -->
-          <% html_doc.search('.review-page-review').each do |element|  %>
+            <!-- getting single review -->
+            <% html_doc.search('.review-page-review').each do |element|  %>
 
-            <% var = element.search('.SvgIcon_8wfvj4 title')%>
-            <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+              <% var = element.search('.SvgIcon_8wfvj4 title')%>
+              <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
 
-          <div class="col-md-6 grid-item">
-            <div class="review-card">
+            <div class="col-md-6 grid-item">
+              <div class="review-card">
 
-            <div class="review-card-header">
-              <div class="review-stars">
-                <div class="d-flex">
-                  <% stars.count.times do %>
-                  <p><i class="fas fa-star"></i></p>
+              <div class="review-card-header">
+                <div class="review-stars">
+                  <div class="d-flex">
+                    <% stars.count.times do %>
+                    <p><i class="fas fa-star"></i></p>
+                    <% end %>
+                    <% (5 - stars.count).times do %>
+                    <p><i class="far fa-star"></i></p>
+                    <% end %>
+                  </div>
+                </div>
+               <div align="right">
+                <% var = element.search('.dateOfReview')%>
+                <% date = var.children.text  %>
+                <p><%= date %></p>
+              </div>
+              </div>
+                 <div class="review-text">
+                  <% descrip = "" %>
+                  <% var = element.search('.rc-CML.font-lg.styled > div')%>
+                  <% var.search('p').each do |p|  %>
+                  <%  descrip += " #{p.text}" %>
                   <% end %>
-                  <% (5 - stars.count).times do %>
-                  <p><i class="far fa-star"></i></p>
-                  <% end %>
+                  <p><%= descrip %></p>
+                </div>
+                <div class="summary-info d-flex justify-content-between">
+                  <div class="review-author">
+                    <% var = element.search('.reviewerName') %>
+                    <% name = var.children.text  %>
+                    <br>
+                    <a href="<%= url %>"><h6><%= name.gsub("By ", "") %></h6></a>
+                  </div>
                 </div>
               </div>
-             <div align="right">
-              <% var = element.search('.dateOfReview')%>
-              <% date = var.children.text  %>
-              <p><%= date %></p>
             </div>
-            </div>
-               <div class="review-text">
-                <% descrip = "" %>
-                <% var = element.search('.rc-CML.font-lg.styled > div')%>
-                <% var.search('p').each do |p|  %>
-                <%  descrip += " #{p.text}" %>
-                <% end %>
-                <p><%= descrip %></p>
-              </div>
-              <div class="summary-info d-flex justify-content-between">
-                <div class="review-author">
-                  <% var = element.search('.reviewerName') %>
-                  <% name = var.children.text  %>
-                  <br>
-                  <a href="<%= url %>"><h6><%= name.gsub("By ", "") %></h6></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <% end %>
+            <% end %>
           <% else %>
+          <hr>
+            <p>There are currently no reviews</p>
           <% end %>
-          </div>
+        </div>
 
         </div>
       </div>

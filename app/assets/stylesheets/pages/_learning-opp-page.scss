@@ -6,22 +6,26 @@
   }
   .learning-opp-page-location {
     padding-top: 5px;
-    background: #f4f4f4;
+    // background: #f4f4f4;
     padding: 5px;
     color: rgba(0, 0, 0, 0.6);
   }
   .summary-details {
     position: absolute;
     border: 1px solid #ddd;
-    top: 15%;
     right: 2%;
     padding: 14px;
     border-radius: 2px;
   }
   p {
     margin-top: 30px;
-    width: 95%;
+    width: 90%;
   }
+}
+
+#show-page-bookmark-icon{
+  position: absolute;
+  top: 10px;
 }
 
 .review-card {

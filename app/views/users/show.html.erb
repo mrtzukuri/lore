@@ -4,67 +4,84 @@
       <a class="nav-link active" id="shortlist-tab" data-toggle="pill" role="tab"  href="#shortlist" aria-controls="pills-shortlist" aria-selected="true">Shortlist</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="profile-info-tab" data-toggle="pill" role="tab" href="#profile-info" aria-controls="pills-profile" aria-selected="false">Profile</a>
+      <a class="nav-link" id="suggest-tab" data-toggle="pill" role="tab" href="#suggest" aria-controls="pills-suggest" aria-selected="false">Suggested Opportunities</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="host-tab" data-toggle="pill" role="tab" href="#host" aria-controls="pills-host" aria-selected="false">Host</a>
+      <a class="nav-link" id="profile-info-tab" data-toggle="pill" role="tab" href="#profile-info" aria-controls="pills-profile" aria-selected="false">Profile</a>
     </li>
   </ul>
 
   <div class="tab-content" id="myTabContent">
     <div id="profile-info" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-profile-info-tab">
       <div class="pro-info-container">
-       <% if current_user.photo.url %>
-        <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar-l" %>
-      <% else %>
-        <img src="https://www.svgrepo.com/show/163162/avatar.svg" class="avatar-l">
-      <% end %>
-      <div class="right-half">
-        <p>Name</p>
-        <h2><%= @user.name %></h2>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="profile-image">
+               <% if current_user.photo.url %>
+                <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar-l" %>
+              <% else %>
+                <img src="https://www.svgrepo.com/show/163162/avatar.svg" class="avatar-l">
+              <% end %>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="align">
+              <div class="right-half">
+                <div class="text-details">
+                  <p>Name</p>
+                  <h4><%= @user.name %></h4>
 
-        <p>City</p>
-        <h2><%= @user.city  %></h2>
+                  <p>City</p>
+                  <h4><%= @user.city  %></h4>
 
-        <p>Email</p>
-        <h2><%= @user.email %></h2>
+                  <p>Email</p>
+                  <h4><%= @user.email %></h4>
 
-        <p>Career</p>
-        <h2> <%= @user.profession.name %></h2>
+                  <p>Career</p>
+                  <h4> <%= @user.profession.name %></h4>
 
-        <p>Password</p>
-        <h2>••••••••••</h2>
-      </div>
-      <div class="edit-btn">
-        <%= link_to(edit_user_registration_path) do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-      </div>
+                  <p>Password</p>
+                  <h4>••••••••••</h4>
+                </div>
+                <div class="edit-btn">
+                  <%= link_to(edit_user_registration_path) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 
 
     <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="pills-shortlist-tab">
-        <div>
-          <% @learningopportunities = [] %>
-          <% $bookmark_count = @bookmarks.count %>
-          <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
-          <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
-        </div>
+        <% if @bookmarks.count == 0 %>
+          <p>You currently have nothing bookmarked for your shortlist.</p>
+        <% else %>
+          <div>
+            <% @learningopportunities = [] %>
+            <% $bookmark_count = @bookmarks.count %>
+            <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
+            <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
+          </div>
+        <% end %>
     </div>
 
-     <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-host-tab">
-      <div class="host">
+     <div id="suggest" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-suggest-tab">
+      <div class="suggest">
         <% if current_user.learning_opportunities == [] %>
-          <p>Want to be apart of the fun? </p>
-          <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>
+        <div class="no-event-box">
+          <p>You have not suggested any learning opportunities.</p>
+          <h5><%= link_to 'Why not suggest one?', new_learning_opportunity_path, class: "button-suggest"%></h5>
+          </div>
         <% else %>
-          <% current_user.learning_opportunities.each do |event| %>
-            <% learning_event = [event] %>
-            <%= render partial: './learning_opportunities/my_card_list', locals: { learningopportunities: learning_event} %>
-          <% end %>
+
+            <%= render partial: './learning_opportunities/my_card_list', locals: { learningopportunities: current_user.learning_opportunities} %>
+
           <br>
-          <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>
+          <%= link_to 'Suggest an opportunity.', new_learning_opportunity_path, class: "btn add-btn", style:"text-align: center" %>
         <% end %>
       </div>
 

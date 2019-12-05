@@ -10,6 +10,7 @@ const toggleLevelSkills = function() {
       masonry: {
         columnWidth: 20
       },
+      initLayout: false,
       filter: function(itemElem) {
         let isMatched = false;
 
@@ -30,6 +31,11 @@ const toggleLevelSkills = function() {
         return isMatched;
       },
     });
+
+    grid.on('arrangeComplete', () => {
+      gridEl.classList.remove('isotope-not-loaded');
+    });
+    grid.arrange();
 
     const junior = document.getElementById('junior');
     const mid = document.getElementById('mid');

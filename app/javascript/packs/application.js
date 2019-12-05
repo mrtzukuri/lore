@@ -25,3 +25,10 @@ const grid = new Isotope(reviewsContainerEl, {
   },
 });
 
+const mapBoxLogoEl = document.querySelector('.mapboxgl-ctrl-logo');
+const mapBoxInfoEl = document.querySelector('.mapboxgl-ctrl-attrib');
+
+if(mapBoxLogoEl) {
+  mapBoxLogoEl.style = "display: none;";
+  mapBoxInfoEl.style = "display: none;";
+}

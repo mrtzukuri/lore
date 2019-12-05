@@ -11,33 +11,72 @@
   border-radius: 2px;
 }
 
-.avatar-l {
-  width: 40%;
-  align-self: self-end;
-  padding-top: 2%;
-  max-width: 400px;
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  border-bottom: solid 2px;
+  padding-bottom: 32px;
+  border-color: $green;
+  color: #17544c;
+  background-color: white;
+  border-radius: 0;
+  justify-content: space-between;
 }
 
+.pills-container {
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-image {
+
+  .avatar-l {
+    align-self: self-end;
+    max-height: 400px;
+    margin: 20px;
+  }
+}
+
+.pro-info-container{
+  .align {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+
 .right-half{
-  width: 58%;
-  padding: 0 5%;
+  display: flex;
+  padding: 20px 35px;
+  border: 1px solid $light-grey;
   p {
     margin-bottom: 0;
   }
   h2 {
-    margin-bottom: 6%;
+    margin-bottom: 4%;
   }
 }
 
+.text-details {
+  width: 90%;
+}
+
 .edit-btn {
-  width: 2%;
-    padding-top: 3%;
+  width: 10%;
+  text-align: right;
+
 }
 
-.pro-info-container{
-  display: flex;
+.no-event-box {
+
 }
 
-.host {
-  margin-top: 20vh;
+.button-suggest {
+  &:hover{
+    text-decoration: none;
+    color: $charcoal;
+
+  }
+
 }

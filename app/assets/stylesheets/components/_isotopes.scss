@@ -1,9 +1,28 @@
 .isotope-container {
+  display: flex;
+  flex-wrap: wrap;
   padding-left: 6.5%;
+
+  &.isotope-not-loaded {
+    .grid-item {
+      visibility: hidden;
+    }
+  }
 
   .grid-item {
     width: 16%;
     min-width: 260px;
+    position: relative;
+
+    // .grid-item-link {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   z-index: 1;
+    //   color: transparent;
+    // }
 
     $skill-color: $green;
 

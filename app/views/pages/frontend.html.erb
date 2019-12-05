@@ -20,9 +20,9 @@
       </div>
     </div>
   </div>
-  <div class="isotope-container">
+  <div class="isotope-container isotope-not-loaded">
     <% @frontend.skills.each do |skill| %>
-      <%= link_to learning_opportunities_path(:query => skill.name) do%>
+      <%= link_to learning_opportunities_path(:query => skill.name), class: 'grid-item-link' do%>
         <div
         class="grid-item"
         data-skill-level="<%= skill.level %>"

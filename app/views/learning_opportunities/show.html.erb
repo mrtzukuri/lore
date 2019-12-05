@@ -20,10 +20,6 @@
                 <p><%= @learningopportunity.description.truncate(1000) %></p>
                 <div class="learning-opp-visit-and-bookmark">
                 <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
-                <div class="bookmark-icon">
-                  <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
-                  <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
-                </div>
                 </div>
               </div>
               <div class="col-12 col-md-4">
@@ -42,6 +38,10 @@
                          <%= @learningopportunity.location %>
                       </div>
                     <% end %>
+                    <div class="bookmark-icon">
+                      <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
+                      <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
+                    </div>
                     <div class="learning-opp-page-price">
                       <% if @learningopportunity.price == 0 %>
                         Free
@@ -50,7 +50,9 @@
                       <% end %>
                     </div>
                     <div class="learning-opp-page-dates">
+                      <% if !@learningopportunity.start_date.nil? %>
                       <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
+                      <% end %>
                     </div>
               </div>
             </div>

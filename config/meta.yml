@@ -1,0 +1,5 @@
+meta_product_name: "Lore"
+meta_title: "Lore - Search and discover learning opportunities"
+meta_description: "Search and discover learning opportunities"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@lore_app"   # required for Twitter Cards

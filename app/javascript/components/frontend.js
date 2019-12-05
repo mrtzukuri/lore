@@ -8,7 +8,7 @@ const toggleLevelSkills = function() {
       // options...
       itemSelector: '.grid-item',
       masonry: {
-        columnWidth: 10
+        columnWidth: 20
       },
       filter: function(itemElem) {
         let isMatched = false;

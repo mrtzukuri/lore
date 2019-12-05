@@ -1,18 +1,18 @@
 <div class="container">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <ul class="nav nav-pills mb-3 pills-container" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="shortlist-tab" data-toggle="tab" role="tab"  href="#shortlist" aria-controls="shortlist" aria-selected="true">Shortlist</a>
+      <a class="nav-link active" id="shortlist-tab" data-toggle="pill" role="tab"  href="#shortlist" aria-controls="pills-shortlist" aria-selected="true">Shortlist</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="profile-info-tab" data-toggle="tab" role="tab" href="#profile-info" aria-controls="profile" aria-selected="false">Profile</a>
+      <a class="nav-link" id="profile-info-tab" data-toggle="pill" role="tab" href="#profile-info" aria-controls="pills-profile" aria-selected="false">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="host-tab" data-toggle="tab" role="tab" href="#host" aria-controls="host" aria-selected="false">Host</a>
+      <a class="nav-link" id="host-tab" data-toggle="pill" role="tab" href="#host" aria-controls="pills-host" aria-selected="false">Host</a>
     </li>
   </ul>
 
   <div class="tab-content" id="myTabContent">
-    <div id="profile-info" class="tab-pane fade" role="tabpanel" aria-labelledby="profile-info-tab">
+    <div id="profile-info" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-profile-info-tab">
       <div class="pro-info-container">
        <% if current_user.photo.url %>
         <%= cl_image_tag current_user.photo.url(:bright_face), class: "avatar-l" %>
@@ -44,7 +44,7 @@
   </div>
 
 
-    <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="shortlist-tab">
+    <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="pills-shortlist-tab">
         <div>
           <% @learningopportunities = [] %>
           <% $bookmark_count = @bookmarks.count %>
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-     <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="host-tab">
+     <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-host-tab">
       <div class="host">
         <% if current_user.learning_opportunities == [] %>
           <p>Want to be apart of the fun? </p>

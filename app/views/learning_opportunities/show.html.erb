@@ -18,7 +18,13 @@
 
               <div class="learning-opp-detailed-desc"></div>
                 <p><%= @learningopportunity.description.truncate(1000) %></p>
+                <div class="learning-opp-visit-and-bookmark">
                 <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
+                <div class="bookmark-icon">
+                  <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
+                  <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
+                </div>
+                </div>
               </div>
               <div class="col-12 col-md-4">
                 <div class="summary-details">

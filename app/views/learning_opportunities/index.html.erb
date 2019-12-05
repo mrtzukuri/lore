@@ -17,14 +17,23 @@
           <div label="date-filter">
             <h4 class="filter-header-small">Date</h4 class="filter-header-small">
               <!-- <label for="start-date">Start</label> -->
-              <input type="text" class="text-inputs" name="start-date" id="start-date" placeholder="Start Date">
-              <!-- <label for="end-date">End</label> -->
-              <input type="text" class="text-inputs" name="end-date" id="end-date" placeholder="End Date">
+              <div class="icon-field">
+                <span class="far fa-calendar icon-field-icon"></span>
+                <input type="text" class="text-inputs icon-field-input" name="start-date" id="start-date" placeholder="Start Date">
+              </div>
+              <div class="icon-field">
+                <span class="far fa-calendar icon-field-icon"></span>
+                <!-- <label for="end-date">End</label> -->
+                <input type="text" class="text-inputs icon-field-input" name="end-date" id="end-date" placeholder="End Date">
+              </div>
           </div>
           <br>
           <div label="location-filter">
             <h4 class="filter-header-small">Location</h4 class="filter-header-small">
-              <input type="text" class="text-inputs form-control" name="location" id="location" placeholder="Eg. Melbourne">
+              <div class="icon-field">
+                <span class="fas fa-map-marker-alt icon-field-icon"></span>
+                <input type="text" class="text-inputs form-control icon-field-input" name="location" id="location" placeholder="Eg. Melbourne">
+              </div>
           </div>
           <br>
           <div class="type-filter" label="type-filter">
@@ -64,16 +73,16 @@
     </div>
   </div>
   <div class="col-12 col-md-9">
-    <div class="filter-results-and-sort">
-      <div class="header">
-        <h1><%= params[:query] %></h1>
-        <hr>
-      </div>
-      <div aria-label="breadcrumb">
+     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
           <li class="breadcrumb-item active" aria-current="page"> <%= params[:query] %> Learning Opportunities </li>
         </ol>
+      </div>
+    <div class="filter-results-and-sort">
+      <div class="header">
+        <h1><%= params[:query] %></h1>
+        <hr>
       </div>
       <div class="sort" class="justify-content-end">
         <p id="sort-by-price"><i class="fas fa-sort"></i> Sort by price</p>

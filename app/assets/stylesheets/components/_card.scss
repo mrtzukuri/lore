@@ -1,6 +1,8 @@
 .card-lo {
   overflow: hidden;
   background: $white;
+  border: 1px solid #eee;
+  padding: 20px;
 
   /*@include elevation(5);*/
   /*box-shadow: -4px 5px 20px 0px #CBCBCB;*/
@@ -65,7 +67,7 @@
   padding-top: 0px;
   padding-right: 80px;
   position: absolute;
-  top: 12%;
+  top: 9%;
 }
 
 .bookmark-icon {

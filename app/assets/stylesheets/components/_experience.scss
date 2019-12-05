@@ -1,13 +1,14 @@
 .experience-1 {
   display: flex;
-  width: 70%;
+  flex: 1;
   a {
-    width: 70%;
+    width: 33%;
     text-decoration: none;
-    text-align: left;
+    text-align: center;
     padding: 2% 3%;
     color: $charcoal;
     white-space: nowrap;
+    font-size: 18px;
     &:hover {
       color: $primary;
     }

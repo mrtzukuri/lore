@@ -1,14 +1,43 @@
 .isotope-container {
+  padding-left: 1.5%;
 
   .grid-item {
     width: 16%;
+    min-width: 250px;
+
+    $skill-color: $green;
+
+    &[data-skill-level="Junior"] {
+      .isotope {
+        background: lighten($skill-color, 60);
+        border-color: lighten($skill-color, 50);
+        color: darken($skill-color, 10);
+      }
+    }
+    &[data-skill-level="Mid-Level"] {
+      .isotope {
+        background: lighten($skill-color, 55);
+        border-color: lighten($skill-color, 45);
+        color: darken($skill-color, 20);
+
+      }
+    }
+    &[data-skill-level="Senior"] {
+      .isotope {
+        background: lighten($skill-color, 50);
+        border-color: lighten($skill-color, 40);
+        color: darken($skill-color, 30);
+
+      }
+    }
+
     .isotope {
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
+      border: 2px solid #ddd;
 
       font-family: 'Roboto';
       font-size: 13px;
@@ -16,23 +45,22 @@
       text-align: center;
       color: $charcoal;
       height: 95px;
-      border: 1px solid $charcoal;
       border-radius: 2px;
       background: $white;
       padding: 5%;
       margin: 0% 0% 2% 0%;
+      font-size: 20px;
       line-height: 136%;
-      // transition: all .2s ease-in-out;
+      transition: all .1s ease-in-out;
+
       &:hover {
         text-decoration: none;
-        // background-color: $primary;
-        border: 1px solid $primary;
-        color: $primary;
-        // transform: scale(1.03);
-        box-shadow: 0px 0 8px rgba(0, 0, 0, 0.2);
-        font-weight: bold;
-        text-transform: uppercase;
-
+        background-color: $primary;
+        border: 2px solid $primary;
+        color: white;
+        transform: scale(1.03);
+        z-index: 1;
+        box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
       }
     }
   }

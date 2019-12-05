@@ -6,7 +6,6 @@
 
 #filters {
   padding: 0px 40px;
-  border-right: 1px solid;
 }
 
 .header {
@@ -14,7 +13,9 @@
 }
 
 .filter-header-small {
-  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .checkbox-list {
@@ -26,6 +27,8 @@
   padding: 16px;
   position: sticky;
   top: 10%;
+  height: 80vh;
+  border-right: 1px solid #ddd;
 }
 
 ::placeholder {
@@ -59,11 +62,15 @@ label {
   input {
     display: none;
   }
+  .fas {
+    margin-right: 5px;
+  }
   input:checked ~ label{
     background-color: white;
     border: none;
     color: white;
     background-color: $green;
+    white-space: nowrap;
 
     .unchecked-icon {
       display: none;
@@ -73,12 +80,15 @@ label {
     }
   }
   label {
-    padding: 3px 10px;
+    padding: 2px 8px 2px 8px;
     color: $charcoal;
     display: inline-block;
     background-color: #e9ecef;
     border: 1px solid #e9ecef;
-    border-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    font-size: 13px;
     .checked-icon {
       display: none;
     }
@@ -93,10 +103,10 @@ label {
     }
     &::-webkit-slider-runnable-track {
         width: 100%;
-        height: 2px;
+        height: 1px;
         cursor: pointer;
         box-shadow: none;
-        background: $charcoal;
+        background: #ccc;
         border-radius: 0px;
         border: 0px solid #4cA6A8;
     }
@@ -154,7 +164,7 @@ label {
     box-sizing: border-box;
     margin-top: 0px;
     margin-left: -24px;
-    left: 215px;
+    left: 100%;
     color: #000;
     font-style: normal;
     font-weight: normal;

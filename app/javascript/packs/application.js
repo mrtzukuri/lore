@@ -14,3 +14,13 @@ priceSlider();
 filterRefresh();
 initAutocomplete();
 addDatePicker();
+
+
+const reviewsContainerEl = document.querySelector('.js-reviews-container');
+const grid = new Isotope(reviewsContainerEl, {
+  // options...
+  itemSelector: '.grid-item',
+  masonry: {
+    columnWidth: 10
+  },
+});

@@ -3,20 +3,19 @@
     <div class="col-12">
       <% require 'open-uri' %>
       <% require 'nokogiri' %>
-        <h1><%= @learningopportunity.name %></h1>
-          <% @learningopportunity.skills.each do |skill| %>
-          <h5>Skill: <%= skill.name %> </h5>
-          <% end %>
-          <div aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
-              <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
-            </ol>
-          </div>
-        <div class="learning-opp-card">
+
+        <div class="learning-opp-page">
           <div class="row">
             <div class="col-12 col-md-8">
+             <div aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
+            <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
+          </ol>
+        </div>
+                      <h1><%= @learningopportunity.name %></h1>
+
               <div class="learning-opp-detailed-desc"></div>
                 <p><%= @learningopportunity.description.truncate(1000) %></p>
                 <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
@@ -32,13 +31,24 @@
                   >
                   </div>
                   <% end %>
-                  <ul style="list-style: none; padding: 0px">
-                    <li><strong>Location:</strong> <%= @learningopportunity.location %></li>
-                    <li><strong>Price:</strong> $<%= @learningopportunity.price %></li>
-                    <li><strong>Type:</strong> <%= @learningopportunity.course_type.capitalize %></li>
-                    <li><strong>Start date:</strong> <%= @learningopportunity.start_date %></li>
-                    <li><strong>End date:</strong> <%= @learningopportunity.end_date %></li>
-                  </ul>
+                    <% if @learningopportunity.location %>
+                      <div class="learning-opp-page-location">
+                         <%= @learningopportunity.location %>
+                      </div>
+                    <% end %>
+                    <div class="learning-opp-page-price">
+                      <% if @learningopportunity.price == 0 %>
+                        Free
+                      <% else %>
+                        $<%= @learningopportunity.price %>.00
+                      <% end %>
+                    </div>
+                    <div class="learning-opp-page-type">
+                      <%= @learningopportunity.course_type.capitalize %>
+                    </div>
+                    <div class="learning-opp-page-dates">
+                      <%= @learningopportunity.start_date %> - <%= @learningopportunity.end_date %>
+                    </div>
               </div>
             </div>
           </div>
@@ -48,34 +58,41 @@
       <% url = "#{@learningopportunity.url}/reviews" %>
       <% html_file = open(url).read %>
       <% html_doc = Nokogiri::HTML(html_file) %>
-      <div class="row">
-        <div class="col-12">
+      <div>
         <!-- getting average review -->
         <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
         <% average = ele.children.text  %>
         <h4>Average review <%= average %>/5</h4>
                   <hr>
+        <div class="row js-reviews-container">
+
           <!-- getting single review -->
           <% html_doc.search('.review-page-review').each do |element|  %>
-          <div class="review-card">
+
             <% var = element.search('.SvgIcon_8wfvj4 title')%>
             <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-              <div class="summary-info d-flex justify-content-between">
-                <div id="name">
-                  <% var = element.search('.reviewerName') %>
-                  <% name = var.children.text  %>
-                  <p><%= name %></p>
-                </div>
-                <div id="stars">
-                  <div class="d-flex">
-                    <% stars.count.times do %>
-                    <p><i class="fas fa-star"></i></p>
-                    <% end %>
-                  </div>
+
+          <div class="col-md-6 grid-item">
+            <div class="review-card">
+
+            <div class="review-card-header">
+              <div class="review-stars">
+                <div class="d-flex">
+                  <% stars.count.times do %>
+                  <p><i class="fas fa-star"></i></p>
+                  <% end %>
+                  <% (5 - stars.count).times do %>
+                  <p><i class="far fa-star"></i></p>
+                  <% end %>
                 </div>
               </div>
-              <hr>
-              <div class="review-text">
+             <div align="right">
+              <% var = element.search('.dateOfReview')%>
+              <% date = var.children.text  %>
+              <p><%= date %></p>
+            </div>
+            </div>
+               <div class="review-text">
                 <% descrip = "" %>
                 <% var = element.search('.rc-CML.font-lg.styled > div')%>
                 <% var.search('p').each do |p|  %>
@@ -83,12 +100,15 @@
                 <% end %>
                 <p><%= descrip %></p>
               </div>
-              <div align="right">
-                <% var = element.search('.dateOfReview')%>
-                <% date = var.children.text  %>
-                <p><%= date %></p>
+              <div class="summary-info d-flex justify-content-between">
+                <div class="review-author">
+                  <% var = element.search('.reviewerName') %>
+                  <% name = var.children.text  %>
+                  <p><%= name %></p>
+                </div>
               </div>
             </div>
+          </div>
           <% end %>
           <% else %>
           <h4>No reviews available.</h4>

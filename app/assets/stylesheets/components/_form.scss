@@ -1,0 +1,29 @@
+input[type='text'], input[type='number'] {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #ccc;
+  /* color: black; */
+  padding-left: 0;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: $green;
+  }
+}
+
+
+.icon-field {
+  position: relative;
+
+  .icon-field-input {
+
+  }
+
+  .icon-field-icon {
+    position: absolute;
+    right: 4px;
+    top: 12px;
+    pointer-events: none;
+  }
+}

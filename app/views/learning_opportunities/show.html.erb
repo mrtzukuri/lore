@@ -5,17 +5,17 @@
       <% require 'nokogiri' %>
 
         <div class="learning-opp-page">
+          <div aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
+              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
+              <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
+            </ol>
+          </div>
           <div class="row">
             <div class="col-12 col-md-8">
-             <div aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-            <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
-            <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
-          </ol>
-        </div>
-                      <h1><%= @learningopportunity.name %></h1>
-
+              <h1><%= @learningopportunity.name %></h1>
+               <h6><%= @learningopportunity.course_type.upcase %></h6>
               <div class="learning-opp-detailed-desc"></div>
                 <p><%= @learningopportunity.description.truncate(1000) %></p>
                 <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
@@ -43,11 +43,8 @@
                         $<%= @learningopportunity.price %>.00
                       <% end %>
                     </div>
-                    <div class="learning-opp-page-type">
-                      <%= @learningopportunity.course_type.capitalize %>
-                    </div>
                     <div class="learning-opp-page-dates">
-                      <%= @learningopportunity.start_date %> - <%= @learningopportunity.end_date %>
+                      <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
                     </div>
               </div>
             </div>
@@ -104,15 +101,14 @@
                 <div class="review-author">
                   <% var = element.search('.reviewerName') %>
                   <% name = var.children.text  %>
-                  <p><%= name %></p>
+                  <br>
+                  <a href="<%= url %>"><h6><%= name.gsub("By ", "") %></h6></a>
                 </div>
               </div>
             </div>
           </div>
           <% end %>
           <% else %>
-          <h4>No reviews available.</h4>
-          <hr>
           <% end %>
           </div>
 

@@ -10,23 +10,56 @@
     &[data-skill-level="Junior"] {
       .isotope {
         // background: lighten($skill-color, 20);
-        border-color: lighten($skill-color, 10);
-        color: darken($skill-color, 10);
+        border-color: #aaa;
+        color: $green;
+        // border-color: lighten($skill-color, 10);
+        // color: darken($skill-color, 10);
+        &:hover {
+          text-decoration: none;
+          background-color: $primary;
+          border: 2px solid $primary;
+          color: white;
+          transform: scale(1.03);
+          z-index: 1;
+          box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
+        }
       }
     }
     &[data-skill-level="Mid-Level"] {
       .isotope {
         // background: lighten($skill-color, 15);
-        border-color: lighten($skill-color, 10);
-        color: darken($skill-color, 20);
+        border-color: #aaa;
+        color: darken($yellow, 20);
+        // border-color: lighten($skill-color, 10);
+        // color: darken($skill-color, 20);
+        &:hover {
+          text-decoration: none;
+          background-color: darken($yellow, 20);
+          border: 2px solid darken($yellow, 20);
+          color: white;
+          transform: scale(1.03);
+          z-index: 1;
+          box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
+        }
 
       }
     }
     &[data-skill-level="Senior"] {
       .isotope {
         // background: lighten($skill-color, 5);
-        border-color: lighten($skill-color, 0);
-        color: darken($skill-color, 30);
+        border-color: #aaa;
+        color: darken($red, 20);
+        // border-color: lighten($skill-color, 0);
+        // color: darken($skill-color, 30);
+        &:hover {
+          text-decoration: none;
+          background-color: darken($red, 20);
+          border: 2px solid darken($red, 20);
+          color: white;
+          transform: scale(1.03);
+          z-index: 1;
+          box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
+        }
 
       }
     }
@@ -37,9 +70,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 2px solid #ddd;
+      border: 1px solid #ddd;
       font-family: 'Roboto';
-      font-size: 11px;
       text-decoration: none;
       text-align: center;
       color: $charcoal;
@@ -47,20 +79,20 @@
       border-radius: 2px;
       background: $white;
       padding: 5%;
-      margin: 0% 2% 2% 0%;
-      font-size: 20px;
+      margin: 0% 3px 3px 0%;
+      font-size: 15px;
       line-height: 136%;
       transition: all .1s ease-in-out;
 
-      &:hover {
-        text-decoration: none;
-        background-color: $primary;
-        border: 2px solid $primary;
-        color: white;
-        transform: scale(1.03);
-        z-index: 1;
-        box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
-      }
+      // &:hover {
+      //   text-decoration: none;
+      //   background-color: $primary;
+      //   border: 2px solid $primary;
+      //   color: white;
+      //   transform: scale(1.03);
+      //   z-index: 1;
+      //   box-shadow: 0px 0 12px rgba(0, 0, 0, 0.1);
+      // }
     }
   }
 }

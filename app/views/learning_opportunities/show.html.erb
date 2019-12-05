@@ -18,12 +18,18 @@
                <h6><%= @learningopportunity.course_type.upcase %></h6>
               <div class="learning-opp-detailed-desc"></div>
                 <p><%= @learningopportunity.description.truncate(1000) %></p>
-                <div class="learning-opp-visit-and-bookmark">
-                <%= link_to "Visit site", @learningopportunity.url, target: "_blank" %>
-                </div>
               </div>
               <div class="col-12 col-md-4">
                 <div class="summary-details">
+                  <div class="bookmark-icon" id="show-page-bookmark-icon">
+                    <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
+                    <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
+                  </div>
+                  <% if @learningopportunity.location %>
+                    <div class="learning-opp-page-location">
+                       <h6><%= @learningopportunity.location %></h6>
+                    </div>
+                  <% end %>
                   <% unless @learningopportunity.location == "" || @learningopportunity.course_type == "online" || @learningopportunity.location == nil %>
                   <div id="map"
                     style="width: 100%;
@@ -31,20 +37,11 @@
                     data-markers="<%= @markers.to_json %>"
                     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
                   >
+                  <hr>
                   </div>
                   <% end %>
-                    <% if @learningopportunity.location %>
-                      <div class="learning-opp-page-location">
-                         <%= @learningopportunity.location %>
-                      </div>
-                    <% end %>
-                    <div class="bookmark-icon">
-                      <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
-                      <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
-                    </div>
                     <div class="learning-opp-page-price">
                       <% if @learningopportunity.price == 0 %>
-                        Free
                       <% else %>
                         $<%= @learningopportunity.price %>.00
                       <% end %>
@@ -53,6 +50,10 @@
                       <% if !@learningopportunity.start_date.nil? %>
                       <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
                       <% end %>
+                    </div>
+                    <br>
+                    <div class="learning-opp-visit-and-bookmark">
+                    <%= link_to "Go to site >", @learningopportunity.url, target: "_blank" %>
                     </div>
               </div>
             </div>

@@ -9,12 +9,30 @@
     color: $charcoal;
     white-space: nowrap;
     font-size: 18px;
+  }
+  a.junior {
     &:hover {
       color: $primary;
     }
   }
-  a.is-checked {
+  a.mid-level {
+    &:hover {
+      color: darken($yellow, 20);
+    }
+  }
+  a.senior {
+    &:hover {
+      color: darken($red, 20);
+    }
+  }
+  .junior.is-checked {
     color: $primary;
+  }
+  .mid-level.is-checked {
+    color: darken($yellow, 20);
+  }
+  .senior.is-checked {
+    color: darken($red, 20);
   }
 }
 

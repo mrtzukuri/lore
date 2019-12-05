@@ -10,7 +10,7 @@ const priceSlider = function() {
     rangeBullet.innerHTML = rangeSlider.value;
     var bulletPosition = (rangeSlider.value / rangeSlider.max);
 
-    rangeBullet.style.left = (bulletPosition * 100) + "%";
+    rangeBullet.style.left = (bulletPosition * 95) + "%";
   }
 }
 

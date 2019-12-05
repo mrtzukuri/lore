@@ -20,7 +20,6 @@
         <img src="https://www.svgrepo.com/show/163162/avatar.svg" class="avatar-l">
       <% end %>
       <div class="right-half">
-        <hr>
         <p>Name</p>
         <h2><%= @user.name %></h2>
 
@@ -46,8 +45,6 @@
 
 
     <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="shortlist-tab">
-      <h3>Your saved Learning Opportunities</h3>
-       <hr>
         <div>
           <% @learningopportunities = [] %>
           <% $bookmark_count = @bookmarks.count %>
@@ -58,14 +55,13 @@
 
      <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="host-tab">
       <div class="host">
-        <h3>Host</h3>
-        <hr>
         <% if current_user.learning_opportunities == [] %>
           <p>Want to be apart of the fun? </p>
           <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>
         <% else %>
           <% current_user.learning_opportunities.each do |event| %>
-            <%= event.name %> <%= link_to "edit", edit_learning_opportunity_path(event) %> <%= link_to "destroy", learning_opportunity_path(event), method: "delete" %>
+            <% learning_event = [event] %>
+            <%= render partial: './learning_opportunities/my_card_list', locals: { learningopportunities: learning_event} %>
           <% end %>
           <br>
           <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>

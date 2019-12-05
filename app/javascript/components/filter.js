@@ -15,7 +15,7 @@ const filterRefresh = function() {
     priceSlider.addEventListener('change', (event) => {
       buttonEl.click();
     })
-    locationEl.addEventListener('blur', (event) => {
+    locationEl.addEventListener('keyup', (event) => {
       buttonEl.click();
     })
     onlineEL.addEventListener('change', (event) => {

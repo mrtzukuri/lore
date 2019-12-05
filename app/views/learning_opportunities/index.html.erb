@@ -32,20 +32,26 @@
               <ul class="checkbox-list">
                 <li>
                   <input type="checkbox" id="meetup" name="type[]" value="Meet Up" checked>
-                  <label class="checkbox-label" for="meetup">Meetup
-                    <i class="fas fa-times checked-icon"></i>
+                  <label class="checkbox-label" for="meetup">
+                    <i class="fas fa-check checked-icon"></i>
+                    <i class="fas fa-plus unchecked-icon"></i>
+                    Meetup
                   </label>
                 </li>
                 <li>
                   <input type="checkbox" id="online" name="type[]" value="online" checked>
-                  <label class="checkbox-label" for="online">Online Course
-                    <i class="fas fa-times checked-icon"></i>
+                  <label class="checkbox-label" for="online">
+                    <i class="fas fa-check checked-icon"></i>
+                    <i class="fas fa-plus unchecked-icon"></i>
+                    Online Course
                   </label>
                 </li>
                 <li>
                   <input type="checkbox" id="event" name="type[]" value="event" checked>
-                  <label class="checkbox-label" for="event">Event
-                    <i class="fas fa-times checked-icon"></i>
+                  <label class="checkbox-label" for="event">
+                    <i class="fas fa-check checked-icon"></i>
+                    <i class="fas fa-plus unchecked-icon"></i>
+                    Event
                   </label>
                 </li>
               </ul>
@@ -60,7 +66,7 @@
   <div class="col-12 col-md-9">
     <div class="filter-results-and-sort">
       <div class="header">
-        <h1>Results</h1>
+        <h1><%= params[:query] %></h1>
         <hr>
       </div>
       <div aria-label="breadcrumb">

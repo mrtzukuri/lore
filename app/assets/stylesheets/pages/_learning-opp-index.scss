@@ -62,17 +62,22 @@ label {
   input:checked ~ label{
     background-color: white;
     border: none;
-    color: $charcoal;
+    color: white;
+    background-color: $green;
 
+    .unchecked-icon {
+      display: none;
+    }
     .checked-icon {
       display: inline-block;
     }
   }
   label {
     padding: 3px 10px;
-    color: #4cA6A8;
+    color: $charcoal;
     display: inline-block;
-    border: 1px solid #4cA6A8;
+    background-color: #e9ecef;
+    border: 1px solid #e9ecef;
     border-radius: 10px;
     .checked-icon {
       display: none;

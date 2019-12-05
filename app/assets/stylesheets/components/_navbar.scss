@@ -31,10 +31,21 @@
 }
 
 .nav-link {
-  font-family: $headers-font;
+  font-family: $body-font;
   text-transform: uppercase;
   font-variant: unicase;
   font-size: 20px;
+
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: lightgray;
+}
+
+.pills-container {
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .bookmark {

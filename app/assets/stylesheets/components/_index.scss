@@ -18,12 +18,12 @@
   &:hover {
     transform: scaleX(-1);
   }
-}
-
-.home-flip a {
-  &:hover {
-    &::before {
+  a {
+    width: 100%;
+    &:hover {
+      &::before {
         content: "←";
+      }
     }
   }
 }

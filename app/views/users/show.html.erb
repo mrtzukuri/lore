@@ -45,26 +45,31 @@
 
 
     <div id="shortlist" role="tabpanel" class="tab-pane fade show active" aria-labelledby="pills-shortlist-tab">
-        <div>
-          <% @learningopportunities = [] %>
-          <% $bookmark_count = @bookmarks.count %>
-          <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
-          <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
-        </div>
+        <% if @bookmarks.count == 0 %>
+          <p>You currently have nothing bookmarked</p>
+        <% else %>
+          <div>
+            <% @learningopportunities = [] %>
+            <% $bookmark_count = @bookmarks.count %>
+            <% @bookmarks.each { | bookmark | @learningopportunities <<  bookmark.learning_opportunity } %>
+            <%= render partial: './learning_opportunities/cards_list', locals: { learningopportunities: @learningopportunities } %>
+          </div>
+        <% end %>
     </div>
 
      <div id="host" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-host-tab">
       <div class="host">
         <% if current_user.learning_opportunities == [] %>
-          <p>Want to be apart of the fun? </p>
+        <div class="no-event-box">
+          <p>Contribute to the lore </p>
           <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>
+          </div>
         <% else %>
-          <% current_user.learning_opportunities.each do |event| %>
-            <% learning_event = [event] %>
-            <%= render partial: './learning_opportunities/my_card_list', locals: { learningopportunities: learning_event} %>
-          <% end %>
+
+            <%= render partial: './learning_opportunities/my_card_list', locals: { learningopportunities: current_user.learning_opportunities} %>
+
           <br>
-          <%= link_to 'Add an Event', new_learning_opportunity_path, class: "btn", style:"text-align: center" %>
+          <%= link_to 'Add an Event +', new_learning_opportunity_path, class: "btn add-btn", style:"text-align: center" %>
         <% end %>
       </div>
 

@@ -1,9 +1,9 @@
 .isotope-container {
-  padding-left: 1.5%;
+  padding-left: 9%;
 
   .grid-item {
     width: 16%;
-    min-width: 250px;
+    min-width: 260px;
 
     $skill-color: $green;
 
@@ -38,13 +38,12 @@
       justify-content: center;
       align-items: center;
       border: 2px solid #ddd;
-
       font-family: 'Roboto';
-      font-size: 13px;
+      font-size: 11px;
       text-decoration: none;
       text-align: center;
       color: $charcoal;
-      height: 95px;
+      height: 70px;
       border-radius: 2px;
       background: $white;
       padding: 5%;

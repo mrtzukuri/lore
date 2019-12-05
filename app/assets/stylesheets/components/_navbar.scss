@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: transparent;
+  background: white;
     hr {
       margin: 0;
       margin-bottom: 20px;
@@ -28,6 +28,10 @@
   background-color: red;
   border-radius: 100%;
   font-size: x-small;
+}
+
+.navbar-nav{
+  flex-direction: row;
 }
 
 .nav-link {
@@ -76,6 +80,18 @@
 /*  animation: load 1s forwards;
 */  display: block;
 }
+.navbar-nav .dropdown-menu{
+  position: absolute;
+}
+
+.sticky {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-top: 0;
+}
 
 .dropdown-menu {
  display: none;
@@ -83,6 +99,7 @@
  padding: 0;
  background-color: transparent;
  border: none;
+
 }
 
 .dropdown-item:first-child {

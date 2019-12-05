@@ -3,13 +3,11 @@
   <%= f.input :description, :input_html => {:rows =>5}  %>
   <%= f.input :price %>
   <div class="d-flex">
-    <%= f.input :start_date, as: :string, label: "Dates", placeholder: "From", wrapper_html: { class: "margin-r inline_field_wrapper" } %>
-    <%= f.input :end_date, as: :string, label: '&nbsp;'.html_safe, placeholder: "To", disabled: true, wrapper_html: { class: "margin-l inline_field_wrapper" } %>
+    <%= f.input :start_date, wrapper_html: {class: "margin-r"}%>
+    <%= f.input :end_date, wrapper_html: {class: "margin-l"}%>
   </div>
   <%= f.input :location, :class => "text-inputs form-control icon-field-input" %>
-  <div>
-    <%= f.input :course_type, collection: ["Online", "Conference", "Meetup", "Class"], :as => :radio_buttons, :class => "radio-button" %>
-  </div>
+  <%= f.input :course_type, collection: ["Online", "Conference", "Meetup", "Class"] %>
   <%= f.input :url %>
   <%= f.input :skill_ids, collection: Skill.all, input_html: { multiple: true }, :label => "Related skills", :class => "form-skill-list"%>
   <%= f.submit "Submit", :class => "btn btn-2" %>

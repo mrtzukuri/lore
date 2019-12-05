@@ -66,3 +66,58 @@
 .nav-link:hover {
   color: #c1c1c1;
 }
+
+.dropdown-item {
+  transition-duration: 0.5s;
+}
+
+.dropdown:hover .dropdown-menu {
+/*  animation: load 1s forwards;
+*/  display: block;
+}
+
+.dropdown-menu {
+ display: none;
+ opacity: 1;
+ padding: 0;
+ background-color: transparent;
+ border: none;
+}
+
+.dropdown-item:first-child {
+  animation: load 1s ease-in;
+  animation-delay: 0;
+  background-color: white;
+}
+
+.dropdown-item:nth-child(2) {
+  animation: load 1.5s ease-in;
+  background-color: white;
+}
+
+
+.dropdown-item:last-child {
+  animation: load 2s ease-in;
+  background-color: white;
+}
+
+.dropdown-item:hover {
+  transform: translateX(-20px);
+  transition-duration: 0.5s;
+}
+
+@keyframes load {
+  0% {
+    transform: translateX(-45px);
+    opacity: 0
+  }
+  40%{
+    opacity: 1
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1
+  }
+}
+
+

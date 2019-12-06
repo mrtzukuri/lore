@@ -51,17 +51,71 @@
   background: $blue;
 }
 
-.card-lo h2 {
-  font-size: 18px;
-  margin: 0;
+@media (max-width:1440px) {
+  /* For a screen < 960px, this CSS will be read */
+  .card-lo h2 {
+    font-size: 1.4vw;
+    margin: 0;
+  }
+
+  .card-lo p {
+    font-size: 1.1vw;
+    opacity: .7;
+    margin: 0;
+    margin-top: 5%;
+  }
+
+  .card-location {
+    color: black;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 1.1vw;
+  }
 }
 
-.card-lo p {
-  font-size: 1rem;
-  opacity: .7;
-  margin: 0;
-  margin-top: 5%;
+@media (max-width:1279px) {
+  /* For a screen < 960px, this CSS will be read */
+  .card-lo h2 {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .card-lo p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+    margin-top: 5%;
+  }
+
+  .card-location {
+    color: black;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 12px;
+  }
 }
+
+@media (max-width:1000px) {
+  /* For a screen < 960px, this CSS will be read */
+  .card-lo h2 {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .card-lo p {
+    font-size: 12px;
+    opacity: .7;
+    margin-top: 5%;
+  }
+
+  .card-location {
+    color: black;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 8px;
+  }
+}
+
 
 .card-lo .card-lo-infos {
   padding-top: 0px;
@@ -132,11 +186,7 @@
   color: #F4B943;
 }
 
-.card-location {
-  color: black;
-  font-family: "Roboto";
-  font-weight: bold;
-}
+
 
 
 

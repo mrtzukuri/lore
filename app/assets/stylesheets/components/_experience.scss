@@ -1,7 +1,7 @@
 .experience-1 {
   display: flex;
   flex: 1;
-  a {
+  p {
     width: 33%;
     text-decoration: none;
     text-align: center;
@@ -10,17 +10,17 @@
     white-space: nowrap;
     font-size: 18px;
   }
-  a.junior {
+  p.junior {
     &:hover {
       color: $primary;
     }
   }
-  a.mid-level {
+  p.mid-level {
     &:hover {
       color: darken($yellow, 20);
     }
   }
-  a.senior {
+  p.senior {
     &:hover {
       color: darken($red, 20);
     }
@@ -39,7 +39,7 @@
 .experience-2 {
   display: flex;
   text-align: center;
-  a {
+  p {
     text-decoration: none;
     color: $charcoal;
     width: 200px;

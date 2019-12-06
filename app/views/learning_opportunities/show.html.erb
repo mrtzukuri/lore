@@ -3,141 +3,141 @@
     <div class="col-12">
       <% require 'open-uri' %>
       <% require 'nokogiri' %>
-       <% url = "#{@learningopportunity.url}/reviews" %>
-        <% html_file = open(url).read %>
-        <% html_doc = Nokogiri::HTML(html_file) %>
+      <% url = "#{@learningopportunity.url}/reviews" %>
+      <% html_file = open(url).read %>
+      <% html_doc = Nokogiri::HTML(html_file) %>
 
-        <div class="learning-opp-page">
-          <div aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
-              <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
-              <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
-            </ol>
+      <div class="learning-opp-page">
+        <div aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/frontend">Frontend</a></li>
+            <li class="breadcrumb-item"><a href="/learning_opportunities?query=<%= params[:query]%>"> <%= params[:query] %> Learning Opportunities</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> <%= @learningopportunity.name %></li>
+          </ol>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <h1><%= @learningopportunity.name %></h1>
+            <h6><%= @learningopportunity.course_type.upcase %></h6>
+            <div class="learning-opp-detailed-desc"></div>
+            <p><%= @learningopportunity.description.truncate(1000) %></p>
           </div>
-          <div class="row">
-            <div class="col-12 col-md-8">
-              <h1><%= @learningopportunity.name %></h1>
-               <h6><%= @learningopportunity.course_type.upcase %></h6>
-              <div class="learning-opp-detailed-desc"></div>
-                <p><%= @learningopportunity.description.truncate(1000) %></p>
+          <div class="col-12 col-md-4">
+            <div class="summary-details">
+              <div class="bookmark-icon" id="show-page-bookmark-icon">
+                <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
+                <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
               </div>
-              <div class="col-12 col-md-4">
-                <div class="summary-details">
-                  <div class="bookmark-icon" id="show-page-bookmark-icon">
-                    <% @bookmark = UserBookmark.find_by(user: current_user, learning_opportunity: @learningopportunity) %>
-                    <%= render 'bookmark_icon', bookmark: @bookmark, learning_opportunity_id: @learningopportunity.id %>
-                  </div>
-                  <% if @learningopportunity.location %>
-                    <div class="learning-opp-page-location">
-                       <h6><%= @learningopportunity.location %></h6>
-                    </div>
-                  <% end %>
-                  <% unless @learningopportunity.location == "" || @learningopportunity.course_type == "online" || @learningopportunity.location == nil %>
-                  <div id="map"
-                    style="width: 100%;
-                    height: 250px;"
-                    data-markers="<%= @markers.to_json %>"
-                    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-                  >
-                  <hr>
-                  </div>
-                  <% end %>
-                    <div class="learning-opp-page-price">
-                      <% if @learningopportunity.price == 0 %>
-                      <% else %>
-                        $<%= @learningopportunity.price %>.00
-                      <% end %>
-                    </div>
-                    <div class="learning-opp-page-dates">
-                      <% if !@learningopportunity.start_date.nil? %>
-                      <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
-                      <% end %>
-                    </div>
-                     <!-- getting average review -->
-                      <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
+              <% if @learningopportunity.location %>
+              <div class="learning-opp-page-location">
+               <h6><%= @learningopportunity.location %></h6>
+             </div>
+             <% end %>
+             <% unless @learningopportunity.location == "" || @learningopportunity.course_type == "online" || @learningopportunity.location == nil %>
+             <div id="map"
+             style="width: 100%;
+             height: 250px;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+             >
+             <hr>
+           </div>
+           <% end %>
+           <div class="learning-opp-page-price">
+            <% if @learningopportunity.price == 0 %>
+            <% else %>
+            $<%= @learningopportunity.price %>.00
+            <% end %>
+          </div>
+          <div class="learning-opp-page-dates">
+            <% if !@learningopportunity.start_date.nil? %>
+            <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
+            <% end %>
+          </div>
+          <!-- getting average review -->
+          <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
           <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
           <% average = ele.children.text  %>
-        <div class="d-flex" style="width: 40%;">
-          <% average.to_i.times do %>
-          <i class="fas fa-star" style="margin: 0;"></i>
-          <% end %>
-          <% (5 - average.to_i).times do %>
-          <i class="far fa-star"></i>
-          <% end %>
-          <hr>
-        </div>
-          <% end %>
-
-                    <br>
-                    <div class="learning-opp-visit-and-bookmark">
-                    <%= link_to "Go to site >", @learningopportunity.url, target: "_blank" %>
-                    </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <br>
-      <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
-        <div>
-<hr>
-        </div>
-          <div class="row js-reviews-container">
-
-            <!-- getting single review -->
-            <% html_doc.search('.review-page-review').each do |element|  %>
-
-              <% var = element.search('.SvgIcon_8wfvj4 title')%>
-              <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
-
-            <div class="col-md-6 grid-item">
-              <div class="review-card">
-
-              <div class="review-card-header">
-                <div class="review-stars">
-                  <div class="d-flex">
-                    <% stars.count.times do %>
-                    <p><i class="fas fa-star"></i></p>
-                    <% end %>
-                    <% (5 - stars.count).times do %>
-                    <p><i class="far fa-star"></i></p>
-                    <% end %>
-                  </div>
-                </div>
-               <div align="right">
-                <% var = element.search('.dateOfReview')%>
-                <% date = var.children.text  %>
-                <p><%= date %></p>
-              </div>
-              </div>
-                 <div class="review-text">
-                  <% descrip = "" %>
-                  <% var = element.search('.rc-CML.font-lg.styled > div')%>
-                  <% var.search('p').each do |p|  %>
-                  <%  descrip += " #{p.text}" %>
-                  <% end %>
-                  <p><%= descrip %></p>
-                </div>
-                <div class="summary-info d-flex justify-content-between">
-                  <div class="review-author">
-                    <% var = element.search('.reviewerName') %>
-                    <% name = var.children.text  %>
-                    <br>
-                    <a href="<%= url %>"><h6><%= name.gsub("By ", "") %></h6></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="d-flex" style="width: 40%;">
+            <% average.to_i.times do %>
+            <i class="fas fa-star" style="margin: 0;"></i>
             <% end %>
-          <% else %>
-          <hr>
-            <p>There are currently no reviews</p>
+            <% (5 - average.to_i).times do %>
+            <i class="far fa-star"></i>
+            <% end %>
+            <hr>
+          </div>
           <% end %>
-        </div>
 
+          <br>
+          <div class="learning-opp-visit-and-bookmark">
+            <%= link_to "Go to site >", @learningopportunity.url, target: "_blank" %>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <br>
+  <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
+  <div>
+    <hr>
+  </div>
+  <div class="row js-reviews-container">
+
+    <!-- getting single review -->
+    <% html_doc.search('.review-page-review').each do |element|  %>
+
+    <% var = element.search('.SvgIcon_8wfvj4 title')%>
+    <% stars = var.select{ |star| star.children.text == "Filled Star" } %>
+
+    <div class="col-md-6 grid-item">
+      <div class="review-card">
+
+        <div class="review-card-header">
+          <div class="review-stars">
+            <div class="d-flex">
+              <% stars.count.times do %>
+              <p><i class="fas fa-star"></i></p>
+              <% end %>
+              <% (5 - stars.count).times do %>
+              <p><i class="far fa-star"></i></p>
+              <% end %>
+            </div>
+          </div>
+          <div align="right">
+            <% var = element.search('.dateOfReview')%>
+            <% date = var.children.text  %>
+            <p><%= date %></p>
+          </div>
+        </div>
+        <div class="review-text">
+          <% descrip = "" %>
+          <% var = element.search('.rc-CML.font-lg.styled > div')%>
+          <% var.search('p').each do |p|  %>
+          <%  descrip += " #{p.text}" %>
+          <% end %>
+          <p><%= descrip %></p>
+        </div>
+        <div class="summary-info d-flex justify-content-between">
+          <div class="review-author">
+            <% var = element.search('.reviewerName') %>
+            <% name = var.children.text  %>
+            <br>
+            <a href="<%= url %>"><h6><%= name.gsub("By ", "") %></h6></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% else %>
+    <hr>
+    <p>There are currently no reviews</p>
+    <% end %>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
 </div>

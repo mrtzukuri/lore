@@ -9,25 +9,7 @@
 @import "profile";
 @import "form";
 @import "breadcrumb";
+@import "../pages/home";
 
-.home-flip {
-  color: $charcoal;
-  font-size: 75px;
-  font-family: $headers-font;
-  text-decoration: none !important;
-  &:hover {
-    transform: scaleX(-1);
-  }
-  a {
-    width: 100%;
-    &:hover {
-      &::before {
-        content: "←";
-      }
-    }
-  }
-}
 
-.home-container {
-  margin-top: 6%;
-}
+

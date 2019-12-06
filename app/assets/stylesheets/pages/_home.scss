@@ -1,1 +1,24 @@
-// Specific CSS for your home-page
+.home-flip {
+    color: $charcoal;
+    font-size: 5vw;
+    font-family: $headers-font;
+    text-decoration: none !important;
+    white-space: nowrap;
+    &:hover {
+      transform: scaleX(-1);
+    }
+    a {
+      width: 100%;
+      &:hover {
+        &::before {
+          content: "←";
+        }
+      }
+    }
+  }
+
+  .home-container {
+    margin-top: 6%;
+  }
+
+

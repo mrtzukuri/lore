@@ -3,6 +3,9 @@
     <div class="col-12">
       <% require 'open-uri' %>
       <% require 'nokogiri' %>
+       <% url = "#{@learningopportunity.url}/reviews" %>
+        <% html_file = open(url).read %>
+        <% html_doc = Nokogiri::HTML(html_file) %>
 
         <div class="learning-opp-page">
           <div aria-label="breadcrumb">
@@ -51,6 +54,21 @@
                       <%= @learningopportunity.start_date.strftime("%d %B, %Y") %> <%= @learningopportunity.end_date.strftime("- %d %B, %Y") %>
                       <% end %>
                     </div>
+                     <!-- getting average review -->
+                      <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
+          <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
+          <% average = ele.children.text  %>
+        <div class="d-flex" style="width: 40%;">
+          <% average.to_i.times do %>
+          <i class="fas fa-star" style="margin: 0;"></i>
+          <% end %>
+          <% (5 - average.to_i).times do %>
+          <i class="far fa-star"></i>
+          <% end %>
+          <hr>
+        </div>
+          <% end %>
+
                     <br>
                     <div class="learning-opp-visit-and-bookmark">
                     <%= link_to "Go to site >", @learningopportunity.url, target: "_blank" %>
@@ -62,15 +80,9 @@
 
         <br>
       <% if @learningopportunity.url.match(/https:\/\/www.coursera.org\/.*/) %>
-        <% url = "#{@learningopportunity.url}/reviews" %>
-        <% html_file = open(url).read %>
-        <% html_doc = Nokogiri::HTML(html_file) %>
         <div>
-          <!-- getting average review -->
-          <% ele = html_doc.search('.H4_1k76nzj-o_O-weightBold_uvlhiv-o_O-bold_1byw3y2') %>
-          <% average = ele.children.text  %>
-          <h4>Average review <%= average %>/5</h4>
-                    <hr>
+<hr>
+        </div>
           <div class="row js-reviews-container">
 
             <!-- getting single review -->
